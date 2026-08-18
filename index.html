@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ===== SEO: título com palavra-chave + local (req. do relatório) ===== -->
+  <title>FEMI · Moda Feminina em Belém do Pará | Vestidos, Macaquinhos e Camisetas</title>
+  <meta name="description" content="FEMI · Moda feminina em Belém do Pará. Seu essencial, de infinitas formas. Vestidos, macaquinhos e camisetas com envio para todo o Brasil. Peça pelo WhatsApp." />
+  <meta name="keywords" content="moda feminina belem, loja de roupa feminina belem do para, vestidos belem, moda feminina para, femi" />
+  <meta name="author" content="FEMI" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.femibrand.com.br/" />
+  <meta name="theme-color" content="#6B3F2B" />
+  <meta name="geo.region" content="BR-PA" />
+  <meta name="geo.placename" content="Belém" />
+
+  <!-- ===== Open Graph / compartilhamento (req. do relatório) ===== -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="FEMI" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:title" content="FEMI · Moda Feminina em Belém do Pará" />
+  <meta property="og:description" content="Seu essencial, de infinitas formas. Vestidos, macaquinhos e camisetas. Envio para todo o Brasil. Peça pelo WhatsApp." />
+  <meta property="og:url" content="https://www.femibrand.com.br/" />
+  <meta property="og:image" content="https://www.femibrand.com.br/images/destaque.jpg" />
+  <meta property="og:image:alt" content="FEMI · Moda feminina de Belém do Pará" />
+  <meta name="twitter:image" content="https://www.femibrand.com.br/images/destaque.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="FEMI · Moda Feminina em Belém do Pará" />
+  <meta name="twitter:description" content="Seu essencial, de infinitas formas. Moda feminina com envio para todo o Brasil." />
+
+  <!-- ===== Dados estruturados: negócio local (para Google / Maps) ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ClothingStore",
+    "name": "FEMI",
+    "description": "Moda feminina em Belém do Pará. Seu essencial, de infinitas formas.",
+    "image": "https://www.femibrand.com.br/images/destaque.jpg",
+    "url": "https://www.femibrand.com.br/",
+    "telephone": "+55-91-00000-0000",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Belém",
+      "addressRegion": "PA",
+      "addressCountry": "BR"
+    },
+    "areaServed": "BR",
+    "sameAs": [
+      "https://www.instagram.com/femibrand__/"
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..700&family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+  :root{
+    --brown:#5A3826; --brown-2:#7A4E33; --brown-soft:#9A6B4A;
+    --cream:#F6EFE4; --cream-2:#EDE1CE; --paper:#FBF7F0;
+    --gold:#C09A4B; --ink:#2B2016; --muted:#8A7660;
+    --green:#3E7C4F; --shadow:rgba(74,45,25,.14);
+    --maxw:1200px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Archivo',sans-serif;color:var(--ink);
+    background:var(--paper);line-height:1.6;overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4,.serif{font-family:'Fraunces',Georgia,serif;font-weight:400;line-height:1.08;letter-spacing:-.01em}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,56px)}
+  .eyebrow{font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;font-weight:600;color:var(--brown-soft)}
+
+  /* subtle paper grain */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ===== TOP BAR ===== */
+  .topbar{background:var(--brown);color:var(--cream);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;text-align:center;padding:8px 16px;font-weight:500}
+
+  /* ===== HEADER / NAV ===== */
+  header.nav{position:sticky;top:0;z-index:100;background:rgba(251,247,240,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--cream-2)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .logo{font-family:'Fraunces',serif;font-size:1.9rem;font-weight:600;letter-spacing:.14em;color:var(--brown)}
+  .logo span{font-size:.6rem;letter-spacing:.3em;display:block;color:var(--muted);font-family:'Archivo';font-weight:500;margin-top:-4px}
+  nav ul{display:flex;gap:34px;list-style:none;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500}
+  nav a{position:relative;padding:4px 0;color:var(--brown-2)}
+  nav a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1.5px;background:var(--gold);transition:width .35s ease}
+  nav a:hover::after{width:100%}
+  .nav-cta{border:1.5px solid var(--brown);color:var(--brown);padding:9px 20px;border-radius:40px;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;transition:.3s}
+  .nav-cta:hover{background:var(--brown);color:var(--cream)}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer}
+  .burger span{width:26px;height:2px;background:var(--brown);transition:.3s}
+
+  /* ===== HERO ===== */
+  .hero{position:relative;padding:clamp(70px,11vw,140px) 0 clamp(60px,8vw,110px);overflow:hidden}
+  .hero-bg{position:absolute;inset:0;z-index:-1;background:
+     radial-gradient(1200px 600px at 78% -10%,var(--cream-2),transparent 60%),
+     radial-gradient(900px 500px at 8% 110%,#efe3d0,transparent 55%),
+     linear-gradient(180deg,var(--paper),#f3ebdd)}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,5vw,70px);align-items:center}
+  .hero h1{font-size:clamp(2.9rem,7vw,5.6rem);color:var(--brown);font-weight:500}
+  .hero h1 em{font-style:italic;color:var(--gold)}
+  .hero .lead{font-size:clamp(1.02rem,1.6vw,1.22rem);color:var(--muted);max-width:34ch;margin:26px 0 34px}
+  .hero-loc{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brown-2);font-weight:600;margin-bottom:22px}
+  .hero-loc svg{width:15px;height:15px}
+  .btn-row{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:15px 30px;border-radius:44px;font-weight:600;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;transition:transform .25s,box-shadow .25s,background .25s;cursor:pointer;border:0}
+  .btn-primary{background:var(--brown);color:var(--cream);box-shadow:0 14px 30px -12px var(--brown)}
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 20px 40px -14px var(--brown)}
+  .btn-ghost{background:transparent;border:1.5px solid var(--brown-soft);color:var(--brown-2)}
+  .btn-ghost:hover{background:var(--brown);color:var(--cream);border-color:var(--brown)}
+  .btn svg{width:18px;height:18px}
+
+  /* hero collage */
+  .hero-art{position:relative;aspect-ratio:4/5}
+  .hero-art .frame{position:absolute;border-radius:14px;overflow:hidden;box-shadow:0 30px 60px -24px var(--shadow)}
+  .hero-art .f1{inset:0 22% 20% 0;z-index:2}
+  .hero-art .f2{width:46%;aspect-ratio:3/4;right:0;top:8%;z-index:3;border:6px solid var(--paper)}
+  .hero-art .f3{width:38%;aspect-ratio:1/1;right:8%;bottom:0;z-index:4;border:6px solid var(--paper)}
+  .swatch{width:100%;height:100%;display:flex;align-items:flex-end;padding:16px;color:#fff;font-family:'Fraunces';font-size:1.1rem;letter-spacing:.04em}
+  .ph{width:100%;height:100%;object-fit:cover;display:block}
+  .frame .ph{border-radius:inherit}
+  .card-img .ph{transition:transform .6s ease}
+  .card:hover .card-img .ph{transform:scale(1.06)}
+  .sw-yellow{background:linear-gradient(150deg,#E7C34E,#D9A93C)}
+  .sw-brown{background:linear-gradient(150deg,#7A4E33,#5A3826)}
+  .sw-green{background:linear-gradient(150deg,#4E8A5C,#2F5E3A)}
+
+  /* ===== MARQUEE ===== */
+  .marquee{background:var(--brown);color:var(--cream);padding:15px 0;overflow:hidden;white-space:nowrap}
+  .marquee-track{display:inline-flex;gap:40px;animation:scroll 26s linear infinite;font-family:'Fraunces';font-style:italic;font-size:1.15rem;padding-right:40px}
+  .marquee-track span{display:inline-flex;align-items:center;gap:40px}
+  .marquee .dot{color:var(--gold);font-style:normal}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+
+  /* ===== SECTION SHELL ===== */
+  section{padding:clamp(64px,9vw,120px) 0}
+  .sec-head{max-width:620px;margin-bottom:clamp(36px,5vw,60px)}
+  .sec-head h2{font-size:clamp(2.1rem,4.6vw,3.4rem);color:var(--brown);margin:12px 0 16px;font-weight:500}
+  .sec-head p{color:var(--muted);font-size:1.05rem}
+
+  /* ===== PRODUCTS ===== */
+  #colecao{background:linear-gradient(180deg,var(--paper),#f4ecdf)}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,34px)}
+  .card{background:var(--paper);border-radius:16px;overflow:hidden;box-shadow:0 18px 40px -26px var(--shadow);transition:transform .4s,box-shadow .4s;display:flex;flex-direction:column}
+  .card:hover{transform:translateY(-8px);box-shadow:0 30px 55px -26px var(--shadow)}
+  .card-img{aspect-ratio:4/5;position:relative;overflow:hidden}
+  .card-img .swatch{transition:transform .6s ease}
+  .card:hover .card-img .swatch{transform:scale(1.06)}
+  .tag{position:absolute;top:14px;left:14px;background:var(--paper);color:var(--brown);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;padding:6px 12px;border-radius:30px;z-index:2}
+  .card-body{padding:20px 22px 24px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .card-body h3{font-size:1.4rem;color:var(--brown)}
+  .card-body .fabric{font-size:.82rem;color:var(--muted);letter-spacing:.03em}
+  .card-body .price{font-family:'Fraunces';font-size:1.15rem;color:var(--ink);margin-top:auto;padding-top:12px}
+  .card-order{margin-top:12px;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--green);color:#fff;padding:12px;border-radius:12px;font-weight:600;font-size:.82rem;letter-spacing:.05em;text-transform:uppercase;transition:filter .25s,transform .25s}
+  .card-order:hover{filter:brightness(1.08);transform:translateY(-2px)}
+  .card-order svg{width:17px;height:17px}
+
+  /* ===== ABOUT / BELÉM ===== */
+  #sobre{position:relative}
+  .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(34px,6vw,80px);align-items:center}
+  .about-art{aspect-ratio:1/1;border-radius:18px;overflow:hidden;position:relative;box-shadow:0 30px 60px -28px var(--shadow)}
+  .about-art .swatch{font-size:1.6rem}
+  .about-text h2{font-size:clamp(2rem,4.4vw,3.2rem);color:var(--brown);margin:14px 0 20px;font-weight:500}
+  .about-text p{color:var(--muted);font-size:1.06rem;margin-bottom:16px;max-width:52ch}
+  .about-text strong{color:var(--brown-2)}
+  .stats{display:flex;gap:40px;margin-top:30px}
+  .stat b{font-family:'Fraunces';font-size:2.3rem;color:var(--gold);display:block;line-height:1}
+  .stat span{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+  /* ===== WHATSAPP CTA ===== */
+  #pedido{background:var(--brown);color:var(--cream);position:relative;overflow:hidden}
+  #pedido .wrap{position:relative;z-index:2;text-align:center}
+  #pedido::after{content:"FEMI";position:absolute;font-family:'Fraunces';font-weight:600;font-size:34vw;color:rgba(246,239,228,.05);top:50%;left:50%;transform:translate(-50%,-50%);z-index:1;letter-spacing:.1em;pointer-events:none}
+  #pedido h2{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:500;margin-bottom:18px}
+  #pedido h2 em{font-style:italic;color:var(--gold)}
+  #pedido p{color:rgba(246,239,228,.8);max-width:52ch;margin:0 auto 34px;font-size:1.08rem}
+  .btn-wa{background:var(--green);color:#fff;box-shadow:0 16px 34px -14px rgba(0,0,0,.5)}
+  .btn-wa:hover{transform:translateY(-3px)}
+
+  /* ===== FOOTER ===== */
+  footer{background:#3E271A;color:var(--cream);padding:64px 0 30px}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:44px}
+  .foot-logo{font-family:'Fraunces';font-size:2.2rem;font-weight:600;letter-spacing:.14em;margin-bottom:12px}
+  footer p{color:rgba(246,239,228,.62);font-size:.92rem;max-width:38ch}
+  .foot-col h4{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;font-family:'Archivo';font-weight:700}
+  .foot-col a{display:block;color:rgba(246,239,228,.75);font-size:.92rem;margin-bottom:11px;transition:color .25s,padding .25s}
+  .foot-col a:hover{color:#fff;padding-left:5px}
+  .foot-bottom{border-top:1px solid rgba(246,239,228,.14);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.8rem;color:rgba(246,239,228,.5)}
+
+  /* floating whatsapp */
+  .wa-float{position:fixed;right:22px;bottom:22px;z-index:200;width:60px;height:60px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px -8px rgba(0,0,0,.4);transition:transform .3s;animation:pulse 2.6s infinite}
+  .wa-float:hover{transform:scale(1.1)}
+  .wa-float svg{width:32px;height:32px;fill:#fff}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(62,124,79,.5)}70%{box-shadow:0 0 0 16px rgba(62,124,79,0)}100%{box-shadow:0 0 0 0 rgba(62,124,79,0)}}
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ===== RESPONSIVE ===== */
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;gap:48px}
+    .hero-art{max-width:420px;margin:0 auto;width:100%}
+    .about-grid{grid-template-columns:1fr;gap:40px}
+    .grid{grid-template-columns:repeat(2,1fr)}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    nav ul,.nav-cta{display:none}
+    .burger{display:flex}
+    nav.open ul{display:flex;position:absolute;top:72px;left:0;right:0;flex-direction:column;background:var(--paper);padding:24px clamp(20px,5vw,56px);gap:18px;border-bottom:1px solid var(--cream-2)}
+  }
+  @media(max-width:560px){
+    .grid{grid-template-columns:1fr}
+    .stats{gap:26px}
+    .foot-grid{grid-template-columns:1fr}
+  }
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <!-- barra de anúncio -->
+  <div class="topbar">Envio para todo o Brasil · Novidades toda semana · Retirada em Belém - PA</div>
+
+  <!-- ===== NAV ===== -->
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a href="#topo" class="logo">FEMI<span>Moda Feminina</span></a>
+      <nav id="mainnav">
+        <ul>
+          <li><a href="#colecao">Coleção</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#belem">Belém</a></li>
+          <li><a href="#pedido">Contato</a></li>
+        </ul>
+      </nav>
+      <a href="#pedido" class="nav-cta">Fazer pedido</a>
+      <button class="burger" id="burger" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <a id="topo"></a>
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="wrap hero-grid">
+      <div class="hero-copy reveal">
+        <div class="hero-loc">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.4-7-11a7 7 0 0 1 14 0c0 4.6-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          Belém do Pará · Brasil
+        </div>
+        <h1>Moda feminina em <em>Belém</em>, do seu jeito</h1>
+        <p class="lead">Seu essencial, de infinitas formas. Vestidos, macaquinhos e camisetas pensados para a rotina, os encontros e as ocasiões especiais.</p>
+        <div class="btn-row">
+          <a href="#pedido" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.16c-.24.68-1.42 1.31-1.96 1.35-.5.05-1.14.24-3.73-.78-3.14-1.24-5.15-4.42-5.31-4.63-.15-.21-1.27-1.69-1.27-3.22s.8-2.29 1.09-2.6c.28-.31.61-.39.82-.39.2 0 .41 0 .59.01.19.01.44-.07.69.53.24.6.83 2.06.9 2.21.07.15.12.32.02.53-.1.21-.15.33-.29.51-.15.18-.31.4-.44.53-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.02 1.12.99 2.06 1.3 2.35 1.45.29.15.46.13.63-.08.17-.21.72-.84.91-1.13.19-.29.38-.24.64-.15.26.1 1.66.78 1.94.93.29.15.48.22.55.34.07.13.07.72-.17 1.4z"/></svg>
+            Pedir pelo WhatsApp
+          </a>
+          <a href="#colecao" class="btn btn-ghost">Ver coleção</a>
+        </div>
+      </div>
+      <div class="hero-art reveal">
+        <div class="frame f1"><img class="ph" src="images/destaque.jpg" alt="Modelo usando peça de moda feminina da FEMI ao pôr do sol em Belém do Pará, coleção verão 2026" loading="eager" width="900" height="1125"></div>
+        <div class="frame f2"><img class="ph" src="images/macaquinho.jpg" alt="Macaquinho marrom em crepe unique da nova coleção da FEMI" loading="lazy" width="820" height="1025"></div>
+        <div class="frame f3"><img class="ph" src="images/camiseta_brasil.jpg" alt="Camiseta verde da coleção brasilidades da FEMI, colorida e vibrante" loading="lazy" width="820" height="1025"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MARQUEE ===== -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Moda Feminina <b class="dot">·</b> Belém do Pará <b class="dot">·</b> Vestidos <b class="dot">·</b> Macaquinhos <b class="dot">·</b> Camisetas <b class="dot">·</b> Envio para todo o Brasil <b class="dot">·</b> </span>
+      <span>Moda Feminina <b class="dot">·</b> Belém do Pará <b class="dot">·</b> Vestidos <b class="dot">·</b> Macaquinhos <b class="dot">·</b> Camisetas <b class="dot">·</b> Envio para todo o Brasil <b class="dot">·</b> </span>
+    </div>
+  </div>
+
+  <!-- ===== COLEÇÃO ===== -->
+  <section id="colecao">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Nova coleção</span>
+        <h2>Peças que combinam com cada momento</h2>
+        <p>Novidades que acompanham a rotina, os encontros e as ocasiões especiais. Descubra a sua favorita.</p>
+      </div>
+      <div class="grid">
+
+        <article class="card reveal">
+          <div class="card-img">
+            <span class="tag">Novo</span>
+            <img class="ph" src="images/vestido_sol.jpg" alt="Vestido amarelo de ombro único, tecido leve, coleção verão 2026 da FEMI" loading="lazy" width="820" height="1025">
+          </div>
+          <div class="card-body">
+            <h3>Vestido Sol</h3>
+            <span class="fabric">Ombro único · toque de elegância para o verão</span>
+            <span class="price">Consulte o valor</span>
+            <a class="card-order" target="_blank" rel="noopener"
+               href="https://wa.me/5591992593961?text=Ol%C3%A1%20FEMI!%20Tenho%20interesse%20no%20Vestido%20Sol%20(amarelo).%20Pode%20me%20passar%20valor%20e%20tamanhos%3F">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-img">
+            <span class="tag">Coleção</span>
+            <img class="ph" src="images/macaquinho.jpg" alt="Macaquinho marrom em crepe unique, caimento elegante, nova coleção da FEMI" loading="lazy" width="820" height="1025">
+          </div>
+          <div class="card-body">
+            <h3>Macaquinho Cacau</h3>
+            <span class="fabric">Crepe Unique · elegância para o dia e a noite</span>
+            <span class="price">Consulte o valor</span>
+            <a class="card-order" target="_blank" rel="noopener"
+               href="https://wa.me/5591992593961?text=Ol%C3%A1%20FEMI!%20Tenho%20interesse%20no%20Macaquinho%20Cacau%20(marrom).%20Pode%20me%20passar%20valor%20e%20tamanhos%3F">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-img">
+            <span class="tag">Brasilidades</span>
+            <img class="ph" src="images/camiseta_brasil.jpg" alt="Camiseta verde da coleção brasilidades da FEMI, colorida e vibrante, para torcer pelo Brasil" loading="lazy" width="820" height="1025">
+          </div>
+          <div class="card-body">
+            <h3>Camiseta Brasil</h3>
+            <span class="fabric">Coleção brasilidades · colorida e vibrante</span>
+            <span class="price">Consulte o valor</span>
+            <a class="card-order" target="_blank" rel="noopener"
+               href="https://wa.me/5591992593961?text=Ol%C3%A1%20FEMI!%20Tenho%20interesse%20na%20Camiseta%20Brasil%20(verde).%20Pode%20me%20passar%20valor%20e%20tamanhos%3F">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-img">
+            <span class="tag">Verão</span>
+            <img class="ph" src="images/entardecer.jpg" alt="Vestido curto amarelo com cintura marcada, coleção verão da FEMI, ideal para o pôr do sol" loading="lazy" width="820" height="1025">
+          </div>
+          <div class="card-body">
+            <h3>Vestido Entardecer</h3>
+            <span class="fabric">Cintura marcada · leveza para dias quentes</span>
+            <span class="price">Consulte o valor</span>
+            <a class="card-order" target="_blank" rel="noopener"
+               href="https://wa.me/5591992593961?text=Ol%C3%A1%20FEMI!%20Tenho%20interesse%20no%20Vestido%20Entardecer.%20Pode%20me%20passar%20valor%20e%20tamanhos%3F">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-img">
+            <span class="tag">Alfaiataria</span>
+            <img class="ph" src="images/conjunto.jpg" alt="Conjunto de alfaiataria leve em tom marrom da FEMI, versátil para o trabalho e encontros" loading="lazy" width="820" height="1025">
+          </div>
+          <div class="card-body">
+            <h3>Conjunto Terra</h3>
+            <span class="fabric">Alfaiataria leve · versátil e atemporal</span>
+            <span class="price">Consulte o valor</span>
+            <a class="card-order" target="_blank" rel="noopener"
+               href="https://wa.me/5591992593961?text=Ol%C3%A1%20FEMI!%20Tenho%20interesse%20no%20Conjunto%20Terra.%20Pode%20me%20passar%20valor%20e%20tamanhos%3F">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-img">
+            <span class="tag">Brasilidades</span>
+            <img class="ph" src="images/camiseta_ceu.jpg" alt="Camiseta azul da coleção da FEMI, com a alma do Brasil, moda feminina brasileira" loading="lazy" width="820" height="1025">
+          </div>
+          <div class="card-body">
+            <h3>Camiseta Céu</h3>
+            <span class="fabric">Azul que carrega o céu e o mar do Brasil</span>
+            <span class="price">Consulte o valor</span>
+            <a class="card-order" target="_blank" rel="noopener"
+               href="https://wa.me/5591992593961?text=Ol%C3%A1%20FEMI!%20Tenho%20interesse%20na%20Camiseta%20C%C3%A9u%20(azul).%20Pode%20me%20passar%20valor%20e%20tamanhos%3F">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SOBRE ===== -->
+  <section id="sobre">
+    <div class="wrap about-grid">
+      <div class="about-art reveal">
+        <img class="ph" src="images/about.jpg" alt="Editorial da marca FEMI em tons terrosos, representando a identidade de moda feminina de Belém do Pará" loading="lazy" width="820" height="820">
+      </div>
+      <div class="about-text reveal">
+        <span class="eyebrow">A marca</span>
+        <h2>Seu essencial, de infinitas formas</h2>
+        <p><strong>FEMI é uma marca de moda feminina de Belém do Pará.</strong> Criamos peças versáteis, com tecidos de qualidade e caimento pensado para o corpo real, que se transformam com você ao longo do dia.</p>
+        <p>Da alfaiataria leve às camisetas de brasilidade, cada coleção nasce da vontade de vestir a mulher paraense com elegância, leveza e atitude.</p>
+        <div class="stats">
+          <div class="stat"><b>100%</b><span>Produção nacional</span></div>
+          <div class="stat"><b>PA</b><span>Feito em Belém</span></div>
+          <div class="stat"><b>Brasil</b><span>Enviamos para todo</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BELÉM ===== -->
+  <section id="belem" style="background:linear-gradient(180deg,#f4ecdf,var(--paper))">
+    <div class="wrap">
+      <div class="sec-head reveal" style="max-width:680px">
+        <span class="eyebrow">Onde estamos</span>
+        <h2>Moda feminina no coração de Belém do Pará</h2>
+        <p>Atendemos toda a região metropolitana de Belém e enviamos para todo o Brasil. Combine a retirada ou tire suas dúvidas pelo WhatsApp — respondemos rapidinho.</p>
+      </div>
+      <div class="btn-row reveal">
+        <a href="#pedido" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.4-7-11a7 7 0 0 1 14 0c0 4.6-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          Combinar retirada em Belém
+        </a>
+        <a href="https://www.instagram.com/femibrand__/" target="_blank" rel="noopener" class="btn btn-ghost">Ver no Instagram</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PEDIDO / WHATSAPP ===== -->
+  <section id="pedido">
+    <div class="wrap">
+      <span class="eyebrow" style="color:var(--gold)">Faça seu pedido</span>
+      <h2>Sua peça favorita a um <em>clique</em> de distância</h2>
+      <p>Escolha o modelo, o tamanho e a cor. Nós cuidamos do resto — com envio para todo o Brasil e retirada em Belém - PA.</p>
+      <a href="https://wa.me/5591992593961?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20FEMI%20e%20gostaria%20de%20fazer%20um%20pedido." target="_blank" rel="noopener" class="btn btn-wa">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.16c-.24.68-1.42 1.31-1.96 1.35-.5.05-1.14.24-3.73-.78-3.14-1.24-5.15-4.42-5.31-4.63-.15-.21-1.27-1.69-1.27-3.22s.8-2.29 1.09-2.6c.28-.31.61-.39.82-.39.2 0 .41 0 .59.01.19.01.44-.07.69.53.24.6.83 2.06.9 2.21.07.15.12.32.02.53-.1.21-.15.33-.29.51-.15.18-.31.4-.44.53-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.02 1.12.99 2.06 1.3 2.35 1.45.29.15.46.13.63-.08.17-.21.72-.84.91-1.13.19-.29.38-.24.64-.15.26.1 1.66.78 1.94.93.29.15.48.22.55.34.07.13.07.72-.17 1.4z"/></svg>
+        Falar no WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-logo">FEMI</div>
+          <p>Moda feminina de Belém do Pará. Seu essencial, de infinitas formas — vestidos, macaquinhos e camisetas com envio para todo o Brasil.</p>
+        </div>
+        <div class="foot-col">
+          <h4>Navegar</h4>
+          <a href="#colecao">Coleção</a>
+          <a href="#sobre">Sobre a marca</a>
+          <a href="#belem">Belém - PA</a>
+          <a href="#pedido">Fazer pedido</a>
+        </div>
+        <div class="foot-col">
+          <h4>Contato</h4>
+          <a href="https://www.instagram.com/femibrand__/" target="_blank" rel="noopener">Instagram @femibrand__</a>
+          <a href="https://wa.me/5591992593961" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="#pedido">Envio para todo o Brasil</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© 2026 FEMI · Moda Feminina · Belém do Pará</span>
+        <span>Feito com carinho na Amazônia</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp flutuante -->
+  <a href="https://wa.me/5591992593961?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20FEMI." target="_blank" rel="noopener" class="wa-float" aria-label="Falar no WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.16c-.24.68-1.42 1.31-1.96 1.35-.5.05-1.14.24-3.73-.78-3.14-1.24-5.15-4.42-5.31-4.63-.15-.21-1.27-1.69-1.27-3.22s.8-2.29 1.09-2.6c.28-.31.61-.39.82-.39.2 0 .41 0 .59.01.19.01.44-.07.69.53.24.6.83 2.06.9 2.21.07.15.12.32.02.53-.1.21-.15.33-.29.51-.15.18-.31.4-.44.53-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.02 1.12.99 2.06 1.3 2.35 1.45.29.15.46.13.63-.08.17-.21.72-.84.91-1.13.19-.29.38-.24.64-.15.26.1 1.66.78 1.94.93.29.15.48.22.55.34.07.13.07.72-.17 1.4z"/></svg>
+  </a>
+
+  <script>
+  // menu mobile
+  const burger = document.getElementById('burger');
+  const mainnav = document.getElementById('mainnav');
+  burger.addEventListener('click', () => {
+    mainnav.classList.toggle('open');
+    burger.classList.toggle('active');
+  });
+  mainnav.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => mainnav.classList.remove('open'))
+  );
+
+  // reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transitionDelay = (i % 3) * 0.08 + 's';
+    io.observe(el);
+  });
+  </script>
+</body>
+</html>
