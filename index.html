@@ -479,17 +479,90 @@ window.abrirDetalhes = function(id) {
     currency: "BRL"
   });
 
-  const detalhes = `
-    ${produto.name || "Produto FEMI"}
+  const modalAntigo = document.getElementById("modalProdutoFemi");
+if (modalAntigo) modalAntigo.remove();
 
-    ${produto.description || ""}
+const modal = document.createElement("div");
+modal.id = "modalProdutoFemi";
 
-    Preço: ${preco}
+modal.innerHTML = `
+  <div onclick="event.stopPropagation()" style="
+    background:white;
+    width:min(900px,92vw);
+    max-height:90vh;
+    overflow:auto;
+    border-radius:18px;
+    padding:25px;
+    position:relative;
+    box-shadow:0 20px 60px rgba(0,0,0,.25);
+  ">
 
-    Tamanhos: ${produto.sizes || "Consulte disponibilidade"}
-  `;
+    <button onclick="document.getElementById('modalProdutoFemi').remove()" style="
+      position:absolute;
+      right:18px;
+      top:12px;
+      border:none;
+      background:none;
+      font-size:32px;
+      cursor:pointer;
+    ">×</button>
 
-  alert(detalhes);
+    <div style="
+      display:flex;
+      flex-wrap:wrap;
+      gap:28px;
+      align-items:flex-start;
+    ">
+
+      <img
+        src="${produto.image_url || ""}"
+        alt="${produto.name || "Produto FEMI"}"
+        style="
+          flex:1 1 300px;
+          width:100%;
+          max-width:430px;
+          border-radius:14px;
+          object-fit:cover;
+        "
+      >
+
+      <div style="flex:1 1 280px;padding:10px;">
+        <h2 style="margin-top:0;">
+          ${produto.name || "Produto FEMI"}
+        </h2>
+
+        <p style="line-height:1.6;">
+          ${produto.description || ""}
+        </p>
+
+        <h3 style="font-size:24px;margin:22px 0;">
+          ${preco}
+        </h3>
+
+        <p>
+          <strong>Tamanhos disponíveis:</strong><br>
+          ${produto.sizes || "Consulte disponibilidade"}
+        </p>
+      </div>
+
+    </div>
+  </div>
+`;
+
+modal.style.cssText = `
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  z-index:99999;
+`;
+
+modal.onclick = () => modal.remove();
+
+document.body.appendChild(modal);
 };
 
     carregarProdutos();
