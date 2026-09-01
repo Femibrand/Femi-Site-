@@ -437,7 +437,7 @@ async function carregarProdutos() {
     }
 
     const produtos = await resposta.json();
-
+    window.produtosFemi = produtos;
     grid.innerHTML = "";
 
     produtos.forEach(produto => {
@@ -470,7 +470,7 @@ async function carregarProdutos() {
   }
 }
 function abrirDetalhes(id) {
-  const produto = produtos.find(p => p.id === id);
+  const produto = (window.produtosFemi || []).find(p => p.id === id);
 
   if (!produto) return;
 
