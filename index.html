@@ -469,7 +469,7 @@ async function carregarProdutos() {
     grid.innerHTML = "<p>Não foi possível carregar os produtos.</p>";
   }
 }
-function abrirDetalhes(id) {
+window.abrirDetalhes = function(id) {
   const produto = (window.produtosFemi || []).find(p => p.id === id);
 
   if (!produto) return;
@@ -490,7 +490,7 @@ function abrirDetalhes(id) {
   `;
 
   alert(detalhes);
-}
+};
 
     carregarProdutos();
 </script>
