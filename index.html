@@ -447,7 +447,7 @@ async function carregarProdutos() {
       });
 
       grid.innerHTML += `
-        <article class="card reveal in">
+        <article class="card reveal in" onclick="abrirDetalhes('${produto.id}')" style="cursor:pointer;">
           <div class="card-img">
             <span class="tag">${produto.category || "Novidade"}</span>
             <img class="ph"
@@ -469,8 +469,30 @@ async function carregarProdutos() {
     grid.innerHTML = "<p>Não foi possível carregar os produtos.</p>";
   }
 }
+function abrirDetalhes(id) {
+  const produto = produtos.find(p => p.id === id);
 
-carregarProdutos();
+  if (!produto) return;
+
+  const preco = Number(produto.price || 0).toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+  });
+
+  const detalhes = `
+    ${produto.name || "Produto FEMI"}
+
+    ${produto.description || ""}
+
+    Preço: ${preco}
+
+    Tamanhos: ${produto.sizes || "Consulte disponibilidade"}
+  `;
+
+  alert(detalhes);
+}
+
+    carregarProdutos();
 </script>
 </body>
 </html>
