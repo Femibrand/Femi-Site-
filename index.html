@@ -608,7 +608,18 @@ btnCarrinho.onclick = (event) => {
     };
 
     const carrinho = JSON.parse(localStorage.getItem("carrinhoFemi") || "[]");
+  const itemExistente = carrinho.find(produto =>
+  produto.id === item.id &&
+  produto.tamanho === item.tamanho &&
+  produto.cor === item.cor
+);
+
+if (itemExistente) {
+  itemExistente.quantidade =
+    Number(itemExistente.quantidade) + Number(item.quantidade);
+} else {
   carrinho.push(item);
+}
   localStorage.setItem("carrinhoFemi", JSON.stringify(carrinho));  
   const contadorCarrinho = document.getElementById("contadorCarrinho");
 if (contadorCarrinho) {
