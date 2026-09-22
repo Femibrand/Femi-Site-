@@ -746,14 +746,89 @@ if (carrinho.length === 0) {
       <p style="margin:6px 0;">
         Tamanho: ${item.tamanho} | Cor: ${item.cor}
       </p>
-      <p style="margin:6px 0;">
-        Quantidade: ${item.quantidade}
-      </p>
+      <div style="
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:10px 0;
+">
+    <button class="diminuirItem" data-id="${item.id}" data-tamanho="${item.tamanho}" data-cor="${item.cor}" style="
+        width:32px;
+        height:32px;
+        cursor:pointer;
+    ">−</button>
+
+    <span>${item.quantidade}</span>
+
+    <button class="aumentarItem" data-id="${item.id}" data-tamanho="${item.tamanho}" data-cor="${item.cor}" style="
+        width:32px;
+        height:32px;
+        cursor:pointer;
+    ">+</button>
+
+    <button class="removerItem" data-id="${item.id}" data-tamanho="${item.tamanho}" data-cor="${item.cor}" style="
+        border:0;
+        background:none;
+        cursor:pointer;
+        font-size:20px;
+        margin-left:auto;
+    ">🗑️</button>
+</div>
       <strong>
         R$ ${(item.preco * item.quantidade).toFixed(2).replace(".", ",")}
       </strong>
     </div>
   `).join("");
+  document.querySelectorAll(".aumentarItem").forEach(botao => {
+    botao.onclick = () => {
+        const item = carrinho.find(produto =>
+            String(produto.id) === String(botao.dataset.id) &&
+            produto.tamanho === botao.dataset.tamanho &&
+            produto.cor === botao.dataset.cor
+        );
+
+        if (item) {
+            item.quantidade = Number(item.quantidade) + 1;
+            localStorage.setItem("carrinhoFemi", JSON.stringify(carrinho));
+            painel.remove();
+            btnCarrinhoTopo.click();
+        }
+    };
+});
+
+document.querySelectorAll(".diminuirItem").forEach(botao => {
+    botao.onclick = () => {
+        const item = carrinho.find(produto =>
+            String(produto.id) === String(botao.dataset.id) &&
+            produto.tamanho === botao.dataset.tamanho &&
+            produto.cor === botao.dataset.cor
+        );
+
+        if (item && Number(item.quantidade) > 1) {
+            item.quantidade = Number(item.quantidade) - 1;
+            localStorage.setItem("carrinhoFemi", JSON.stringify(carrinho));
+            painel.remove();
+            btnCarrinhoTopo.click();
+        }
+    };
+});
+
+document.querySelectorAll(".removerItem").forEach(botao => {
+    botao.onclick = () => {
+        const indice = carrinho.findIndex(produto =>
+            String(produto.id) === String(botao.dataset.id) &&
+            produto.tamanho === botao.dataset.tamanho &&
+            produto.cor === botao.dataset.cor
+        );
+
+        if (indice !== -1) {
+            carrinho.splice(indice, 1);
+            localStorage.setItem("carrinhoFemi", JSON.stringify(carrinho));
+            painel.remove();
+            btnCarrinhoTopo.click();
+        }
+    };
+});
 }
 document.getElementById("fecharCarrinho").onclick = () => {
   painel.remove();
