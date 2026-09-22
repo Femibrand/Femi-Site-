@@ -717,7 +717,13 @@ painel.innerHTML = `
 
     <h2 style="color:#b3262e;">Seu carrinho</h2>
     <p>Confira suas peças antes de finalizar o pedido.</p>
-    <div id="itensCarrinho"></div>
+   <div id="itensCarrinho" style="
+    margin-top:20px;
+    max-height:calc(100vh - 180px);
+    overflow-y:auto;
+    overflow-x:hidden;
+    padding-right:10px;
+"></div>
   </div>
 `;
 
