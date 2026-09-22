@@ -637,7 +637,45 @@ setTimeout(() => {
 }, 2500);
 };
 };
+const btnCarrinhoTopo = document.getElementById("btnCarrinhoTopo");
 
+btnCarrinhoTopo.onclick = () => {
+  const carrinho = JSON.parse(localStorage.getItem("carrinhoFemi") || "[]");
+
+const painel = document.createElement("div");
+
+painel.innerHTML = `
+  <div style="
+    position:fixed;
+    top:0;
+    right:0;
+    width:400px;
+    max-width:90%;
+    height:100%;
+    background:#fff;
+    z-index:9999999;
+    padding:30px;
+    box-shadow:-5px 0 20px rgba(0,0,0,.20);
+  ">
+    <button id="fecharCarrinho" style="
+      float:right;
+      border:0;
+      background:none;
+      font-size:28px;
+      cursor:pointer;
+    ">×</button>
+
+    <h2 style="color:#b3262e;">Seu carrinho</h2>
+    <p>Confira suas peças antes de finalizar o pedido.</p>
+  </div>
+`;
+
+document.body.appendChild(painel);
+
+document.getElementById("fecharCarrinho").onclick = () => {
+  painel.remove();
+};
+};
     carregarProdutos();
 </script>
 </body>
