@@ -581,6 +581,30 @@ modal.style.cssText = `
 modal.onclick = () => modal.remove();
 
 document.body.appendChild(modal);
+  const btnCarrinho = document.getElementById("btnAdicionarCarrinho");
+
+btnCarrinho.onclick = (event) => {
+    event.stopPropagation();
+
+    const tamanho = document.getElementById("tamanhoSelecionado").value;
+    const cor = document.getElementById("corSelecionada").value;
+    const quantidade = Number(document.getElementById("quantidadeProduto").value) || 1;
+
+    const item = {
+        id: produto.id,
+        nome: produto.name,
+        preco: Number(produto.price || 0),
+        tamanho: tamanho,
+        cor: cor,
+        quantidade: quantidade
+    };
+
+    const carrinho = JSON.parse(localStorage.getItem("carrinhoFemi") || "[]");
+    carrinho.push(item);
+    localStorage.setItem("carrinhoFemi", JSON.stringify(carrinho));
+
+    alert("Produto adicionado ao carrinho!");
+};
 };
 
     carregarProdutos();
