@@ -608,6 +608,25 @@ btnCarrinho.onclick = (event) => {
     };
 
     const carrinho = JSON.parse(localStorage.getItem("carrinhoFemi") || "[]");
+  const carrinhoUnificado = [];
+
+carrinho.forEach(produto => {
+  const existente = carrinhoUnificado.find(item =>
+    item.id === produto.id &&
+    item.tamanho === produto.tamanho &&
+    item.cor === produto.cor
+  );
+
+  if (existente) {
+    existente.quantidade =
+      Number(existente.quantidade) + Number(produto.quantidade);
+  } else {
+    carrinhoUnificado.push({...produto});
+  }
+});
+
+carrinho.length = 0;
+carrinho.push(...carrinhoUnificado);
   const itemExistente = carrinho.find(produto =>
   produto.id === item.id &&
   produto.tamanho === item.tamanho &&
