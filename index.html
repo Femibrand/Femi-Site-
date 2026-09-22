@@ -545,10 +545,12 @@ modal.innerHTML = `
         ${(produto.sizes || "").split(",").map(tamanho => `<option value="${tamanho.trim()}">${tamanho.trim()}</option>`).join("")}
     </select>
 </div>
-        <p style="margin-top:16px;">
-    <strong>Cores disponíveis:</strong><br>
-    ${produto.colors || "Consulte disponibilidade"}
-</p>
+      <div style="margin-top:16px;">
+    <strong>Escolha a cor:</strong><br>
+    <select id="corSelecionada" style="margin-top:8px;padding:10px 12px;border:1px solid #ccc;border-radius:8px;">
+        ${(produto.colors || "").split(",").map(cor => `<option value="${cor.trim()}">${cor.trim()}</option>`).join("")}
+    </select>
+</div>
       </div>
 
     </div>
