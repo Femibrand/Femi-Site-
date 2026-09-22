@@ -551,6 +551,16 @@ modal.innerHTML = `
         ${(produto.colors || "").split(",").map(cor => `<option value="${cor.trim()}">${cor.trim()}</option>`).join("")}
     </select>
 </div>
+   <div style="margin-top:16px;">
+    <strong>Quantidade:</strong><br>
+    <input id="quantidadeProduto" type="number" value="1" min="1"
+           style="margin-top:8px;width:70px;padding:10px;border:1px solid #ccc;border-radius:8px;">
+</div>
+
+<button id="btnAdicionarCarrinho"
+        style="margin-top:20px;width:100%;padding:14px;border:0;border-radius:8px;background:#b3262e;color:white;font-weight:bold;font-size:16px;cursor:pointer;">
+    Adicionar ao carrinho
+</button>  
       </div>
 
     </div>
