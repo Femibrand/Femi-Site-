@@ -676,6 +676,15 @@ document.getElementById("fecharCarrinho").onclick = () => {
   painel.remove();
 };
 };
+    const carrinhoSalvo = JSON.parse(localStorage.getItem("carrinhoFemi") || "[]");
+const contadorInicial = document.getElementById("contadorCarrinho");
+
+if (contadorInicial) {
+  contadorInicial.textContent = carrinhoSalvo.reduce(
+    (total, produto) => total + (Number(produto.quantidade) || 0),
+    0
+  );
+}
     carregarProdutos();
 </script>
 </body>
