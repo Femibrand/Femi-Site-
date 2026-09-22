@@ -603,7 +603,25 @@ btnCarrinho.onclick = (event) => {
     carrinho.push(item);
     localStorage.setItem("carrinhoFemi", JSON.stringify(carrinho));
 
-    alert("Produto adicionado ao carrinho!");
+    const aviso = document.createElement("div");
+aviso.innerHTML = "✓ Produto adicionado ao carrinho";
+aviso.style.cssText = `
+    position:fixed;
+    top:25px;
+    right:25px;
+    background:#b3262e;
+    color:white;
+    padding:14px 20px;
+    border-radius:10px;
+    font-weight:bold;
+    z-index:999999;
+    box-shadow:0 4px 15px rgba(0,0,0,.2);
+`;
+document.body.appendChild(aviso);
+
+setTimeout(() => {
+    aviso.remove();
+}, 2500);
 };
 };
 
