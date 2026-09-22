@@ -250,6 +250,14 @@
           <li><a href="#pedido">Contato</a></li>
         </ul>
       </nav>
+      <button id="btnCarrinhoTopo" type="button" aria-label="Abrir carrinho"
+  style="position:relative;background:none;border:0;font-size:25px;cursor:pointer;padding:8px;">
+  🛍️
+  <span id="contadorCarrinho"
+    style="position:absolute;top:0;right:0;background:#b3262e;color:white;border-radius:50%;min-width:18px;height:18px;padding:0 4px;font-size:11px;display:flex;align-items:center;justify-content:center;">
+    0
+  </span>
+</button>
       <a href="#pedido" class="nav-cta">Fazer pedido</a>
       <button class="burger" id="burger" aria-label="Abrir menu">
         <span></span><span></span><span></span>
@@ -600,8 +608,13 @@ btnCarrinho.onclick = (event) => {
     };
 
     const carrinho = JSON.parse(localStorage.getItem("carrinhoFemi") || "[]");
-    carrinho.push(item);
-    localStorage.setItem("carrinhoFemi", JSON.stringify(carrinho));
+  carrinho.push(item);
+  localStorage.setItem("carrinhoFemi", JSON.stringify(carrinho));  
+  const contadorCarrinho = document.getElementById("contadorCarrinho");
+if (contadorCarrinho) {
+  contadorCarrinho.textContent = carrinho.reduce((total, produto) => total + produto.quantidade, 0);
+}
+    
 
     const aviso = document.createElement("div");
 aviso.innerHTML = "✓ Produto adicionado ao carrinho";
