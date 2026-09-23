@@ -962,17 +962,17 @@ itensCarrinho.appendChild(btnFinalizarPedido);
 
   const formaPagamento = pagamentoSelecionado.value;
 
-  let mensagem = `Olá! Gostaria de finalizar meu pedido na FEMI BRAND.%0A%0A`;
+  let mensagem = `Olá! Gostaria de finalizar meu pedido na FEMI BRAND. ❤️\n\n`;
 
-  carrinho.forEach(item => {
-    mensagem += `🛍️ *${item.nome}*%0A`;
-    mensagem += `Tamanho: ${item.tamanho}%0A`;
-    mensagem += `Cor: ${item.cor}%0A`;
-    mensagem += `Quantidade: ${item.quantidade}%0A`;
-    mensagem += `Valor: R$ ${(Number(item.preco) * Number(item.quantidade)).toFixed(2).replace(".", ",")}%0A%0A`;
-  });
+carrinho.forEach(item => {
+  mensagem += `🛍️ *${item.nome}*\n`;
+  mensagem += `Tamanho: ${item.tamanho}\n`;
+  mensagem += `Cor: ${item.cor}\n`;
+  mensagem += `Quantidade: ${item.quantidade}\n`;
+  mensagem += `Valor: R$ ${(Number(item.preco) * Number(item.quantidade)).toFixed(2).replace(".", ",")}\n\n`;
+});
 
-  mensagem += `*Total da compra: R$ ${totalCarrinho.toFixed(2).replace(".", ",")}*%0A`;
+mensagem += `*Total da compra: R$ ${totalCarrinho.toFixed(2).replace(".", ",")}*\n\n`;
   mensagem += `Forma de pagamento: ${formaPagamento}%0A`;
 
   if (formaPagamento === "Pix") {
