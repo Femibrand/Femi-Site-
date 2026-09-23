@@ -1000,10 +1000,12 @@ mensagem += `*Total da compra: R$ ${totalCarrinho.toFixed(2).replace(".", ",")}*
 
   const numeroWhatsApp = "5591992593961";
 
-  window.open(
-    `https://wa.me/${numeroWhatsApp}?text=${mensagem}`,
-    "_blank"
-  );
+  const mensagemCodificada = encodeURIComponent(mensagem);
+
+window.open(
+  `https://wa.me/${numeroWhatsApp}?text=${mensagemCodificada}`,
+  "_blank"
+);
 };
   document.querySelectorAll(".aumentarItem").forEach(botao => {
     botao.onclick = () => {
