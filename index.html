@@ -779,6 +779,27 @@ if (carrinho.length === 0) {
       </strong>
     </div>
   `).join("");
+  const totalCarrinho = carrinho.reduce(
+  (total, item) => total + (Number(item.preco) * Number(item.quantidade)),
+  0
+);
+
+itensCarrinho.innerHTML += `
+  <div style="
+    margin-top:20px;
+    padding-top:18px;
+    border-top:2px solid #b3262e;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:20px;
+  ">
+    <strong>Total da compra:</strong>
+    <strong style="color:#b3262e;">
+      R$ ${totalCarrinho.toFixed(2).replace(".", ",")}
+    </strong>
+  </div>
+`;
   document.querySelectorAll(".aumentarItem").forEach(botao => {
     botao.onclick = () => {
         const item = carrinho.find(produto =>
