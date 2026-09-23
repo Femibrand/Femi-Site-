@@ -800,6 +800,37 @@ itensCarrinho.innerHTML += `
     </strong>
   </div>
 `;
+  itensCarrinho.innerHTML += `
+  <div style="
+    margin-top:25px;
+    padding-top:18px;
+    border-top:1px solid #eee;
+  ">
+    <strong style="font-size:18px;">Forma de pagamento</strong>
+
+    <div style="
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top:15px;
+    ">
+      <label style="cursor:pointer;">
+        <input type="radio" name="formaPagamento" value="Pix">
+        Pix
+      </label>
+
+      <label style="cursor:pointer;">
+        <input type="radio" name="formaPagamento" value="Cartão">
+        Cartão de crédito
+      </label>
+
+      <label style="cursor:pointer;">
+        <input type="radio" name="formaPagamento" value="Dinheiro">
+        Dinheiro
+      </label>
+    </div>
+  </div>
+`;
   document.querySelectorAll(".aumentarItem").forEach(botao => {
     botao.onclick = () => {
         const item = carrinho.find(produto =>
