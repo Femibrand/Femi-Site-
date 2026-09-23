@@ -930,6 +930,25 @@ formasPagamento.forEach(opcao => {
     }
   });
 });
+  const btnFinalizarPedido = document.createElement("button");
+
+btnFinalizarPedido.id = "finalizarPedido";
+btnFinalizarPedido.innerHTML = "Finalizar pedido pelo WhatsApp";
+
+btnFinalizarPedido.style.cssText = `
+  width:100%;
+  margin-top:20px;
+  padding:15px;
+  border:0;
+  border-radius:8px;
+  background:#b3262e;
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+`;
+
+itensCarrinho.appendChild(btnFinalizarPedido);
   document.querySelectorAll(".aumentarItem").forEach(botao => {
     botao.onclick = () => {
         const item = carrinho.find(produto =>
