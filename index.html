@@ -131,6 +131,90 @@
   }
   nav a:hover::after{width:100%}
 
+  /* MENU DE CATEGORIAS DA COLEÇÃO */
+  .menu-colecao{
+    position:relative;
+  }
+
+  .colecao-trigger{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    cursor:pointer;
+  }
+
+  .colecao-seta{
+    font-size:.72rem;
+    transition:transform .25s ease;
+  }
+
+  .submenu-colecao{
+    position:absolute;
+    top:calc(100% + 14px);
+    left:50%;
+    transform:translateX(-50%) translateY(8px);
+    min-width:220px;
+    padding:10px;
+    background:#fff;
+    border:1px solid rgba(146,25,20,.10);
+    border-radius:14px;
+    box-shadow:0 18px 45px rgba(63,18,15,.16);
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transition:opacity .22s ease,transform .22s ease,visibility .22s;
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    z-index:1000;
+  }
+
+  .submenu-colecao::before{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    top:-18px;
+    height:18px;
+  }
+
+  .submenu-colecao button{
+    width:100%;
+    border:0;
+    background:transparent;
+    color:var(--brown-2);
+    text-align:left;
+    padding:11px 14px;
+    border-radius:9px;
+    cursor:pointer;
+    font-family:'Archivo',sans-serif;
+    font-size:.78rem;
+    font-weight:500;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    transition:background .2s,color .2s,padding .2s;
+  }
+
+  .submenu-colecao button:hover,
+  .submenu-colecao button.ativo{
+    background:#fff3f1;
+    color:var(--brown);
+    padding-left:18px;
+  }
+
+  .menu-colecao:hover .submenu-colecao,
+  .menu-colecao.aberto .submenu-colecao{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+    transform:translateX(-50%) translateY(0);
+  }
+
+  .menu-colecao:hover .colecao-seta,
+  .menu-colecao.aberto .colecao-seta{
+    transform:rotate(180deg);
+  }
+
   .nav-cta{
     border:1.5px solid var(--brown);color:var(--brown);
     padding:9px 20px;border-radius:40px;font-size:.75rem;
@@ -239,10 +323,6 @@
   .card-img .ph{transition:transform .6s ease}
   .card:hover .card-img .ph{transform:scale(1.06)}
 
-  .sw-yellow{background:linear-gradient(150deg,#E7C34E,#D9A93C)}
-  .sw-brown{background:linear-gradient(150deg,#7A4E33,#5A3826)}
-  .sw-green{background:linear-gradient(150deg,#4E8A5C,#2F5E3A)}
-
   .marquee{
     background:var(--brown);color:var(--cream);
     padding:15px 0;overflow:hidden;white-space:nowrap
@@ -312,16 +392,14 @@
     color:var(--ink);margin-top:auto;padding-top:12px
   }
 
-  .card-order{
-    margin-top:12px;display:inline-flex;align-items:center;
-    justify-content:center;gap:9px;background:var(--green);
-    color:#fff;padding:12px;border-radius:12px;font-weight:600;
-    font-size:.82rem;letter-spacing:.05em;text-transform:uppercase;
-    transition:filter .25s,transform .25s
+  #mensagemCategoriaVazia{
+    grid-column:1/-1;
+    padding:35px 20px;
+    text-align:center;
+    color:var(--muted);
+    background:rgba(255,255,255,.45);
+    border-radius:14px;
   }
-
-  .card-order:hover{filter:brightness(1.08);transform:translateY(-2px)}
-  .card-order svg{width:17px;height:17px}
 
   #sobre{position:relative}
 
@@ -334,8 +412,6 @@
     aspect-ratio:1/1;border-radius:18px;overflow:hidden;
     position:relative;box-shadow:0 30px 60px -28px var(--shadow)
   }
-
-  .about-art .swatch{font-size:1.6rem}
 
   .about-text h2{
     font-size:clamp(2rem,4.4vw,3.2rem);
@@ -375,7 +451,6 @@
   }
 
   #pedido h2 em{font-style:italic;color:#FFF8E6}
-  #pedido h2 em+em{font-style:italic;color:#FFF8E6}
 
   #pedido p{
     color:rgba(246,239,228,.8);max-width:52ch;
@@ -459,11 +534,68 @@
     .foot-grid{grid-template-columns:1fr 1fr}
     nav ul,.nav-cta{display:none}
     .burger{display:flex}
+
     nav.open ul{
-      display:flex;position:absolute;top:72px;left:0;right:0;
-      flex-direction:column;background:var(--paper);
+      display:flex;
+      position:absolute;
+      top:72px;
+      left:0;
+      right:0;
+      flex-direction:column;
+      background:var(--paper);
       padding:24px clamp(20px,5vw,56px);
-      gap:18px;border-bottom:1px solid var(--cream-2)
+      gap:18px;
+      border-bottom:1px solid var(--cream-2);
+      max-height:calc(100vh - 72px);
+      overflow-y:auto;
+    }
+
+    .menu-colecao{
+      width:100%;
+    }
+
+    .colecao-trigger{
+      width:100%;
+      justify-content:space-between;
+    }
+
+    .submenu-colecao{
+      position:static;
+      transform:none;
+      min-width:0;
+      width:100%;
+      max-height:0;
+      overflow:hidden;
+      opacity:1;
+      visibility:visible;
+      pointer-events:none;
+      padding:0;
+      margin:0;
+      border:0;
+      box-shadow:none;
+      background:rgba(146,25,20,.035);
+      border-radius:10px;
+      transition:max-height .3s ease,margin .3s ease,padding .3s ease;
+    }
+
+    .menu-colecao:hover .submenu-colecao{
+      transform:none;
+    }
+
+    .menu-colecao.aberto .submenu-colecao{
+      max-height:430px;
+      pointer-events:auto;
+      padding:8px;
+      margin-top:12px;
+      transform:none;
+    }
+
+    .submenu-colecao::before{
+      display:none;
+    }
+
+    .submenu-colecao button{
+      padding:10px 12px;
     }
   }
 
@@ -495,7 +627,48 @@
 
       <nav id="mainnav">
         <ul>
-          <li><a href="#colecao">Coleção</a></li>
+
+          <li class="menu-colecao" id="menuColecao">
+
+            <a href="#colecao" class="colecao-trigger" id="colecaoTrigger">
+              Coleção
+              <span class="colecao-seta">⌄</span>
+            </a>
+
+            <div class="submenu-colecao" id="submenuColecao">
+
+              <button type="button" class="filtro-categoria ativo" data-categoria="todos">
+                Todos os produtos
+              </button>
+
+              <button type="button" class="filtro-categoria" data-categoria="vestidos">
+                Vestidos
+              </button>
+
+              <button type="button" class="filtro-categoria" data-categoria="macaquinhos">
+                Macaquinhos
+              </button>
+
+              <button type="button" class="filtro-categoria" data-categoria="blusas">
+                Blusas
+              </button>
+
+              <button type="button" class="filtro-categoria" data-categoria="regatas">
+                Regatas
+              </button>
+
+              <button type="button" class="filtro-categoria" data-categoria="conjuntos">
+                Conjuntos
+              </button>
+
+              <button type="button" class="filtro-categoria" data-categoria="shorts">
+                Shorts
+              </button>
+
+            </div>
+
+          </li>
+
           <li><a href="#sobre">Sobre</a></li>
           <li><a href="#belem">Belém</a></li>
           <li><a href="#pedido">Contato</a></li>
@@ -591,36 +764,15 @@
       <div class="hero-art reveal">
 
         <div class="frame f1">
-          <img
-            class="ph"
-            src="images/destaque.jpg"
-            alt="Modelo usando peça de moda feminina da FEMI ao pôr do sol em Belém do Pará, coleção verão 2026"
-            loading="eager"
-            width="900"
-            height="1125"
-          >
+          <img class="ph" src="images/destaque.jpg" alt="Modelo usando peça de moda feminina da FEMI ao pôr do sol em Belém do Pará, coleção verão 2026" loading="eager" width="900" height="1125">
         </div>
 
         <div class="frame f2">
-          <img
-            class="ph"
-            src="images/macaquinho.jpg"
-            alt="Macaquinho marrom em crepe unique da nova coleção da FEMI"
-            loading="lazy"
-            width="820"
-            height="1025"
-          >
+          <img class="ph" src="images/macaquinho.jpg" alt="Macaquinho marrom em crepe unique da nova coleção da FEMI" loading="lazy" width="820" height="1025">
         </div>
 
         <div class="frame f3">
-          <img
-            class="ph"
-            src="images/camiseta_brasil.jpg"
-            alt="Camiseta verde da coleção brasilidades da FEMI, colorida e vibrante"
-            loading="lazy"
-            width="820"
-            height="1025"
-          >
+          <img class="ph" src="images/camiseta_brasil.jpg" alt="Camiseta verde da coleção brasilidades da FEMI, colorida e vibrante" loading="lazy" width="820" height="1025">
         </div>
 
       </div>
@@ -628,9 +780,7 @@
   </section>
 
   <div class="marquee" aria-hidden="true">
-
     <div class="marquee-track">
-
       <span>
         Moda Feminina <b class="dot">·</b>
         Belém do Pará <b class="dot">·</b>
@@ -648,7 +798,6 @@
         Camisetas <b class="dot">·</b>
         Envio para todo o Brasil <b class="dot">·</b>
       </span>
-
     </div>
   </div>
 
@@ -662,11 +811,11 @@
           Nova coleção
         </span>
 
-        <h2>
+        <h2 id="tituloColecao">
           Peças que combinam com cada momento
         </h2>
 
-        <p>
+        <p id="descricaoColecao">
           Novidades que acompanham a rotina, os encontros e as ocasiões especiais.
           Descubra a sua favorita.
         </p>
@@ -683,16 +832,7 @@
     <div class="wrap about-grid">
 
       <div class="about-art reveal">
-
-        <img
-          class="ph"
-          src="images/about.jpg"
-          alt="Editorial da marca FEMI em tons terrosos, representando a identidade de moda feminina de Belém do Pará"
-          loading="lazy"
-          width="820"
-          height="820"
-        >
-
+        <img class="ph" src="images/about.jpg" alt="Editorial da marca FEMI em tons terrosos, representando a identidade de moda feminina de Belém do Pará" loading="lazy" width="820" height="820">
       </div>
 
       <div class="about-text reveal">
@@ -717,7 +857,6 @@
         </p>
 
         <div class="stats">
-
           <div class="stat">
             <b>100%</b>
             <span>Produção nacional</span>
@@ -732,8 +871,8 @@
             <b>Brasil</b>
             <span>Enviamos para todo</span>
           </div>
-
         </div>
+
       </div>
     </div>
   </section>
@@ -763,20 +902,10 @@
       <div class="btn-row reveal">
 
         <a href="#pedido" class="btn btn-primary">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 21s-7-6.4-7-11a7 7 0 0 1 14 0c0 4.6-7 11-7 11z"/>
-            <circle cx="12" cy="10" r="2.6"/>
-          </svg>
-
           Combinar retirada em Belém
         </a>
 
-        <a
-          href="https://www.instagram.com/femibrand__/"
-          target="_blank"
-          rel="noopener"
-          class="btn btn-ghost"
-        >
+        <a href="https://www.instagram.com/femibrand__/" target="_blank" rel="noopener" class="btn btn-ghost">
           Ver no Instagram
         </a>
 
@@ -794,9 +923,7 @@
 
       <h2>
         Sua peça favorita a um
-        <em style="color:#C1DBE9 !important;font-style:italic;">
-          clique
-        </em>
+        <em style="color:#C1DBE9 !important;font-style:italic;">clique</em>
         de distância
       </h2>
 
@@ -805,16 +932,7 @@
         com envio para todo o Brasil e retirada em Belém - PA.
       </p>
 
-      <a
-        href="https://wa.me/5591992593961?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20FEMI%20e%20gostaria%20de%20fazer%20um%20pedido."
-        target="_blank"
-        rel="noopener"
-        class="btn btn-wa"
-      >
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.16c-.24.68-1.42 1.31-1.96 1.35-.5.05-1.14.24-3.73-.78-3.14-1.24-5.15-4.42-5.31-4.63-.15-.21-1.27-1.69-1.27-3.22s.8-2.29 1.09-2.6c.28-.31.61-.39.82-.39.2 0 .41 0 .59.01.19.01.44-.07.69.53.24.6.83 2.06.9 2.21.07.15.12.32.02.53-.1.21-.15.33-.29.51-.15.18-.31.4-.44.53-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.02 1.12.99 2.06 1.3 2.35 1.45.29.15.46.13.63-.08.17-.21.72-.84.91-1.13.19-.29.38-.24.64-.15.26.1 1.66.78 1.94.93.29.15.48.22.55.34.07.13.07.72-.17 1.4z"/>
-        </svg>
-
+      <a href="https://wa.me/5591992593961?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20FEMI%20e%20gostaria%20de%20fazer%20um%20pedido." target="_blank" rel="noopener" class="btn btn-wa">
         Falar no WhatsApp
       </a>
 
@@ -837,40 +955,27 @@
         </div>
 
         <div class="foot-col">
-
           <h4>Navegar</h4>
-
           <a href="#colecao">Coleção</a>
           <a href="#sobre">Sobre a marca</a>
           <a href="#belem">Belém - PA</a>
           <a href="#pedido">Fazer pedido</a>
-
         </div>
 
         <div class="foot-col">
-
           <h4>Contato</h4>
 
-          <a
-            href="https://www.instagram.com/femibrand__/"
-            target="_blank"
-            rel="noopener"
-          >
+          <a href="https://www.instagram.com/femibrand__/" target="_blank" rel="noopener">
             Instagram @femibrand__
           </a>
 
-          <a
-            href="https://wa.me/5591992593961"
-            target="_blank"
-            rel="noopener"
-          >
+          <a href="https://wa.me/5591992593961" target="_blank" rel="noopener">
             WhatsApp
           </a>
 
           <a href="#pedido">
             Envio para todo o Brasil
           </a>
-
         </div>
 
       </div>
@@ -883,61 +988,55 @@
     </div>
   </footer>
 
-  <a
-    href="https://wa.me/5591992593961?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20FEMI."
-    target="_blank"
-    rel="noopener"
-    class="wa-float"
-    aria-label="Falar no WhatsApp"
-  >
+  <a href="https://wa.me/5591992593961?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20FEMI." target="_blank" rel="noopener" class="wa-float" aria-label="Falar no WhatsApp">
     <svg viewBox="0 0 24 24">
       <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.16c-.24.68-1.42 1.31-1.96 1.35-.5.05-1.14.24-3.73-.78-3.14-1.24-5.15-4.42-5.31-4.63-.15-.21-1.27-1.69-1.27-3.22s.8-2.29 1.09-2.6c.28-.31.61-.39.82-.39.2 0 .41 0 .59.01.19.01.44-.07.69.53.24.6.83 2.06.9 2.21.07.15.12.32.02.53-.1.21-.15.33-.29.51-.15.18-.31.4-.44.53-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.02 1.12.99 2.06 1.3 2.35 1.45.29.15.46.13.63-.08.17-.21.72-.84.91-1.13.19-.29.38-.24.64-.15.26.1 1.66.78 1.94.93.29.15.48.22.55.34.07.13.07.72-.17 1.4z"/>
     </svg>
   </a>
 
   <script>
-  // =========================================================
-  // MENU MOBILE
-  // =========================================================
-
   const burger = document.getElementById('burger');
   const mainnav = document.getElementById('mainnav');
+  const menuColecao = document.getElementById('menuColecao');
+  const colecaoTrigger = document.getElementById('colecaoTrigger');
 
   burger.addEventListener('click', () => {
     mainnav.classList.toggle('open');
     burger.classList.toggle('active');
   });
 
-  mainnav.querySelectorAll('a').forEach(a =>
+  mainnav.querySelectorAll('a:not(.colecao-trigger)').forEach(a =>
     a.addEventListener('click', () => mainnav.classList.remove('open'))
   );
 
+  colecaoTrigger.addEventListener('click', (event) => {
+    if (window.innerWidth <= 900) {
+      event.preventDefault();
+      event.stopPropagation();
+      menuColecao.classList.toggle('aberto');
+    }
+  });
 
-  // =========================================================
-  // ANIMAÇÕES
-  // =========================================================
+  document.addEventListener('click', (event) => {
+    if (!menuColecao.contains(event.target)) {
+      menuColecao.classList.remove('aberto');
+    }
+  });
 
   const io = new IntersectionObserver((entries) => {
-
     entries.forEach(e => {
-
       if (e.isIntersecting) {
         e.target.classList.add('in');
         io.unobserve(e.target);
       }
-
     });
-
   }, {
     threshold: 0.12
   });
 
   document.querySelectorAll('.reveal').forEach((el, i) => {
-
     el.style.transitionDelay = (i % 3) * 0.08 + 's';
-
     io.observe(el);
-
   });
   </script>
 
@@ -960,48 +1059,35 @@
   // =========================================================
 
   function formatarDinheiro(valor) {
-
     return Number(valor || 0).toLocaleString("pt-BR", {
       style: "currency",
       currency: "BRL"
     });
-
   }
 
 
   function obterCarrinho() {
-
     try {
-
       return JSON.parse(
         localStorage.getItem("carrinhoFemi") || "[]"
       );
-
     } catch (erro) {
-
       console.error("Erro ao carregar carrinho:", erro);
-
       return [];
-
     }
-
   }
 
 
   function salvarCarrinho(carrinho) {
-
     localStorage.setItem(
       "carrinhoFemi",
       JSON.stringify(carrinho)
     );
-
   }
 
 
   function atualizarContadorCarrinho() {
-
     const carrinho = obterCarrinho();
-
     const contador = document.getElementById("contadorCarrinho");
 
     if (!contador) return;
@@ -1011,12 +1097,10 @@
         total + (Number(produto.quantidade) || 0),
       0
     );
-
   }
 
 
   function calcularTotalCarrinho(carrinho) {
-
     return carrinho.reduce(
       (total, item) =>
         total +
@@ -1026,8 +1110,178 @@
         ),
       0
     );
-
   }
+
+
+  // =========================================================
+  // CATEGORIAS
+  // =========================================================
+
+  function normalizarTexto(texto) {
+    return String(texto || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .trim()
+      .toLowerCase();
+  }
+
+
+  function categoriaDoProduto(produto) {
+    const categoria = normalizarTexto(produto.category);
+
+    if (categoria.includes("vestid")) return "vestidos";
+
+    if (
+      categoria.includes("macaquinho") ||
+      categoria.includes("macacinho")
+    ) return "macaquinhos";
+
+    if (categoria.includes("blusa")) return "blusas";
+
+    if (categoria.includes("regata")) return "regatas";
+
+    if (categoria.includes("conjunto")) return "conjuntos";
+
+    if (
+      categoria.includes("short") ||
+      categoria.includes("bermuda")
+    ) return "shorts";
+
+    return categoria;
+  }
+
+
+  function nomeCategoria(categoria) {
+    const nomes = {
+      todos: "Todos os produtos",
+      vestidos: "Vestidos",
+      macaquinhos: "Macaquinhos",
+      blusas: "Blusas",
+      regatas: "Regatas",
+      conjuntos: "Conjuntos",
+      shorts: "Shorts"
+    };
+
+    return nomes[categoria] || categoria;
+  }
+
+
+  function renderizarProdutos(produtos) {
+    const grid = document.getElementById("products-grid");
+
+    grid.innerHTML = "";
+
+    if (!produtos.length) {
+      grid.innerHTML = `
+        <div id="mensagemCategoriaVazia">
+          <strong>Nenhuma peça encontrada nesta categoria no momento.</strong>
+          <p style="margin-top:6px;">
+            Em breve teremos novidades por aqui. ❤️
+          </p>
+        </div>
+      `;
+      return;
+    }
+
+    produtos.forEach(produto => {
+
+      const preco = formatarDinheiro(
+        produto.price || 0
+      );
+
+      grid.innerHTML += `
+        <article
+          class="card reveal in"
+          onclick="abrirDetalhes('${produto.id}')"
+          style="cursor:pointer;"
+        >
+
+          <div class="card-img">
+
+            <span class="tag">
+              ${produto.category || "Novidade"}
+            </span>
+
+            <img
+              class="ph"
+              src="${produto.image_url || ""}"
+              alt="${produto.name || "Produto FEMI"}"
+            >
+
+          </div>
+
+          <div class="card-body">
+
+            <h3>
+              ${produto.name || ""}
+            </h3>
+
+            <span class="fabric">
+              ${produto.description || ""}
+            </span>
+
+            <span class="price">
+              ${preco}
+            </span>
+
+          </div>
+
+        </article>
+      `;
+    });
+  }
+
+
+  function filtrarCategoria(categoria) {
+
+    const todosProdutos = window.produtosFemi || [];
+
+    let produtosFiltrados = todosProdutos;
+
+    if (categoria !== "todos") {
+      produtosFiltrados = todosProdutos.filter(
+        produto => categoriaDoProduto(produto) === categoria
+      );
+    }
+
+    renderizarProdutos(produtosFiltrados);
+
+    document.querySelectorAll(".filtro-categoria").forEach(botao => {
+      botao.classList.toggle(
+        "ativo",
+        botao.dataset.categoria === categoria
+      );
+    });
+
+    const titulo = document.getElementById("tituloColecao");
+    const descricao = document.getElementById("descricaoColecao");
+
+    if (categoria === "todos") {
+      titulo.textContent = "Peças que combinam com cada momento";
+      descricao.textContent =
+        "Novidades que acompanham a rotina, os encontros e as ocasiões especiais. Descubra a sua favorita.";
+    } else {
+      titulo.textContent = nomeCategoria(categoria);
+      descricao.textContent =
+        `Confira os ${nomeCategoria(categoria).toLowerCase()} disponíveis na FEMI.`;
+    }
+
+    menuColecao.classList.remove("aberto");
+    mainnav.classList.remove("open");
+    burger.classList.remove("active");
+
+    document.getElementById("colecao").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }
+
+
+  document.querySelectorAll(".filtro-categoria").forEach(botao => {
+    botao.addEventListener("click", () => {
+      filtrarCategoria(botao.dataset.categoria);
+    });
+  });
 
 
   // =========================================================
@@ -1051,68 +1305,17 @@
       );
 
       if (!resposta.ok) {
-
         throw new Error(
           "Erro ao buscar produtos: " +
           resposta.status
         );
-
       }
 
       const produtos = await resposta.json();
 
       window.produtosFemi = produtos;
 
-      grid.innerHTML = "";
-
-
-      produtos.forEach(produto => {
-
-        const preco = formatarDinheiro(
-          produto.price || 0
-        );
-
-        grid.innerHTML += `
-          <article
-            class="card reveal in"
-            onclick="abrirDetalhes('${produto.id}')"
-            style="cursor:pointer;"
-          >
-
-            <div class="card-img">
-
-              <span class="tag">
-                ${produto.category || "Novidade"}
-              </span>
-
-              <img
-                class="ph"
-                src="${produto.image_url || ""}"
-                alt="${produto.name || "Produto FEMI"}"
-              >
-
-            </div>
-
-            <div class="card-body">
-
-              <h3>
-                ${produto.name || ""}
-              </h3>
-
-              <span class="fabric">
-                ${produto.description || ""}
-              </span>
-
-              <span class="price">
-                ${preco}
-              </span>
-
-            </div>
-
-          </article>
-        `;
-
-      });
+      renderizarProdutos(produtos);
 
     } catch (erro) {
 
@@ -1120,9 +1323,7 @@
 
       grid.innerHTML =
         "<p>Não foi possível carregar os produtos.</p>";
-
     }
-
   }
 
 
@@ -1138,10 +1339,8 @@
 
     if (!produto) return;
 
-
     const preco =
       formatarDinheiro(produto.price || 0);
-
 
     const modalAntigo =
       document.getElementById("modalProdutoFemi");
@@ -1150,12 +1349,10 @@
       modalAntigo.remove();
     }
 
-
     const modal =
       document.createElement("div");
 
     modal.id = "modalProdutoFemi";
-
 
     modal.innerHTML = `
 
@@ -1188,7 +1385,6 @@
           ×
         </button>
 
-
         <div
           style="
             display:flex;
@@ -1210,7 +1406,6 @@
             "
           >
 
-
           <div
             style="
               flex:1 1 280px;
@@ -1222,11 +1417,9 @@
               ${produto.name || "Produto FEMI"}
             </h2>
 
-
             <p style="line-height:1.6;">
               ${produto.description || ""}
             </p>
-
 
             <h3
               style="
@@ -1236,7 +1429,6 @@
             >
               ${preco}
             </h3>
-
 
             <div style="margin-top:16px;">
 
@@ -1272,7 +1464,6 @@
 
             </div>
 
-
             <div style="margin-top:16px;">
 
               <strong>
@@ -1307,7 +1498,6 @@
 
             </div>
 
-
             <div style="margin-top:16px;">
 
               <strong>
@@ -1331,7 +1521,6 @@
               >
 
             </div>
-
 
             <button
               id="btnAdicionarCarrinho"
@@ -1358,7 +1547,6 @@
       </div>
     `;
 
-
     modal.style.cssText = `
       position:fixed;
       inset:0;
@@ -1370,35 +1558,28 @@
       z-index:99999;
     `;
 
-
     modal.onclick = () => {
       modal.remove();
     };
 
-
     document.body.appendChild(modal);
-
 
     const btnCarrinho =
       document.getElementById("btnAdicionarCarrinho");
 
-
     btnCarrinho.onclick = (event) => {
 
       event.stopPropagation();
-
 
       const tamanho =
         document.getElementById(
           "tamanhoSelecionado"
         ).value;
 
-
       const cor =
         document.getElementById(
           "corSelecionada"
         ).value;
-
 
       const quantidade =
         Math.max(
@@ -1410,28 +1591,16 @@
           ) || 1
         );
 
-
       const item = {
-
         id: produto.id,
-
         nome: produto.name,
-
-        preco: Number(
-          produto.price || 0
-        ),
-
+        preco: Number(produto.price || 0),
         tamanho: tamanho,
-
         cor: cor,
-
         quantidade: quantidade
-
       };
 
-
       const carrinho = obterCarrinho();
-
 
       const itemExistente =
         carrinho.find(produtoCarrinho =>
@@ -1447,7 +1616,6 @@
 
         );
 
-
       if (itemExistente) {
 
         itemExistente.quantidade =
@@ -1460,19 +1628,15 @@
 
       }
 
-
       salvarCarrinho(carrinho);
 
       atualizarContadorCarrinho();
 
-
       const aviso =
         document.createElement("div");
 
-
       aviso.innerHTML =
         "✓ Produto adicionado ao carrinho";
-
 
       aviso.style.cssText = `
         position:fixed;
@@ -1487,14 +1651,10 @@
         box-shadow:0 4px 15px rgba(0,0,0,.2);
       `;
 
-
       document.body.appendChild(aviso);
 
-
       setTimeout(() => {
-
         aviso.remove();
-
       }, 2500);
 
     };
@@ -1514,12 +1674,7 @@
 
     let carrinho = obterCarrinho();
 
-
-    // Mantém apenas uma entrada para
-    // cada combinação produto + tamanho + cor.
-
     const carrinhoUnificado = [];
-
 
     carrinho.forEach(produto => {
 
@@ -1537,7 +1692,6 @@
 
         );
 
-
       if (existente) {
 
         existente.quantidade =
@@ -1554,13 +1708,11 @@
 
     });
 
-
     carrinho = carrinhoUnificado;
 
     salvarCarrinho(carrinho);
 
     atualizarContadorCarrinho();
-
 
     const painelAntigo =
       document.getElementById("painelCarrinhoFemi");
@@ -1569,13 +1721,11 @@
       painelAntigo.remove();
     }
 
-
     const painel =
       document.createElement("div");
 
     painel.id =
       "painelCarrinhoFemi";
-
 
     painel.innerHTML = `
 
@@ -1608,16 +1758,13 @@
           ×
         </button>
 
-
         <h2 style="color:#b3262e;">
           Seu carrinho
         </h2>
 
-
         <p>
           Confira suas peças antes de finalizar o pedido.
         </p>
-
 
         <div
           id="itensCarrinho"
@@ -1635,17 +1782,11 @@
       </div>
     `;
 
-
     document.body.appendChild(painel);
-
 
     const itensCarrinho =
       document.getElementById("itensCarrinho");
 
-
-    // =======================================================
-    // CARRINHO VAZIO
-    // =======================================================
 
     if (carrinho.length === 0) {
 
@@ -1661,13 +1802,7 @@
         </p>
       `;
 
-
     } else {
-
-
-      // =====================================================
-      // PRODUTOS DO CARRINHO
-      // =====================================================
 
       itensCarrinho.innerHTML =
         carrinho.map(item => `
@@ -1683,7 +1818,6 @@
               ${item.nome}
             </strong>
 
-
             <p
               style="
                 margin:6px 0;
@@ -1693,7 +1827,6 @@
               |
               Cor: ${item.cor}
             </p>
-
 
             <div
               style="
@@ -1718,11 +1851,9 @@
                 −
               </button>
 
-
               <span>
                 ${item.quantidade}
               </span>
-
 
               <button
                 class="aumentarItem"
@@ -1737,7 +1868,6 @@
               >
                 +
               </button>
-
 
               <button
                 class="removerItem"
@@ -1757,7 +1887,6 @@
 
             </div>
 
-
             <strong>
               ${formatarDinheiro(
                 Number(item.preco) *
@@ -1769,10 +1898,6 @@
 
         `).join("");
 
-
-      // =====================================================
-      // TOTAL
-      // =====================================================
 
       const totalCarrinho =
         calcularTotalCarrinho(carrinho);
@@ -1940,10 +2065,6 @@
       `;
 
 
-      // =====================================================
-      // + AUMENTAR
-      // =====================================================
-
       document
         .querySelectorAll(".aumentarItem")
         .forEach(botao => {
@@ -1963,7 +2084,6 @@
                   botao.dataset.cor
 
               );
-
 
             if (item) {
 
@@ -1985,10 +2105,6 @@
         });
 
 
-      // =====================================================
-      // - DIMINUIR
-      // =====================================================
-
       document
         .querySelectorAll(".diminuirItem")
         .forEach(botao => {
@@ -2008,7 +2124,6 @@
                   botao.dataset.cor
 
               );
-
 
             if (
               item &&
@@ -2033,10 +2148,6 @@
         });
 
 
-      // =====================================================
-      // REMOVER
-      // =====================================================
-
       document
         .querySelectorAll(".removerItem")
         .forEach(botao => {
@@ -2056,7 +2167,6 @@
                   botao.dataset.cor
 
               );
-
 
             if (indice !== -1) {
 
@@ -2080,10 +2190,6 @@
         });
 
 
-      // =====================================================
-      // FORMAS DE PAGAMENTO
-      // =====================================================
-
       const opcoesPagamento =
         itensCarrinho.querySelectorAll(
           'input[name="formaPagamento"]'
@@ -2103,7 +2209,6 @@
             'input[name="formaPagamento"]:checked'
           );
 
-
         if (!selecionado) {
 
           areaPagamento.innerHTML = "";
@@ -2113,17 +2218,13 @@
         }
 
 
-        // PIX
-
         if (selecionado.value === "Pix") {
 
           const desconto =
             totalCarrinho * 0.10;
 
-
           const totalPix =
             totalCarrinho - desconto;
-
 
           areaPagamento.innerHTML = `
 
@@ -2207,9 +2308,6 @@
 
         }
 
-
-        // CARTÃO
-
         else if (
           selecionado.value ===
           "Cartão de crédito"
@@ -2283,9 +2381,6 @@
 
         }
 
-
-        // DINHEIRO
-
         else if (
           selecionado.value ===
           "Dinheiro"
@@ -2334,10 +2429,6 @@
 
       });
 
-
-      // =====================================================
-      // FINALIZAR NO WHATSAPP
-      // =====================================================
 
       const finalizarWhatsApp =
         document.getElementById(
@@ -2401,17 +2492,13 @@
           `Total da compra: ${formatarDinheiro(totalCarrinho)}\n`;
 
 
-        // PIX
-
         if (formaPagamento === "Pix") {
 
           const desconto =
             totalCarrinho * 0.10;
 
-
           const totalPix =
             totalCarrinho - desconto;
-
 
           mensagem +=
             `Forma de pagamento: Pix\n`;
@@ -2423,9 +2510,6 @@
             `Total com desconto: ${formatarDinheiro(totalPix)}\n`;
 
         }
-
-
-        // CARTÃO
 
         else if (
           formaPagamento ===
@@ -2474,9 +2558,6 @@
 
         }
 
-
-        // DINHEIRO
-
         else if (
           formaPagamento ===
           "Dinheiro"
@@ -2516,10 +2597,6 @@
 
     }
 
-
-    // =======================================================
-    // FECHAR CARRINHO
-    // =======================================================
 
     document
       .getElementById("fecharCarrinho")
