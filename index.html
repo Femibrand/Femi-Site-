@@ -949,6 +949,62 @@ btnFinalizarPedido.style.cssText = `
 `;
 
 itensCarrinho.appendChild(btnFinalizarPedido);
+  btnFinalizarPedido.onclick = () => {
+
+  const pagamentoSelecionado = document.querySelector(
+    'input[name="formaPagamento"]:checked'
+  );
+
+  if (!pagamentoSelecionado) {
+    alert("Escolha uma forma de pagamento antes de finalizar o pedido.");
+    return;
+  }
+
+  const formaPagamento = pagamentoSelecionado.value;
+
+  let mensagem = `Olá! Gostaria de finalizar meu pedido na FEMI BRAND.%0A%0A`;
+
+  carrinho.forEach(item => {
+    mensagem += `🛍️ *${item.nome}*%0A`;
+    mensagem += `Tamanho: ${item.tamanho}%0A`;
+    mensagem += `Cor: ${item.cor}%0A`;
+    mensagem += `Quantidade: ${item.quantidade}%0A`;
+    mensagem += `Valor: R$ ${(Number(item.preco) * Number(item.quantidade)).toFixed(2).replace(".", ",")}%0A%0A`;
+  });
+
+  mensagem += `*Total da compra: R$ ${totalCarrinho.toFixed(2).replace(".", ",")}*%0A`;
+  mensagem += `Forma de pagamento: ${formaPagamento}%0A`;
+
+  if (formaPagamento === "Pix") {
+    const totalPix = totalCarrinho * 0.90;
+
+    mensagem += `Desconto no Pix: 10%%0A`;
+    mensagem += `*Total no Pix: R$ ${totalPix.toFixed(2).replace(".", ",")}*`;
+  }
+
+  if (formaPagamento === "Cartão") {
+    const parcelaSelecionada = document.querySelector(
+      'input[name="parcelas"]:checked'
+    );
+
+    if (!parcelaSelecionada) {
+      alert("Escolha a quantidade de parcelas.");
+      return;
+    }
+
+    const parcelas = Number(parcelaSelecionada.value);
+    const valorParcela = totalCarrinho / parcelas;
+
+    mensagem += `Parcelamento: ${parcelas}x de R$ ${valorParcela.toFixed(2).replace(".", ",")} sem juros`;
+  }
+
+  const numeroWhatsApp = "5591992593961";
+
+  window.open(
+    `https://wa.me/${numeroWhatsApp}?text=${mensagem}`,
+    "_blank"
+  );
+};
   document.querySelectorAll(".aumentarItem").forEach(botao => {
     botao.onclick = () => {
         const item = carrinho.find(produto =>
