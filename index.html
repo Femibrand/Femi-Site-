@@ -1936,6 +1936,135 @@
 
         <div
           style="
+            margin-top:26px;
+            padding:18px;
+            background:#fafafa;
+            border:1px solid #e8e1dc;
+            border-radius:12px;
+          "
+        >
+          <strong style="display:block;font-size:18px;margin-bottom:6px;">
+            Endereço de entrega
+          </strong>
+
+          <p style="font-size:13px;color:#777;margin-bottom:14px;">
+            Entregas disponíveis em Belém e Ananindeua - PA.
+          </p>
+
+          <label style="display:block;font-weight:bold;margin-bottom:6px;">
+            CEP
+          </label>
+
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <input
+              id="cepEntrega"
+              type="text"
+              inputmode="numeric"
+              maxlength="9"
+              placeholder="00000-000"
+              style="
+                flex:1 1 150px;
+                min-width:0;
+                padding:11px;
+                border:1px solid #ccc;
+                border-radius:8px;
+              "
+            >
+
+            <button
+              id="calcularFrete"
+              type="button"
+              style="
+                padding:11px 14px;
+                border:0;
+                border-radius:8px;
+                background:#b3262e;
+                color:white;
+                font-weight:bold;
+                cursor:pointer;
+              "
+            >
+              Calcular frete
+            </button>
+          </div>
+
+          <div id="statusFrete" style="margin-top:10px;font-size:14px;"></div>
+
+          <div id="camposEndereco" style="display:none;margin-top:16px;">
+
+            <label style="display:block;font-weight:bold;margin-bottom:6px;">
+              Rua / Avenida
+            </label>
+            <input
+              id="ruaEntrega"
+              type="text"
+              placeholder="Rua ou avenida"
+              style="width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;margin-bottom:12px;"
+            >
+
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+              <div style="flex:1 1 100px;">
+                <label style="display:block;font-weight:bold;margin-bottom:6px;">
+                  Número
+                </label>
+                <input
+                  id="numeroEntrega"
+                  type="text"
+                  placeholder="Nº"
+                  style="width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;margin-bottom:12px;"
+                >
+              </div>
+
+              <div style="flex:2 1 170px;">
+                <label style="display:block;font-weight:bold;margin-bottom:6px;">
+                  Complemento
+                </label>
+                <input
+                  id="complementoEntrega"
+                  type="text"
+                  placeholder="Apto, bloco... (opcional)"
+                  style="width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;margin-bottom:12px;"
+                >
+              </div>
+            </div>
+
+            <label style="display:block;font-weight:bold;margin-bottom:6px;">
+              Bairro
+            </label>
+            <input
+              id="bairroEntrega"
+              type="text"
+              placeholder="Bairro"
+              style="width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;margin-bottom:12px;"
+            >
+
+            <label style="display:block;font-weight:bold;margin-bottom:6px;">
+              Cidade
+            </label>
+            <input
+              id="cidadeEntrega"
+              type="text"
+              readonly
+              style="width:100%;padding:11px;border:1px solid #ddd;border-radius:8px;margin-bottom:12px;background:#f3f3f3;"
+            >
+
+            <label style="display:block;font-weight:bold;margin-bottom:6px;">
+              Ponto de referência
+            </label>
+            <input
+              id="referenciaEntrega"
+              type="text"
+              placeholder="Opcional"
+              style="width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;"
+            >
+          </div>
+
+          <div id="resumoFrete" style="display:none;margin-top:16px;"></div>
+        </div>
+
+
+        <div
+          style="
             margin-top:28px;
           "
         >
@@ -2190,6 +2319,139 @@
         });
 
 
+      let freteEntrega = 0;
+      let enderecoValidado = null;
+
+      const cepEntrega = document.getElementById("cepEntrega");
+      const calcularFrete = document.getElementById("calcularFrete");
+      const statusFrete = document.getElementById("statusFrete");
+      const camposEndereco = document.getElementById("camposEndereco");
+      const resumoFrete = document.getElementById("resumoFrete");
+      const ruaEntrega = document.getElementById("ruaEntrega");
+      const numeroEntrega = document.getElementById("numeroEntrega");
+      const complementoEntrega = document.getElementById("complementoEntrega");
+      const bairroEntrega = document.getElementById("bairroEntrega");
+      const cidadeEntrega = document.getElementById("cidadeEntrega");
+      const referenciaEntrega = document.getElementById("referenciaEntrega");
+
+      cepEntrega.addEventListener("input", () => {
+        let valor = cepEntrega.value.replace(/\D/g, "").slice(0, 8);
+        if (valor.length > 5) {
+          valor = valor.slice(0, 5) + "-" + valor.slice(5);
+        }
+        cepEntrega.value = valor;
+
+        // Se o CEP for alterado depois do cálculo, exige novo cálculo.
+        enderecoValidado = null;
+        freteEntrega = 0;
+        camposEndereco.style.display = "none";
+        resumoFrete.style.display = "none";
+        statusFrete.innerHTML = "";
+        atualizarPagamento();
+      });
+
+      calcularFrete.onclick = async () => {
+        const cep = cepEntrega.value.replace(/\D/g, "");
+
+        if (!/^\d{8}$/.test(cep)) {
+          statusFrete.innerHTML =
+            '<span style="color:#b3262e;font-weight:bold;">Digite um CEP válido com 8 números.</span>';
+          camposEndereco.style.display = "none";
+          resumoFrete.style.display = "none";
+          enderecoValidado = null;
+          freteEntrega = 0;
+          atualizarPagamento();
+          return;
+        }
+
+        calcularFrete.disabled = true;
+        calcularFrete.textContent = "Calculando...";
+        statusFrete.innerHTML = "Consultando CEP...";
+
+        try {
+          const respostaCep = await fetch(
+            "https://viacep.com.br/ws/" + cep + "/json/"
+          );
+
+          if (!respostaCep.ok) {
+            throw new Error("Falha na consulta do CEP.");
+          }
+
+          const dadosCep = await respostaCep.json();
+
+          if (dadosCep.erro) {
+            throw new Error("CEP não encontrado.");
+          }
+
+          const cidadeNormalizada = normalizarTexto(dadosCep.localidade);
+          const uf = String(dadosCep.uf || "").toUpperCase();
+
+          if (
+            uf !== "PA" ||
+            !["belem", "ananindeua"].includes(cidadeNormalizada)
+          ) {
+            enderecoValidado = null;
+            freteEntrega = 0;
+            camposEndereco.style.display = "none";
+            resumoFrete.style.display = "none";
+            statusFrete.innerHTML =
+              '<span style="color:#b3262e;font-weight:bold;">No momento realizamos entregas apenas em Belém e Ananindeua - PA.</span>';
+            atualizarPagamento();
+            return;
+          }
+
+          freteEntrega = cidadeNormalizada === "belem" ? 10 : 20;
+
+          enderecoValidado = {
+            cep: dadosCep.cep || cepEntrega.value,
+            cidade: dadosCep.localidade || "",
+            uf: dadosCep.uf || "PA"
+          };
+
+          ruaEntrega.value = dadosCep.logradouro || "";
+          bairroEntrega.value = dadosCep.bairro || "";
+          cidadeEntrega.value =
+            (dadosCep.localidade || "") + " - " + (dadosCep.uf || "");
+
+          camposEndereco.style.display = "block";
+          resumoFrete.style.display = "block";
+          resumoFrete.innerHTML = `
+            <div style="
+              display:flex;
+              justify-content:space-between;
+              gap:10px;
+              padding:12px;
+              background:#fff6f5;
+              border:1px solid #efd3d1;
+              border-radius:9px;
+            ">
+              <strong>Frete para ${dadosCep.localidade}:</strong>
+              <strong style="color:#b3262e;">${formatarDinheiro(freteEntrega)}</strong>
+            </div>
+          `;
+
+          statusFrete.innerHTML =
+            '<span style="color:#2f6b3a;font-weight:bold;">✓ CEP atendido pela FEMI.</span>';
+
+          atualizarPagamento();
+
+        } catch (erro) {
+          console.error(erro);
+          enderecoValidado = null;
+          freteEntrega = 0;
+          camposEndereco.style.display = "none";
+          resumoFrete.style.display = "none";
+          statusFrete.innerHTML =
+            '<span style="color:#b3262e;font-weight:bold;">Não foi possível consultar esse CEP. Confira e tente novamente.</span>';
+          atualizarPagamento();
+        } finally {
+          calcularFrete.disabled = false;
+          calcularFrete.textContent = "Calcular frete";
+        }
+      };
+
+
+
       const opcoesPagamento =
         itensCarrinho.querySelectorAll(
           'input[name="formaPagamento"]'
@@ -2224,7 +2486,7 @@
             totalCarrinho * 0.10;
 
           const totalPix =
-            totalCarrinho - desconto;
+            totalCarrinho - desconto + freteEntrega;
 
           areaPagamento.innerHTML = `
 
@@ -2290,7 +2552,7 @@
               >
 
                 <strong>
-                  Total no Pix:
+                  Total no Pix${freteEntrega > 0 ? " + frete" : ""}:
                 </strong>
 
                 <strong
@@ -2312,6 +2574,9 @@
           selecionado.value ===
           "Cartão de crédito"
         ) {
+
+          const totalCartao =
+            totalCarrinho + freteEntrega;
 
           areaPagamento.innerHTML = `
 
@@ -2352,15 +2617,15 @@
                 </option>
 
                 <option value="1">
-                  1x de ${formatarDinheiro(totalCarrinho)}
+                  1x de ${formatarDinheiro(totalCartao)}
                 </option>
 
                 <option value="2">
-                  2x de ${formatarDinheiro(totalCarrinho / 2)}
+                  2x de ${formatarDinheiro(totalCartao / 2)}
                 </option>
 
                 <option value="3">
-                  3x de ${formatarDinheiro(totalCarrinho / 3)}
+                  3x de ${formatarDinheiro(totalCartao / 3)}
                 </option>
 
               </select>
@@ -2408,8 +2673,8 @@
                   font-size:14px;
                 "
               >
-                Total:
-                ${formatarDinheiro(totalCarrinho)}
+                Total${freteEntrega > 0 ? " com frete" : ""}:
+                ${formatarDinheiro(totalCarrinho + freteEntrega)}
               </p>
 
             </div>
@@ -2437,6 +2702,28 @@
 
 
       finalizarWhatsApp.onclick = () => {
+
+        if (!enderecoValidado || freteEntrega <= 0) {
+          alert(
+            "Calcule o frete com um CEP válido de Belém ou Ananindeua antes de finalizar."
+          );
+          return;
+        }
+
+        const rua = ruaEntrega.value.trim();
+        const numero = numeroEntrega.value.trim();
+        const bairro = bairroEntrega.value.trim();
+        const complemento = complementoEntrega.value.trim();
+        const referencia = referenciaEntrega.value.trim();
+
+        if (!rua || !numero || !bairro) {
+          alert(
+            "Preencha Rua/Avenida, Número e Bairro para finalizar o pedido."
+          );
+          return;
+        }
+
+
 
         const formaPagamentoSelecionada =
           itensCarrinho.querySelector(
@@ -2489,7 +2776,35 @@
 
 
         mensagem +=
-          `Total da compra: ${formatarDinheiro(totalCarrinho)}\n`;
+          `Subtotal dos produtos: ${formatarDinheiro(totalCarrinho)}\n\n`;
+
+        mensagem +=
+          `ENDEREÇO DE ENTREGA\n`;
+
+        mensagem +=
+          `CEP: ${enderecoValidado.cep}\n`;
+
+        mensagem +=
+          `Endereço: ${rua}, ${numero}\n`;
+
+        if (complemento) {
+          mensagem +=
+            `Complemento: ${complemento}\n`;
+        }
+
+        mensagem +=
+          `Bairro: ${bairro}\n`;
+
+        mensagem +=
+          `Cidade: ${enderecoValidado.cidade} - ${enderecoValidado.uf}\n`;
+
+        if (referencia) {
+          mensagem +=
+            `Referência: ${referencia}\n`;
+        }
+
+        mensagem +=
+          `Frete: ${formatarDinheiro(freteEntrega)}\n\n`;
 
 
         if (formaPagamento === "Pix") {
@@ -2498,7 +2813,7 @@
             totalCarrinho * 0.10;
 
           const totalPix =
-            totalCarrinho - desconto;
+            totalCarrinho - desconto + freteEntrega;
 
           mensagem +=
             `Forma de pagamento: Pix\n`;
@@ -2507,7 +2822,7 @@
             `Desconto Pix (10%): - ${formatarDinheiro(desconto)}\n`;
 
           mensagem +=
-            `Total com desconto: ${formatarDinheiro(totalPix)}\n`;
+            `Total final com frete: ${formatarDinheiro(totalPix)}\n`;
 
         }
 
@@ -2542,8 +2857,11 @@
             );
 
 
+          const totalComFrete =
+            totalCarrinho + freteEntrega;
+
           const valorParcela =
-            totalCarrinho /
+            totalComFrete /
             numeroParcelas;
 
 
@@ -2554,7 +2872,7 @@
             `Parcelamento: ${numeroParcelas}x de ${formatarDinheiro(valorParcela)} sem juros\n`;
 
           mensagem +=
-            `Total: ${formatarDinheiro(totalCarrinho)}\n`;
+            `Total final com frete: ${formatarDinheiro(totalComFrete)}\n`;
 
         }
 
@@ -2567,7 +2885,7 @@
             `Forma de pagamento: Dinheiro\n`;
 
           mensagem +=
-            `Total: ${formatarDinheiro(totalCarrinho)}\n`;
+            `Total final com frete: ${formatarDinheiro(totalCarrinho + freteEntrega)}\n`;
 
         }
 
