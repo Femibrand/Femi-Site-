@@ -831,52 +831,49 @@ itensCarrinho.innerHTML += `
     </div>
   </div>
 `;
-  const opcoesPagamento = document.querySelectorAll('input[name="formaPagamento"]');
+  // ===== PAGAMENTO FEMI BRAND =====
 
-opcoesPagamento.forEach(opcao => {
-  opcao.addEventListener("change", () => {
+// Área do desconto no Pix
+const resumoPix = document.createElement("div");
+resumoPix.id = "resumoPix";
+resumoPix.style.cssText = `
+    margin-top:18px;
+    padding:15px;
+    background:#f8f4f2;
+    border-radius:8px;
+    display:none;
+`;
 
-    const resumoAntigo = document.getElementById("resumoPagamento");
-    if (resumoAntigo) resumoAntigo.remove();
+const descontoPix = totalCarrinho * 0.10;
+const totalPix = totalCarrinho - descontoPix;
 
-    if (opcao.value === "Pix") {
-      const descontoPix = totalCarrinho * 0.10;
-      const totalPix = totalCarrinho - descontoPix;
+resumoPix.innerHTML = `
+    <div>
+        Desconto no Pix (10%):
+        <strong>- R$ ${descontoPix.toFixed(2).replace(".", ",")}</strong>
+    </div>
 
-      const resumoPix = document.createElement("div");
-      resumoPix.id = "resumoPagamento";
+    <div style="
+        margin-top:8px;
+        font-size:20px;
+        color:#b3262e;
+    ">
+        <strong>Total no Pix: R$ ${totalPix.toFixed(2).replace(".", ",")}</strong>
+    </div>
+`;
 
-      resumoPix.style.cssText = `
-        margin-top:18px;
-        padding:15px;
-        background:#f8f4f2;
-        border-radius:8px;
-      `;
+itensCarrinho.appendChild(resumoPix);
 
-      resumoPix.innerHTML = `
-        <div>Desconto no Pix (10%): 
-          <strong>- R$ ${descontoPix.toFixed(2).replace(".", ",")}</strong>
-        </div>
 
-        <div style="
-          margin-top:8px;
-          font-size:20px;
-          color:#b3262e;
-        ">
-          <strong>Total no Pix: R$ ${totalPix.toFixed(2).replace(".", ",")}</strong>
-        </div>
-      `;
-
-      itensCarrinho.appendChild(resumoPix);
-
-      const resumoCartao = document.createElement("div");
+// Área do cartão
+const resumoCartao = document.createElement("div");
 resumoCartao.id = "resumoCartao";
 resumoCartao.style.cssText = `
-  margin-top:18px;
-  padding:15px;
-  background:#f8f4f2;
-  border-radius:8px;
-  display:none;
+    margin-top:18px;
+    padding:15px;
+    background:#f8f4f2;
+    border-radius:8px;
+    display:none;
 `;
 
 const parcela1 = totalCarrinho;
@@ -884,46 +881,51 @@ const parcela2 = totalCarrinho / 2;
 const parcela3 = totalCarrinho / 3;
 
 resumoCartao.innerHTML = `
-  <div style="font-weight:bold; margin-bottom:10px;">
-    Parcelamento no cartão
-  </div>
+    <div style="font-weight:bold; margin-bottom:10px;">
+        Parcelamento no cartão
+    </div>
 
-  <label style="display:block; margin:8px 0; cursor:pointer;">
-    <input type="radio" name="parcelas" value="1">
-    1x de R$ ${parcela1.toFixed(2).replace(".", ",")} sem juros
-  </label>
+    <label style="display:block; margin:10px 0; cursor:pointer;">
+        <input type="radio" name="parcelas" value="1">
+        1x de R$ ${parcela1.toFixed(2).replace(".", ",")} sem juros
+    </label>
 
-  <label style="display:block; margin:8px 0; cursor:pointer;">
-    <input type="radio" name="parcelas" value="2">
-    2x de R$ ${parcela2.toFixed(2).replace(".", ",")} sem juros
-  </label>
+    <label style="display:block; margin:10px 0; cursor:pointer;">
+        <input type="radio" name="parcelas" value="2">
+        2x de R$ ${parcela2.toFixed(2).replace(".", ",")} sem juros
+    </label>
 
-  <label style="display:block; margin:8px 0; cursor:pointer;">
-    <input type="radio" name="parcelas" value="3">
-    3x de R$ ${parcela3.toFixed(2).replace(".", ",")} sem juros
-  </label>
+    <label style="display:block; margin:10px 0; cursor:pointer;">
+        <input type="radio" name="parcelas" value="3">
+        3x de R$ ${parcela3.toFixed(2).replace(".", ",")} sem juros
+    </label>
 `;
 
 itensCarrinho.appendChild(resumoCartao);
-      const formasPagamento = document.querySelectorAll('input[name="formaPagamento"]');
+
+
+// Controle das formas de pagamento
+const formasPagamento =
+    document.querySelectorAll('input[name="formaPagamento"]');
 
 function atualizarFormaPagamento() {
-  const selecionada = document.querySelector(
-    'input[name="formaPagamento"]:checked'
-  );
 
-  resumoPix.style.display = "none";
-  resumoCartao.style.display = "none";
+    const selecionada = document.querySelector(
+        'input[name="formaPagamento"]:checked'
+    );
 
-  if (!selecionada) return;
+    resumoPix.style.display = "none";
+    resumoCartao.style.display = "none";
 
-  if (selecionada.value === "Pix") {
-    resumoPix.style.display = "block";
-  }
+    if (!selecionada) return;
 
-  if (selecionada.value === "Cartão") {
-    resumoCartao.style.display = "block";
-  }
+    if (selecionada.value === "Pix") {
+        resumoPix.style.display = "block";
+    }
+
+    if (selecionada.value === "Cartão") {
+        resumoCartao.style.display = "block";
+    }
 }
 
 formasPagamento.forEach(opcao => {
