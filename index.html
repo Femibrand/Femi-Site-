@@ -1923,6 +1923,7 @@
           </strong>
 
           <strong
+            id="totalCompraCarrinho"
             style="
               color:#b3262e;
               white-space:nowrap;
@@ -2465,6 +2466,14 @@
 
 
       function atualizarPagamento() {
+
+        const totalCompraCarrinho =
+          document.getElementById("totalCompraCarrinho");
+
+        if (totalCompraCarrinho) {
+          totalCompraCarrinho.textContent =
+            formatarDinheiro(totalCarrinho + freteEntrega);
+        }
 
         const selecionado =
           itensCarrinho.querySelector(
