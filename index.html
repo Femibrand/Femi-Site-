@@ -927,9 +927,7 @@ function atualizarFormaPagamento() {
 }
 
 formasPagamento.forEach(opcao => {
-  opcao.addEventListener("change", atualizarFormaPagamento);
-  opcao.addEventListener("click", atualizarFormaPagamento);
-  opcao.addEventListener("touchend", atualizarFormaPagamento);
+    opcao.addEventListener("change", atualizarFormaPagamento);
 });
 
 atualizarFormaPagamento();
