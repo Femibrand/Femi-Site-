@@ -800,7 +800,7 @@ itensCarrinho.innerHTML += `
     </strong>
   </div>
 `;
-  itensCarrinho.innerHTML += `
+  itemsCarrinho.innerHTML += `
   <div style="
     margin-top:25px;
     padding-top:18px;
@@ -829,123 +829,104 @@ itensCarrinho.innerHTML += `
         Dinheiro
       </label>
     </div>
+
+    <div id="areaPagamento"></div>
   </div>
 `;
-  const opcoesPagamento = document.querySelectorAll('input[name="formaPagamento"]');
 
-const areaPagamento = document.createElement("div");
-areaPagamento.id = "areaPagamento";
-itemsCarrinho.appendChild(areaPagamento);
+const opcoesPagamento = itemsCarrinho.querySelectorAll(
+  'input[name="formaPagamento"]'
+);
 
-function atualizarPagamento() {
-
-  const selecionada = document.querySelector(
-    'input[name="formaPagamento"]:checked'
-  );
-
-  // Limpa a área antes de mostrar a nova opção
-  areaPagamento.innerHTML = "";
-
-  if (!selecionada) return;
-
-  // PIX
-  if (selecionada.value === "Pix") {
-
-    const descontoPix = totalCarrinho * 0.10;
-    const totalPix = totalCarrinho - descontoPix;
-
-    areaPagamento.innerHTML = `
-      <div style="
-        margin-top:18px;
-        padding:15px;
-        background:#f8f4f2;
-        border-radius:8px;
-      ">
-        <div>
-          Desconto no Pix (10%):
-          <strong>
-            - R$ ${descontoPix.toFixed(2).replace(".", ",")}
-          </strong>
-        </div>
-
-        <div style="
-          margin-top:8px;
-          font-size:20px;
-          color:#b3262e;
-        ">
-          <strong>
-            Total no Pix: R$ ${totalPix.toFixed(2).replace(".", ",")}
-          </strong>
-        </div>
-      </div>
-    `;
-
-    return;
-  }
-
-  // CARTÃO
-  if (selecionada.value === "Cartão") {
-
-    const parcela1 = totalCarrinho;
-    const parcela2 = totalCarrinho / 2;
-    const parcela3 = totalCarrinho / 3;
-
-    areaPagamento.innerHTML = `
-      <div style="
-        margin-top:18px;
-        padding:15px;
-        background:#f8f4f2;
-        border-radius:8px;
-      ">
-
-        <div style="font-weight:bold; margin-bottom:10px;">
-          Parcelamento no cartão
-        </div>
-
-        <label style="display:block; margin:8px 0; cursor:pointer;">
-          <input type="radio" name="parcelas" value="1">
-          1x de R$ ${parcela1.toFixed(2).replace(".", ",")} sem juros
-        </label>
-
-        <label style="display:block; margin:8px 0; cursor:pointer;">
-          <input type="radio" name="parcelas" value="2">
-          2x de R$ ${parcela2.toFixed(2).replace(".", ",")} sem juros
-        </label>
-
-        <label style="display:block; margin:8px 0; cursor:pointer;">
-          <input type="radio" name="parcelas" value="3">
-          3x de R$ ${parcela3.toFixed(2).replace(".", ",")} sem juros
-        </label>
-
-      </div>
-    `;
-
-    return;
-  }
-
-  // DINHEIRO
-  if (selecionada.value === "Dinheiro") {
-
-    areaPagamento.innerHTML = `
-      <div style="
-        margin-top:18px;
-        padding:15px;
-        background:#f8f4f2;
-        border-radius:8px;
-      ">
-        <strong>
-          Pagamento em dinheiro: R$ ${totalCarrinho.toFixed(2).replace(".", ",")}
-        </strong>
-      </div>
-    `;
-  }
-}
+const areaPagamento = itemsCarrinho.querySelector("#areaPagamento");
 
 opcoesPagamento.forEach(opcao => {
-  opcao.addEventListener("change", atualizarPagamento);
-});
+  opcao.addEventListener("change", function () {
 
-atualizarPagamento();
+    areaPagamento.innerHTML = "";
+
+    if (this.value === "Pix") {
+      const descontoPix = totalCarrinho * 0.10;
+      const totalPix = totalCarrinho - descontoPix;
+
+      areaPagamento.innerHTML = `
+        <div style="
+          margin-top:18px;
+          padding:15px;
+          background:#f8f4f2;
+          border-radius:8px;
+        ">
+          <div>
+            Desconto no Pix (10%):
+            <strong>
+              - R$ ${descontoPix.toFixed(2).replace(".", ",")}
+            </strong>
+          </div>
+
+          <div style="
+            margin-top:8px;
+            font-size:20px;
+            color:#b3262e;
+          ">
+            <strong>
+              Total no Pix: R$ ${totalPix.toFixed(2).replace(".", ",")}
+            </strong>
+          </div>
+        </div>
+      `;
+    }
+
+    if (this.value === "Cartão") {
+      const parcela1 = totalCarrinho;
+      const parcela2 = totalCarrinho / 2;
+      const parcela3 = totalCarrinho / 3;
+
+      areaPagamento.innerHTML = `
+        <div style="
+          margin-top:18px;
+          padding:15px;
+          background:#f8f4f2;
+          border-radius:8px;
+        ">
+          <div style="font-weight:bold; margin-bottom:10px;">
+            Parcelamento no cartão
+          </div>
+
+          <label style="display:block; margin:8px 0; cursor:pointer;">
+            <input type="radio" name="parcelas" value="1">
+            1x de R$ ${parcela1.toFixed(2).replace(".", ",")} sem juros
+          </label>
+
+          <label style="display:block; margin:8px 0; cursor:pointer;">
+            <input type="radio" name="parcelas" value="2">
+            2x de R$ ${parcela2.toFixed(2).replace(".", ",")} sem juros
+          </label>
+
+          <label style="display:block; margin:8px 0; cursor:pointer;">
+            <input type="radio" name="parcelas" value="3">
+            3x de R$ ${parcela3.toFixed(2).replace(".", ",")} sem juros
+          </label>
+        </div>
+      `;
+    }
+
+    if (this.value === "Dinheiro") {
+      areaPagamento.innerHTML = `
+        <div style="
+          margin-top:18px;
+          padding:15px;
+          background:#f8f4f2;
+          border-radius:8px;
+        ">
+          <strong>
+            Pagamento em dinheiro: R$ ${totalCarrinho.toFixed(2).replace(".", ",")}
+          </strong>
+        </div>
+      `;
+    }
+
+  });
+});
   const btnFinalizarPedido = document.createElement("button");
 
 btnFinalizarPedido.id = "finalizarPedido";
