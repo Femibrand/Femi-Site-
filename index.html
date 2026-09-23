@@ -907,26 +907,32 @@ resumoCartao.innerHTML = `
 itensCarrinho.appendChild(resumoCartao);
       const formasPagamento = document.querySelectorAll('input[name="formaPagamento"]');
 
+function atualizarFormaPagamento() {
+  const selecionada = document.querySelector(
+    'input[name="formaPagamento"]:checked'
+  );
+
+  resumoPix.style.display = "none";
+  resumoCartao.style.display = "none";
+
+  if (!selecionada) return;
+
+  if (selecionada.value === "Pix") {
+    resumoPix.style.display = "block";
+  }
+
+  if (selecionada.value === "Cartão") {
+    resumoCartao.style.display = "block";
+  }
+}
+
 formasPagamento.forEach(opcao => {
-  opcao.addEventListener("change", () => {
-
-    if (opcao.value === "Cartão") {
-      resumoCartao.style.display = "block";
-      resumoPix.style.display = "none";
-    }
-
-    if (opcao.value === "Pix") {
-      resumoPix.style.display = "block";
-      resumoCartao.style.display = "none";
-    }
-
-    if (opcao.value === "Dinheiro") {
-      resumoPix.style.display = "none";
-      resumoCartao.style.display = "none";
-    }
-
-  });
+  opcao.addEventListener("change", atualizarFormaPagamento);
+  opcao.addEventListener("click", atualizarFormaPagamento);
+  opcao.addEventListener("touchend", atualizarFormaPagamento);
 });
+
+atualizarFormaPagamento();
     }
   });
 });
