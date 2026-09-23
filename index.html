@@ -831,6 +831,46 @@ itensCarrinho.innerHTML += `
     </div>
   </div>
 `;
+  const opcoesPagamento = document.querySelectorAll('input[name="formaPagamento"]');
+
+opcoesPagamento.forEach(opcao => {
+  opcao.addEventListener("change", () => {
+
+    const resumoAntigo = document.getElementById("resumoPagamento");
+    if (resumoAntigo) resumoAntigo.remove();
+
+    if (opcao.value === "Pix") {
+      const descontoPix = totalCarrinho * 0.10;
+      const totalPix = totalCarrinho - descontoPix;
+
+      const resumoPix = document.createElement("div");
+      resumoPix.id = "resumoPagamento";
+
+      resumoPix.style.cssText = `
+        margin-top:18px;
+        padding:15px;
+        background:#f8f4f2;
+        border-radius:8px;
+      `;
+
+      resumoPix.innerHTML = `
+        <div>Desconto no Pix (10%): 
+          <strong>- R$ ${descontoPix.toFixed(2).replace(".", ",")}</strong>
+        </div>
+
+        <div style="
+          margin-top:8px;
+          font-size:20px;
+          color:#b3262e;
+        ">
+          <strong>Total no Pix: R$ ${totalPix.toFixed(2).replace(".", ",")}</strong>
+        </div>
+      `;
+
+      itensCarrinho.appendChild(resumoPix);
+    }
+  });
+});
   document.querySelectorAll(".aumentarItem").forEach(botao => {
     botao.onclick = () => {
         const item = carrinho.find(produto =>
