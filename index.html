@@ -1466,7 +1466,7 @@ img[alt*="Editorial FEMI"]{
 <body>
 
   <div class="topbar">
-    PIX com 10% OFF · Enviamos para todo o Brasil · Novidades FEMI toda semana
+    PIX com 5% OFF · Enviamos para todo o Brasil · Novidades FEMI toda semana
   </div>
 
   <header class="nav">
@@ -2765,7 +2765,7 @@ img[alt*="Editorial FEMI"]{
                   font-weight:bold;
                 "
               >
-                — 10% OFF
+                — 5% OFF
               </span>
             </span>
 
@@ -3152,7 +3152,7 @@ img[alt*="Editorial FEMI"]{
         if (selecionado.value === "Pix") {
 
           const desconto =
-            totalCarrinho * 0.10;
+            totalCarrinho * 0.05;
 
           const totalPix =
             totalCarrinho - desconto + freteEntrega;
@@ -3199,7 +3199,7 @@ img[alt*="Editorial FEMI"]{
               >
 
                 <span>
-                  Desconto Pix (10%):
+                  Desconto Pix (5%):
                 </span>
 
                 <strong>
@@ -3479,7 +3479,7 @@ img[alt*="Editorial FEMI"]{
         if (formaPagamento === "Pix") {
 
           const desconto =
-            totalCarrinho * 0.10;
+            totalCarrinho * 0.05;
 
           const totalPix =
             totalCarrinho - desconto + freteEntrega;
@@ -3488,7 +3488,7 @@ img[alt*="Editorial FEMI"]{
             `Forma de pagamento: Pix\n`;
 
           mensagem +=
-            `Desconto Pix (10%): - ${formatarDinheiro(desconto)}\n`;
+            `Desconto Pix (5%): - ${formatarDinheiro(desconto)}\n`;
 
           mensagem +=
             `Total final com frete: ${formatarDinheiro(totalPix)}\n`;
@@ -3658,4 +3658,87 @@ img[alt*="Editorial FEMI"]{
   overflow:hidden!important;
 }
 .hero-ver-colecao:focus-visible{outline:3px solid #fff!important;outline-offset:3px!important;}
+
+
+  /* ===== FEMI V24 · REFINO VISUAL MOBILE + PIX 5% ===== */
+  /* Mais hierarquia, respiro e acabamento editorial sem alterar a identidade FEMI. */
+  @media(max-width:760px){
+    .topbar{
+      min-height:38px!important;
+      padding:7px 16px!important;
+      font-size:10.5px!important;
+      line-height:1.35!important;
+      letter-spacing:.105em!important;
+    }
+
+    .nav-inner{
+      min-height:62px!important;
+      padding-top:4px!important;
+      padding-bottom:4px!important;
+    }
+    .logo{width:72px!important;height:45px!important}
+    .burger{transform:scale(.92);transform-origin:left center}
+    .cart-top{transform:scale(.92)}
+    .nav-cta{
+      min-height:40px!important;
+      padding:0 14px!important;
+      font-size:11px!important;
+      letter-spacing:.055em!important;
+    }
+
+    /* Banner mobile: proporção mais editorial e leitura mais confortável da arte oficial. */
+    .hero{
+      min-height:0!important;
+      height:auto!important;
+      aspect-ratio:1.58/1!important;
+      padding:0!important;
+      background-size:cover!important;
+      background-position:center center!important;
+    }
+    .hero-grid,.hero-copy,.hero-art,.hero-femi-art{display:none!important}
+    .hero-ver-colecao{position:absolute!important;inset:0!important;z-index:5!important}
+
+    /* Faixa de linguagem da marca: movimento contínuo e sem sensação de corte acidental. */
+    .marquee{padding:13px 0!important;overflow:hidden!important}
+    .marquee-track{gap:54px!important;white-space:nowrap!important}
+    .marquee-track span{gap:30px!important;padding-right:24px!important;font-size:18px!important}
+
+    /* Coleção mais próxima do banner e com hierarquia editorial. */
+    #colecao{padding-top:54px!important}
+    #colecao .sec-head{margin-bottom:28px!important}
+    #colecao .eyebrow{font-size:11px!important;letter-spacing:.30em!important;margin-bottom:14px!important}
+    #colecao .sec-head h2{
+      font-size:clamp(35px,10vw,47px)!important;
+      line-height:1.03!important;
+      max-width:10.5em!important;
+      margin-bottom:16px!important;
+    }
+    #colecao .sec-head p{
+      font-size:16px!important;
+      line-height:1.62!important;
+      max-width:34em!important;
+      opacity:.84!important;
+    }
+
+    /* Produtos/categorias com acabamento de editorial de moda. */
+    #products-grid{gap:22px!important}
+    #products-grid .card,
+    #products-grid article{
+      border-radius:22px!important;
+      overflow:hidden!important;
+    }
+    #products-grid img{border-radius:0!important}
+
+    /* WhatsApp presente, mas sem competir com produto e conteúdo. */
+    .wa-float{
+      width:50px!important;
+      height:50px!important;
+      right:16px!important;
+      bottom:18px!important;
+      animation:none!important;
+      box-shadow:0 8px 22px rgba(0,0,0,.20)!important;
+    }
+    .wa-float svg{width:26px!important;height:26px!important}
+  }
+
 </style>
