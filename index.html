@@ -1540,7 +1540,6 @@ img[alt*="Editorial FEMI"]{
           <span id="contadorCarrinho" class="cart-count">0</span>
         </button>
 
-        <a href="#pedido" class="nav-cta">Fazer pedido</a>
       </div>
 
     </div>
@@ -3741,4 +3740,24 @@ img[alt*="Editorial FEMI"]{
     .wa-float svg{width:26px!important;height:26px!important}
   }
 
+</style>
+
+
+<style>
+/* FEMI V25 — correção final do banner mobile + cabeçalho somente com carrinho */
+@media(max-width:900px){
+  .hero{
+    min-height:0!important;
+    height:auto!important;
+    aspect-ratio:8/3!important;
+    padding:0!important;
+    background-image:url("images/hero-femi-oficial-final.jpeg")!important;
+    background-size:100% 100%!important;
+    background-position:center center!important;
+    background-repeat:no-repeat!important;
+  }
+  .nav-actions .nav-cta{display:none!important;}
+  .nav-actions{gap:0!important;}
+  .cart-top{transform:none!important;}
+}
 </style>
