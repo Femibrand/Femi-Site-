@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>FEMI · Moda Feminina em Belém do Pará | Vestidos, Macaquinhos e Camisetas</title>
+  <title>FEMI · Seu essencial, de infinitas formas</title>
   <meta name="description" content="FEMI · Moda feminina em Belém do Pará. Seu essencial, de infinitas formas. Vestidos, macaquinhos e camisetas com envio para todo o Brasil. Peça pelo WhatsApp." />
   <meta name="keywords" content="moda feminina belem, loja de roupa feminina belem do para, vestidos belem, moda feminina para, femi" />
   <meta name="author" content="FEMI" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.femibrand.com.br/" />
-  <meta name="theme-color" content="#6B3F2B" />
+  <meta name="theme-color" content="#921914" />
   <meta name="geo.region" content="BR-PA" />
   <meta name="geo.placename" content="Belém" />
 
@@ -608,24 +608,758 @@
   @media(prefers-reduced-motion:reduce){
     *{animation:none!important;transition:none!important}
   }
-  </style>
+
+  /* ===== IDENTIDADE OFICIAL FEMI 2026 ===== */
+  .logo{display:flex;align-items:center;width:92px;height:54px}
+  .logo img{width:100%;height:100%;object-fit:contain}
+  .cart-top{position:relative;background:none;border:0;cursor:pointer;padding:8px;color:#921914;display:grid;place-items:center}
+  .cart-top svg{width:27px;height:27px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .cart-count{position:absolute;top:1px;right:0;background:#921914;color:#fff8e6;border:2px solid #fff8e6;border-radius:50%;min-width:19px;height:19px;padding:0 4px;font:600 10px/15px 'Archivo',sans-serif;display:flex;align-items:center;justify-content:center}
+  .hero{overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-110px;bottom:-80px;width:330px;height:330px;background:url('images/textura-abstrata-creme-azul.jpg') center/cover;border-radius:50%;opacity:.18;pointer-events:none}
+  .brand-pillars{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 0}
+  .brand-pillars span{border:1px solid rgba(146,25,20,.25);border-radius:999px;padding:7px 12px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#921914}
+  .identity-band{background:#921914;color:#fff8e6;position:relative;overflow:hidden}
+  .identity-band::after{content:"";position:absolute;inset:0;background:url('images/textura-floral-vermelha.jpg') center/420px auto;opacity:.14;mix-blend-mode:screen;pointer-events:none}
+  .identity-band .wrap{position:relative;z-index:1;padding-top:56px;padding-bottom:56px;text-align:center}
+  .identity-band h2{font-size:clamp(2rem,4vw,4rem);max-width:820px;margin:8px auto 16px}
+  .identity-band p{max-width:720px;margin:auto;opacity:.9}
+  .universo-femi{background:#fff8e6;position:relative;overflow:hidden}
+  .universo-femi::before{content:"";position:absolute;left:-80px;top:60px;width:240px;height:390px;background:url('images/textura-abstrata-azul-vermelha.jpg') center/cover;border-radius:28px;opacity:.12;transform:rotate(-7deg)}
+  .brand-gallery{display:grid;grid-template-columns:1.15fr .85fr .85fr;grid-template-rows:260px 260px;gap:16px;margin-top:36px}
+  .brand-shot{position:relative;overflow:hidden;border-radius:22px;background:#f1e6d4;box-shadow:0 14px 40px rgba(63,18,15,.10)}
+  .brand-shot:first-child{grid-row:1/3}
+  .brand-shot img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+  .brand-shot:hover img{transform:scale(1.025)}
+  .brand-shot .cap{position:absolute;left:14px;bottom:14px;background:rgba(255,248,230,.9);backdrop-filter:blur(8px);padding:7px 11px;border-radius:999px;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#3f120f}
+  .texture-divider{height:86px;background:#c1dbe9 url('images/textura-abstrata-azul-vermelha.jpg') center 55%/cover no-repeat;opacity:.95}
+  @media(max-width:760px){.logo{width:78px;height:48px}.brand-gallery{grid-template-columns:1fr 1fr;grid-template-rows:300px 180px 180px}.brand-shot:first-child{grid-column:1/3;grid-row:auto}.brand-shot:nth-child(4){grid-column:1/3}.hero::after{width:210px;height:210px;right:-90px}.universo-femi::before{display:none}}
+
+  
+  /* ===== FEMI 2026 · UX inspirado no layout mobile aprovado ===== */
+  .topbar{background:#921914!important;color:#fff8e6!important;letter-spacing:.04em}
+  .nav-inner{position:relative;display:grid!important;grid-template-columns:1fr auto 1fr;align-items:center}
+  .logo{grid-column:2;justify-self:center}
+  .navlinks{grid-column:1;grid-row:1;justify-self:start}
+  .nav-actions{grid-column:3;grid-row:1;justify-self:end}
+  .identity-texture{position:relative;isolation:isolate;background:#921914!important;overflow:hidden}
+  .identity-texture::before{content:"";position:absolute;inset:0;background:url('images/textura-floral-vermelha.jpg') center/420px auto repeat;opacity:.34;z-index:-1}
+  .identity-texture::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(146,25,20,.76),rgba(146,25,20,.58));z-index:-1}
+  .identity-texture h2,.identity-texture p{color:#fff8e6!important}
+  .product-card{border-radius:18px!important;overflow:hidden;background:#fffaf0!important;box-shadow:0 8px 28px rgba(83,43,30,.08)!important}
+  .product-card img{aspect-ratio:3/4;object-fit:cover}
+  .product-modal-shell{background:#fff8e6;width:min(980px,96vw);max-height:94vh;overflow:auto;border-radius:24px;position:relative;box-shadow:0 24px 70px rgba(0,0,0,.28)}
+  .product-modal-grid{display:grid;grid-template-columns:1.05fr .95fr;min-height:620px}
+  .product-modal-media{background:#f1e8da;padding:18px;display:flex;align-items:center;justify-content:center}
+  .product-modal-media img{width:100%;height:100%;max-height:700px;object-fit:cover;border-radius:18px}
+  .product-modal-info{padding:38px 34px}
+  .product-modal-info h2{font-family:'Fraunces',serif;font-size:38px;color:#4d2d25;margin:0 40px 8px 0}
+  .product-price{font:700 30px/1 'Archivo',sans-serif;color:#921914;margin:8px 0 22px}
+  .option-title{display:block;font-weight:700;margin:20px 0 10px;color:#2d211e}
+  .femi-select{width:100%;padding:13px 14px;border:1px solid #ddcfc2;border-radius:12px;background:#fffdf7;font:inherit}
+  .qty-control{display:inline-flex;border:1px solid #ddcfc2;border-radius:12px;overflow:hidden;background:#fffdf7}
+  .qty-control button{width:44px;height:44px;border:0;background:transparent;font-size:20px;cursor:pointer}.qty-control input{width:54px;border:0;text-align:center;background:transparent;font-weight:700}
+  .add-cart-femi{margin-top:24px;width:100%;padding:16px;border:0;border-radius:12px;background:#a60f17;color:white;font-weight:700;font-size:16px;cursor:pointer;display:flex;gap:10px;align-items:center;justify-content:center}
+  .product-accordion{margin-top:22px;border-top:1px solid #dfd3c8}.product-accordion details{border-bottom:1px solid #dfd3c8;padding:0}.product-accordion summary{padding:16px 2px;cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between}.product-accordion summary::after{content:'›';font-size:22px}.product-accordion details[open] summary::after{transform:rotate(90deg)}.product-accordion p{padding:0 2px 16px;margin:0;color:#65534d;line-height:1.6}
+  .coupon-box{margin:20px 0;padding:16px;border-top:1px solid #eadfd5;border-bottom:1px solid #eadfd5}.coupon-title{font-weight:700;margin-bottom:10px}.coupon-row{display:flex;gap:8px}.coupon-row input{min-width:0;flex:1;padding:12px;border:1px solid #ddcfc2;border-radius:10px;background:#fffdf7}.coupon-row button{border:0;background:#921914;color:#fff8e6;border-radius:10px;padding:0 16px;font-weight:700;cursor:pointer}.coupon-msg{font-size:12px;margin-top:8px;color:#765f57}
+  @media(max-width:760px){
+    .nav-inner{min-height:68px}.logo{width:92px!important;height:54px!important}.navlinks{display:none!important}.nav-inner::before{content:'☰';grid-column:1;grid-row:1;font-size:25px;color:#3b2a26;justify-self:start}.nav-actions .btn{display:none}.product-modal-shell{width:100vw;max-height:100vh;height:100vh;border-radius:0}.product-modal-grid{display:block}.product-modal-media{height:48vh;padding:0}.product-modal-media img{border-radius:0;max-height:none}.product-modal-info{padding:22px 18px 34px}.product-modal-info h2{font-size:29px}.product-price{font-size:26px}.hero-grid{gap:20px!important}.hero h1{font-size:clamp(44px,13vw,66px)!important}.hero-art{display:none!important}.hero{padding-top:28px!important}.brand-pillars{display:none!important}
+  }
+
+
+  /* ===== FEMI V3 · CABEÇALHO FINAL + IDENTIDADE ===== */
+  .nav-inner{
+    position:relative;
+    display:grid!important;
+    grid-template-columns:1fr auto 1fr!important;
+    align-items:center;
+  }
+  .navlinks{
+    grid-column:1;
+    grid-row:1;
+    justify-self:start;
+  }
+  .logo{
+    grid-column:2;
+    grid-row:1;
+    justify-self:center;
+  }
+  .nav-actions{
+    grid-column:3;
+    grid-row:1;
+    justify-self:end;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .burger{
+    grid-column:1;
+    grid-row:1;
+    justify-self:start;
+  }
+
+  /* Uma única textura cobrindo toda a faixa, sem mosaico/repetição */
+  .identity-texture::before{
+    background-image:url('images/textura-floral-vermelha.jpg')!important;
+    background-position:center!important;
+    background-size:cover!important;
+    background-repeat:no-repeat!important;
+    opacity:.34!important;
+  }
+
+  @media(min-width:901px){
+    .burger{display:none!important;}
+  }
+
+  @media(max-width:900px){
+    .nav-inner{
+      min-height:68px;
+      height:68px;
+      grid-template-columns:1fr auto 1fr!important;
+    }
+
+    /* remove o ícone ☰ artificial da versão anterior */
+    .nav-inner::before{content:none!important;}
+
+    .burger{
+      display:flex!important;
+      position:relative;
+      z-index:3;
+    }
+
+    .logo{
+      width:88px!important;
+      height:52px!important;
+      position:relative;
+      z-index:2;
+    }
+
+    .navlinks{
+      display:block!important;
+      position:static;
+    }
+
+    .navlinks > ul{
+      display:none;
+    }
+
+    .navlinks.open > ul{
+      display:flex!important;
+      position:absolute;
+      top:68px;
+      left:0;
+      right:0;
+      z-index:1001;
+      flex-direction:column;
+      background:var(--paper);
+      padding:24px clamp(20px,5vw,56px);
+      gap:18px;
+      border-bottom:1px solid var(--cream-2);
+      max-height:calc(100vh - 68px);
+      overflow-y:auto;
+    }
+
+    .nav-actions{
+      gap:5px;
+      position:relative;
+      z-index:3;
+    }
+
+    .nav-actions .cart-top{
+      display:grid!important;
+      padding:5px;
+    }
+
+    .nav-actions .nav-cta{
+      display:inline-flex!important;
+      align-items:center;
+      justify-content:center;
+      white-space:nowrap;
+      padding:8px 10px;
+      font-size:.62rem;
+      letter-spacing:.055em;
+    }
+  }
+
+  @media(max-width:390px){
+    .wrap.nav-inner{padding-left:12px;padding-right:12px;}
+    .logo{width:78px!important;height:48px!important;}
+    .nav-actions .nav-cta{padding:7px 8px;font-size:.57rem;}
+    .cart-top svg{width:24px;height:24px;}
+    .burger span{width:23px;}
+  }
+
+
+/* ===== FEMI V4 · ativos oficiais enviados pelo usuário ===== */
+.logo img{width:100%;height:100%;object-fit:contain;display:block}
+.identity-texture{background-image:url('images/textura-femi-oficial.jpeg')!important;background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important;}
+.identity-texture::before{content:none!important;background:none!important;}
+.identity-texture::after{content:""!important;position:absolute!important;inset:0!important;background:rgba(146,25,20,.12)!important;z-index:0!important;pointer-events:none!important;}
+.identity-texture .wrap{position:relative!important;z-index:1!important;}
+
+
+/* ===== FEMI V5 · correções visuais da Identidade e Universo FEMI ===== */
+
+/* A faixa da Identidade ocupa toda a largura, sem bordas claras. */
+.identity-band.identity-texture{
+  position:relative!important;
+  isolation:isolate!important;
+  overflow:hidden!important;
+  width:100%!important;
+  max-width:none!important;
+  margin:0!important;
+  background:#921914!important;
+  background-image:none!important;
+}
+
+/* A textura oficial foi recortada para retirar a moldura branca da imagem original.
+   Ela cobre toda a seção, recebe leve desfoque e é ampliada para esconder as bordas do blur. */
+.identity-band.identity-texture::before{
+  content:""!important;
+  position:absolute!important;
+  inset:-12px!important;
+  z-index:0!important;
+  background:url('images/textura-femi-identidade-cortada.jpg') center center/cover no-repeat!important;
+  filter:blur(3.2px)!important;
+  transform:scale(1.035)!important;
+  opacity:1!important;
+  pointer-events:none!important;
+}
+
+/* Véu vermelho escuro para a tipografia ganhar contraste sem apagar a textura. */
+.identity-band.identity-texture::after{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  z-index:1!important;
+  background:rgba(86,12,10,.34)!important;
+  pointer-events:none!important;
+}
+
+.identity-band.identity-texture .wrap{
+  position:relative!important;
+  z-index:2!important;
+  padding-top:72px!important;
+  padding-bottom:72px!important;
+}
+
+.identity-band.identity-texture .eyebrow,
+.identity-band.identity-texture h2,
+.identity-band.identity-texture p{
+  color:#fff8e6!important;
+  text-shadow:0 2px 12px rgba(55,7,5,.38);
+}
+.identity-band.identity-texture .eyebrow{color:#fff8e6!important;opacity:.92!important;}
+.identity-band.identity-texture h2{font-weight:500!important;}
+.identity-band.identity-texture p{font-weight:500!important;}
+
+/* Universo FEMI: garante que as quatro imagens reais apareçam. */
+.universo-femi{background:#fff8e6!important;}
+.brand-shot{background:#eadfce!important;}
+.brand-shot img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  opacity:1!important;
+}
+
+/* A faixa azul agora usa a textura oficial azul/vermelha em vez de ficar azul lisa. */
+.texture-divider{
+  height:118px!important;
+  width:100%!important;
+  background-color:#c1dbe9!important;
+  background-image:url('images/textura-abstrata-azul-vermelha.jpg')!important;
+  background-position:center 55%!important;
+  background-size:cover!important;
+  background-repeat:no-repeat!important;
+  opacity:1!important;
+}
+
+/* Também deixa o detalhe decorativo do Universo FEMI funcional. */
+.universo-femi::before{
+  background-image:url('images/textura-abstrata-azul-vermelha.jpg')!important;
+}
+
+@media(max-width:760px){
+  .identity-band.identity-texture .wrap{
+    padding-top:58px!important;
+    padding-bottom:58px!important;
+  }
+  .identity-band.identity-texture::before{
+    inset:-10px!important;
+    filter:blur(2.6px)!important;
+  }
+  .texture-divider{height:92px!important;}
+}
+
+
+/* ===== FEMI V7 · aplicado nos elementos reais ===== */
+
+/* IDENTIDADE: textura mais desfocada; "A identidade" azul bebê */
+.identity-band.identity-texture{
+  width:100%!important;
+  max-width:none!important;
+  margin:0!important;
+  background:#921914!important;
+  overflow:hidden!important;
+}
+.identity-band.identity-texture::before{
+  content:""!important;
+  position:absolute!important;
+  inset:-38px!important;
+  background:url('images/textura-floral-vermelha.jpg') center/cover no-repeat!important;
+  filter:blur(9px)!important;
+  transform:scale(1.07)!important;
+  opacity:.88!important;
+  z-index:0!important;
+}
+.identity-band.identity-texture::after{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  background:rgba(86,10,8,.25)!important;
+  z-index:1!important;
+}
+.identity-band.identity-texture .wrap{position:relative!important;z-index:2!important;}
+.identity-band.identity-texture .eyebrow{
+  color:#c1dbe9!important;
+  opacity:1!important;
+  text-shadow:0 2px 12px rgba(0,0,0,.35)!important;
+}
+.identity-band.identity-texture h2,
+.identity-band.identity-texture p{
+  color:#fff8e6!important;
+  text-shadow:0 2px 14px rgba(45,4,3,.52)!important;
+}
+
+/* UNIVERSO FEMI: textura creme/azul suave atrás do conteúdo */
+.universo-femi{
+  position:relative!important;
+  isolation:isolate!important;
+  background:#fff8e6!important;
+  overflow:hidden!important;
+}
+.universo-femi::before{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  background:
+    linear-gradient(rgba(255,248,230,.86),rgba(255,248,230,.86)),
+    url('images/textura-abstrata-creme-azul.jpg') center/cover no-repeat!important;
+  opacity:1!important;
+  z-index:-1!important;
+  pointer-events:none!important;
+}
+
+/* CARRINHO REAL: textura visível no painel e nos blocos internos */
+#painelCarrinhoFemi .femi-cart-panel{
+  background-color:#fff8e6!important;
+  background-image:
+    linear-gradient(rgba(255,248,230,.82),rgba(255,248,230,.82)),
+    url('images/textura-abstrata-creme-azul.jpg')!important;
+  background-size:cover!important;
+  background-position:center!important;
+  background-repeat:no-repeat!important;
+}
+#painelCarrinhoFemi #itensCarrinho{
+  position:relative!important;
+}
+#painelCarrinhoFemi .femi-cart-card{
+  border:1px solid rgba(146,25,20,.16)!important;
+  border-radius:14px!important;
+  padding:16px!important;
+  background:
+    linear-gradient(rgba(255,248,230,.88),rgba(255,248,230,.88)),
+    url('images/textura-abstrata-creme-azul.jpg') center/cover no-repeat!important;
+  box-shadow:0 8px 24px rgba(78,22,18,.05)!important;
+}
+#painelCarrinhoFemi .coupon-box{margin-top:18px!important;}
+#painelCarrinhoFemi .femi-payment-card{margin-top:20px!important;}
+
+/* FAIXA: textura floral vermelha inteira, sem blur e sem espaços brancos */
+.texture-divider{
+  display:block!important;
+  width:100%!important;
+  max-width:none!important;
+  height:132px!important;
+  margin:0!important;
+  padding:0!important;
+  background-color:#921914!important;
+  background-image:url('images/textura-floral-vermelha.jpg')!important;
+  background-size:cover!important;
+  background-position:center!important;
+  background-repeat:no-repeat!important;
+  opacity:1!important;
+  filter:none!important;
+}
+@media(max-width:760px){
+  .identity-band.identity-texture::before{
+    inset:-30px!important;
+    filter:blur(8px)!important;
+  }
+  .texture-divider{height:96px!important;}
+}
+
+
+/* ===== FEMI V8 · correção estrutural final das texturas ===== */
+
+/* IDENTIDADE: a imagem usada aqui já foi recortada fisicamente,
+   portanto não existe branco dentro do arquivo. Ocupa a viewport inteira. */
+.identity-band.identity-texture{
+  position:relative!important;
+  width:100vw!important;
+  max-width:none!important;
+  margin-left:calc(50% - 50vw)!important;
+  margin-right:calc(50% - 50vw)!important;
+  overflow:hidden!important;
+  background:#921914!important;
+}
+.identity-band.identity-texture::before{
+  content:""!important;
+  position:absolute!important;
+  inset:-24px!important;
+  background-image:url('images/textura-floral-femi-full.jpg')!important;
+  background-size:cover!important;
+  background-position:center!important;
+  background-repeat:no-repeat!important;
+  filter:blur(5px)!important;
+  transform:scale(1.06)!important;
+  opacity:1!important;
+  z-index:0!important;
+}
+.identity-band.identity-texture::after{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  background:rgba(86,10,8,.22)!important;
+  z-index:1!important;
+}
+.identity-band.identity-texture .wrap{position:relative!important;z-index:2!important;}
+.identity-band.identity-texture .eyebrow{color:#c1dbe9!important;}
+
+/* A MARCA: garante que a imagem oficial do manual apareça inteira e elegante. */
+.brand-story .brand-story-image,
+.brand-story .story-image,
+.brand-story figure{
+  overflow:hidden!important;
+}
+.brand-story img,
+#sobre img[alt*="Editorial FEMI"],
+img[alt*="Editorial FEMI"]{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:420px!important;
+  object-fit:cover!important;
+  object-position:center!important;
+  opacity:1!important;
+}
+
+/* CARRINHO: floral FEMI bem discreto; nada de textura azul forte. */
+#painelCarrinhoFemi .femi-cart-panel{
+  background-color:#fff8e6!important;
+  background-image:
+    linear-gradient(rgba(255,248,230,.955),rgba(255,248,230,.955)),
+    url('images/textura-floral-femi-full.jpg')!important;
+  background-size:520px auto!important;
+  background-position:center top!important;
+  background-repeat:repeat-y!important;
+}
+#painelCarrinhoFemi .femi-cart-card{
+  background:rgba(255,248,230,.88)!important;
+  border:1px solid rgba(146,25,20,.12)!important;
+  box-shadow:0 8px 22px rgba(86,20,16,.035)!important;
+}
+
+/* FAIXA DECORATIVA: rompe qualquer container e vai de ponta a ponta.
+   A textura já não possui borda branca. */
+.texture-divider{
+  display:block!important;
+  position:relative!important;
+  width:100vw!important;
+  max-width:none!important;
+  height:118px!important;
+  margin-left:calc(50% - 50vw)!important;
+  margin-right:calc(50% - 50vw)!important;
+  padding:0!important;
+  background-color:#921914!important;
+  background-image:url('images/textura-floral-femi-full.jpg')!important;
+  background-size:cover!important;
+  background-position:center!important;
+  background-repeat:no-repeat!important;
+  opacity:1!important;
+  filter:none!important;
+}
+
+@media(max-width:760px){
+  .identity-band.identity-texture::before{
+    inset:-20px!important;
+    filter:blur(4.5px)!important;
+  }
+  .brand-story img,
+  #sobre img[alt*="Editorial FEMI"],
+  img[alt*="Editorial FEMI"]{min-height:320px!important;}
+  .texture-divider{height:92px!important;}
+}
+
+
+/* FEMI V9 — hero baseado no rascunho aprovado */
+.hero{min-height:700px!important;padding:clamp(72px,8vw,118px) 0 clamp(58px,7vw,90px)!important;background:#ead1b9!important}
+.hero-bg{background:radial-gradient(circle at 13% 35%,rgba(255,248,230,.70),transparent 37%),radial-gradient(circle at 72% 10%,rgba(255,255,255,.22),transparent 31%),linear-gradient(112deg,#f2dfcc 0%,#ead0b6 48%,#dfbea1 100%)!important}
+.hero::after{display:none!important}
+.hero-grid{grid-template-columns:.92fr 1.08fr!important;gap:clamp(24px,3vw,52px)!important}
+.hero-copy{position:relative;z-index:3}
+.hero h1{color:#921914!important;font-size:clamp(3.3rem,6vw,5.75rem)!important;line-height:.96!important}
+.hero h1 em{color:#921914!important}
+.hero .lead{color:#59453d!important}
+.hero-femi-art{display:block!important;position:relative!important;aspect-ratio:1.2/1!important;width:calc(100% + 9vw)!important;margin-right:-9vw!important;overflow:hidden!important}
+.hero-femi-art img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important;display:block!important;border:0!important;box-shadow:none!important}
+.hero .btn-primary{background:#921914!important;color:#fff8e6!important}
+.hero .btn-ghost{border-color:#921914!important;color:#921914!important}
+@media(max-width:900px){.hero{min-height:auto!important}.hero-grid{grid-template-columns:1fr!important}.hero-femi-art{display:block!important;width:100vw!important;margin:10px calc(50% - 50vw) -40px!important;aspect-ratio:1.35/1!important}}
+@media(max-width:600px){.hero h1{font-size:clamp(3rem,14vw,4.5rem)!important}.hero-femi-art{aspect-ratio:1/1!important}}
+
+
+/* ===== FEMI V12 · HERO ÚNICO, SEM DUPLICAÇÃO ===== */
+.hero{
+  position:relative!important;
+  min-height:700px!important;
+  overflow:hidden!important;
+  background-color:#ead1b9!important;
+  background-image:
+    linear-gradient(90deg,
+      rgba(255,248,230,.30) 0%,
+      rgba(255,248,230,.18) 34%,
+      rgba(255,248,230,.04) 58%,
+      rgba(255,248,230,0) 100%),
+    url('images/hero-femi-silhueta-flor.jpg')!important;
+  background-size:cover!important;
+  background-position:center center!important;
+  background-repeat:no-repeat!important;
+}
+
+/* elimina qualquer fundo/arte duplicada criada pelas versões anteriores */
+.hero-bg{
+  display:none!important;
+  background:none!important;
+}
+.hero-femi-art{
+  display:none!important;
+}
+.hero-femi-art img{
+  display:none!important;
+}
+
+/* o conteúdo real continua acima do único fundo */
+.hero-grid{
+  position:relative!important;
+  z-index:2!important;
+  grid-template-columns:minmax(0, .78fr) minmax(0, 1.22fr)!important;
+}
+.hero-copy{
+  position:relative!important;
+  z-index:3!important;
+  max-width:620px!important;
+}
+.hero h1{
+  color:#921914!important;
+  text-shadow:0 1px 0 rgba(255,248,230,.18)!important;
+}
+.hero .lead{
+  color:#4f413b!important;
+}
+
+@media(max-width:900px){
+  .hero{
+    min-height:auto!important;
+    background-position:58% center!important;
+    background-size:cover!important;
+  }
+  .hero-grid{
+    grid-template-columns:1fr!important;
+  }
+  .hero-copy{
+    max-width:650px!important;
+  }
+}
+
+@media(max-width:600px){
+  .hero{
+    background-position:62% center!important;
+  }
+}
+
+
+/* ===== FEMI V13 · ajuste fino do hero aprovado ===== */
+.hero{
+  /* Mantém exatamente a mesma arte/fundo da V12.
+     A redução acontece pelo background-size e o deslocamento pelo position. */
+  background-size:auto 88%!important;
+  background-position:108% center!important;
+  background-color:#ead1b9!important;
+}
+
+/* cria continuidade do tecido à esquerda, sem cobrir o conteúdo */
+.hero::before{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  z-index:0!important;
+  pointer-events:none!important;
+  background:
+    linear-gradient(90deg,
+      rgba(242,221,199,.96) 0%,
+      rgba(242,221,199,.90) 25%,
+      rgba(242,221,199,.58) 42%,
+      rgba(242,221,199,.12) 56%,
+      transparent 68%)!important;
+}
+
+/* texto acima da composição, com área esquerda mais limpa */
+.hero-grid{
+  position:relative!important;
+  z-index:2!important;
+}
+.hero-copy{
+  position:relative!important;
+  z-index:3!important;
+  max-width:570px!important;
+}
+
+@media(max-width:1100px){
+  .hero{
+    background-size:auto 84%!important;
+    background-position:112% center!important;
+  }
+}
+
+@media(max-width:900px){
+  .hero{
+    background-size:auto 72%!important;
+    background-position:128% 72%!important;
+  }
+  .hero::before{
+    background:
+      linear-gradient(180deg,
+        rgba(242,221,199,.94) 0%,
+        rgba(242,221,199,.78) 48%,
+        rgba(242,221,199,.18) 70%,
+        transparent 86%)!important;
+  }
+}
+
+@media(max-width:600px){
+  .hero{
+    background-size:auto 58%!important;
+    background-position:142% 86%!important;
+  }
+}
+
+
+/* ===== FEMI V15 · hero sem faixa superior ===== */
+/* Corrige exclusivamente as sobras horizontais da V13.
+   A arte continua ancorada à direita, mas agora cobre toda a altura do hero. */
+.hero{
+  background-size:auto 100%!important;
+  background-position:108% center!important;
+  background-repeat:no-repeat!important;
+}
+@media(max-width:1100px){
+  .hero{background-size:auto 100%!important;background-position:112% center!important;}
+}
+@media(max-width:900px){
+  .hero{background-size:auto 100%!important;background-position:118% center!important;}
+}
+@media(max-width:600px){
+  .hero{background-size:auto 100%!important;background-position:124% center!important;}
+}
+
+/* ===== FEMI V16 · silhueta + flor mais reconhecíveis ===== */
+.hero{
+  background-size: cover !important;
+  background-position: center center !important;
+}
+@media (min-width: 900px){
+  .hero{
+    /* A imagem é bem larga; usar contain visualmente via tamanho controlado
+       preserva mais da composição, com uma base de tecido por baixo. */
+    background-color: #f6ead3 !important;
+    background-size: auto 92% !important;
+    background-position: right center !important;
+    background-repeat: no-repeat !important;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:0;
+    background-image:url("images/hero-femi-silhueta-flor.jpg");
+    background-size:cover;
+    background-position:center;
+    filter:blur(10px);
+    transform:scale(1.035);
+    opacity:.34;
+    pointer-events:none;
+  }
+  .hero > *{
+    position:relative;
+    z-index:1;
+  }
+}
+
+
+/* ===== FEMI V18 · HERO FINAL COM ARTE OFICIAL ENVIADA PELO USUÁRIO ===== */
+.hero{
+  position:relative!important;
+  overflow:hidden!important;
+  min-height:clamp(680px,46.875vw,900px)!important;
+  padding:clamp(72px,8vw,118px) 0 clamp(58px,7vw,90px)!important;
+  background-image:url("images/hero-femi-oficial-final.jpeg")!important;
+  background-size:cover!important;
+  background-position:center center!important;
+  background-repeat:no-repeat!important;
+  background-color:#f2dcc3!important;
+}
+.hero::before,.hero::after,.hero-bg,.hero-femi-art{display:none!important;content:none!important;background:none!important}
+.hero-grid{position:relative!important;z-index:2!important;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr)!important}
+.hero-copy{position:relative!important;z-index:3!important;max-width:600px!important}
+.hero h1{color:#921914!important;text-shadow:none!important}
+.hero h1 em{color:#921914!important}
+.hero .lead{color:#4f413b!important}
+.hero .btn-primary{background:#921914!important;color:#fff8e6!important}
+.hero .btn-ghost{border-color:#921914!important;color:#921914!important;background:rgba(255,248,230,.35)!important}
+@media(max-width:900px){
+  .hero{min-height:760px!important;background-position:66% center!important;background-size:cover!important}
+  .hero-grid{grid-template-columns:1fr!important}
+  .hero-copy{max-width:560px!important}
+}
+@media(max-width:600px){
+  .hero{
+    min-height:calc(100svh - 108px)!important;
+    background-image:url("images/hero-femi-mobile.png")!important;
+    background-size:cover!important;
+    background-position:center center!important;
+    background-repeat:no-repeat!important;
+  }
+  .hero-copy{max-width:92%!important}
+}
+
+</style>
 </head>
 
 <body>
 
   <div class="topbar">
-    Envio para todo o Brasil · Novidades toda semana · Retirada em Belém - PA
+    PIX com 10% OFF · Enviamos para todo o Brasil · Novidades FEMI toda semana
   </div>
 
   <header class="nav">
     <div class="wrap nav-inner">
 
-      <a href="#topo" class="logo">
-        femi
-        <span>Seu essencial, de infinitas formas</span>
-      </a>
+      <a href="#topo" class="logo" aria-label="FEMI — início"><img src="images/logo-femi-oficial.png" alt="FEMI" /></a>
 
-      <nav id="mainnav">
+      <nav id="mainnav" class="navlinks">
         <ul>
 
           <li class="menu-colecao" id="menuColecao">
@@ -675,43 +1409,24 @@
         </ul>
       </nav>
 
-      <button
-        id="btnCarrinhoTopo"
-        type="button"
-        aria-label="Abrir carrinho"
-        style="position:relative;background:none;border:0;font-size:25px;cursor:pointer;padding:8px;"
-      >
-        🛍️
-
-        <span
-          id="contadorCarrinho"
-          style="
-            position:absolute;
-            top:0;
-            right:0;
-            background:#b3262e;
-            color:white;
-            border-radius:50%;
-            min-width:18px;
-            height:18px;
-            padding:0 4px;
-            font-size:11px;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-          "
-        >
-          0
-        </span>
-      </button>
-
-      <a href="#pedido" class="nav-cta">Fazer pedido</a>
-
       <button class="burger" id="burger" aria-label="Abrir menu">
         <span></span>
         <span></span>
         <span></span>
       </button>
+
+      <div class="nav-actions">
+        <button id="btnCarrinhoTopo" type="button" aria-label="Abrir carrinho" class="cart-top">
+          <svg viewBox="0 0 32 32" aria-hidden="true">
+            <path d="M3.5 5.5h3.1l2.7 13.1a2.8 2.8 0 0 0 2.8 2.2h10.5a2.8 2.8 0 0 0 2.7-2l2.1-8.1H8.1"/>
+            <path d="M12.2 25.7h.1M23.7 25.7h.1"/>
+            <circle cx="12.2" cy="25.7" r="1.5"/><circle cx="23.7" cy="25.7" r="1.5"/>
+          </svg>
+          <span id="contadorCarrinho" class="cart-count">0</span>
+        </button>
+
+        <a href="#pedido" class="nav-cta">Fazer pedido</a>
+      </div>
 
     </div>
   </header>
@@ -719,6 +1434,8 @@
   <a id="topo"></a>
 
   <section class="hero">
+
+    <a href="#colecao" class="hero-ver-colecao" aria-label="Ver coleção"></a>
 
     <div class="hero-bg"></div>
 
@@ -732,17 +1449,18 @@
             <circle cx="12" cy="10" r="2.6"/>
           </svg>
 
-          Belém do Pará · Brasil
+          FEMI · MODA FEMININA
         </div>
 
         <h1>
-          Moda feminina em <em>Belém</em>, do seu jeito
+          Essenciais que acompanham <em>todas as suas formas</em>
         </h1>
 
         <p class="lead">
-          Seu essencial, de infinitas formas. Vestidos, macaquinhos e camisetas
-          pensados para a rotina, os encontros e as ocasiões especiais.
+          Seu essencial, de infinitas formas. Uma curadoria que une sofisticação atemporal,
+          funcionalidade contemporânea e a fluidez de uma rotina em movimento.
         </p>
+        <div class="brand-pillars"><span>Versatilidade</span><span>Sofisticação</span><span>Fluidez</span></div>
 
         <div class="btn-row">
 
@@ -761,20 +1479,8 @@
         </div>
       </div>
 
-      <div class="hero-art reveal">
-
-        <div class="frame f1">
-          <img class="ph" src="images/destaque.jpg" alt="Modelo usando peça de moda feminina da FEMI ao pôr do sol em Belém do Pará, coleção verão 2026" loading="eager" width="900" height="1125">
-        </div>
-
-        <div class="frame f2">
-          <img class="ph" src="images/macaquinho.jpg" alt="Macaquinho marrom em crepe unique da nova coleção da FEMI" loading="lazy" width="820" height="1025">
-        </div>
-
-        <div class="frame f3">
-          <img class="ph" src="images/camiseta_brasil.jpg" alt="Camiseta verde da coleção brasilidades da FEMI, colorida e vibrante" loading="lazy" width="820" height="1025">
-        </div>
-
+      <div class="hero-art reveal hero-femi-art" aria-label="Silhueta feminina e símbolo floral FEMI">
+        <img src="images/hero-femi-silhueta-flor.jpg" alt="Silhueta feminina com símbolo floral da identidade visual FEMI" loading="eager">
       </div>
     </div>
   </section>
@@ -782,21 +1488,19 @@
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
       <span>
-        Moda Feminina <b class="dot">·</b>
-        Belém do Pará <b class="dot">·</b>
-        Vestidos <b class="dot">·</b>
-        Macaquinhos <b class="dot">·</b>
-        Camisetas <b class="dot">·</b>
-        Envio para todo o Brasil <b class="dot">·</b>
+        Versatilidade <b class="dot">·</b>
+        Sofisticação <b class="dot">·</b>
+        Fluidez <b class="dot">·</b>
+        Elegância natural <b class="dot">·</b>
+        Seu essencial, de infinitas formas <b class="dot">·</b>
       </span>
 
       <span>
-        Moda Feminina <b class="dot">·</b>
-        Belém do Pará <b class="dot">·</b>
-        Vestidos <b class="dot">·</b>
-        Macaquinhos <b class="dot">·</b>
-        Camisetas <b class="dot">·</b>
-        Envio para todo o Brasil <b class="dot">·</b>
+        Versatilidade <b class="dot">·</b>
+        Sofisticação <b class="dot">·</b>
+        Fluidez <b class="dot">·</b>
+        Elegância natural <b class="dot">·</b>
+        Seu essencial, de infinitas formas <b class="dot">·</b>
       </span>
     </div>
   </div>
@@ -832,7 +1536,7 @@
     <div class="wrap about-grid">
 
       <div class="about-art reveal">
-        <img class="ph" src="images/about.jpg" alt="Editorial da marca FEMI em tons terrosos, representando a identidade de moda feminina de Belém do Pará" loading="lazy" width="820" height="820">
+        <img class="ph" alt="Editorial FEMI — sofisticação, versatilidade e elegância natural" loading="lazy" width="820" height="820" src="images/editorial-femi-manual.jpg">
       </div>
 
       <div class="about-text reveal">
@@ -846,25 +1550,19 @@
         </h2>
 
         <p>
-          <strong>FEMI é uma marca de moda feminina de Belém do Pará.</strong>
-          Criamos peças versáteis, com tecidos de qualidade e caimento pensado
-          para o corpo real, que se transformam com você ao longo do dia.
+          <strong>A FEMI atua na intersecção entre a sofisticação atemporal e a funcionalidade contemporânea.</strong>
+          Acreditamos em uma moda que acompanha o estilo de vida dinâmico da mulher moderna.
         </p>
 
         <p>
-          Da alfaiataria leve às camisetas de brasilidade, cada coleção nasce
-          da vontade de vestir a mulher paraense com elegância, leveza e atitude.
+          Nossa curadoria reúne peças que transitam com fluidez entre compromissos cotidianos
+          e ocasiões que pedem um toque extra de elegância.
         </p>
 
         <div class="stats">
           <div class="stat">
             <b>100%</b>
             <span>Produção nacional</span>
-          </div>
-
-          <div class="stat">
-            <b>PA</b>
-            <span>Feito em Belém</span>
           </div>
 
           <div class="stat">
@@ -877,6 +1575,31 @@
     </div>
   </section>
 
+  <section class="identity-band identity-texture" aria-label="Identidade FEMI">
+    <div class="wrap reveal">
+      <span class="eyebrow" style="color:#c1dbe9">A identidade</span>
+      <h2>Versatilidade, sofisticação e fluidez.</h2>
+      <p>Inspirada nas silhuetas naturais e na fluidez do feminino, a FEMI encontra nas curvas uma linguagem de acolhimento, conforto e elegância natural.</p>
+    </div>
+  </section>
+
+  <section class="universo-femi" id="universo-femi">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow" style="color:#921914">Universo FEMI</span>
+        <h2>Uma identidade presente em cada detalhe</h2>
+        <p>Da peça à embalagem, cada aplicação traduz o mesmo cuidado: formas fluidas, presença e requinte discreto.</p>
+      </div>
+      <div class="brand-gallery reveal">
+        <figure class="brand-shot"><img src="images/femi-cabide.jpg" alt="Aplicação da marca FEMI em cabide e peça de roupa" loading="lazy"><span class="cap">Vestir FEMI</span></figure>
+        <figure class="brand-shot"><img src="images/femi-etiqueta.jpg" alt="Etiqueta da marca FEMI" loading="lazy"><span class="cap">Detalhes</span></figure>
+        <figure class="brand-shot"><img src="images/femi-sacola.jpg" alt="Sacola da marca FEMI" loading="lazy"><span class="cap">Experiência</span></figure>
+        <figure class="brand-shot"><img src="images/femi-caixa.jpg" alt="Caixa da marca FEMI" loading="lazy"><span class="cap">Cuidado</span></figure>
+      </div>
+    </div>
+  </section>
+  <div class="texture-divider" aria-hidden="true"></div>
+
   <section id="belem" style="background:linear-gradient(180deg,#f4ecdf,var(--paper))">
 
     <div class="wrap">
@@ -888,13 +1611,12 @@
         </span>
 
         <h2>
-          Moda feminina no coração de Belém do Pará
+          Da nossa essência para todos os seus momentos
         </h2>
 
         <p>
-          Atendemos toda a região metropolitana de Belém e enviamos para todo
-          o Brasil. Combine a retirada ou tire suas dúvidas pelo WhatsApp —
-          respondemos rapidinho.
+          Entregamos com cuidado e enviamos para todo o Brasil. Consulte as condições
+          de entrega ou tire suas dúvidas pelo WhatsApp — respondemos rapidinho.
         </p>
 
       </div>
@@ -902,7 +1624,7 @@
       <div class="btn-row reveal">
 
         <a href="#pedido" class="btn btn-primary">
-          Combinar retirada em Belém
+          Consultar entrega
         </a>
 
         <a href="https://www.instagram.com/femibrand__/" target="_blank" rel="noopener" class="btn btn-ghost">
@@ -929,7 +1651,7 @@
 
       <p>
         Escolha o modelo, o tamanho e a cor. Nós cuidamos do resto —
-        com envio para todo o Brasil e retirada em Belém - PA.
+        com entrega local e envio para todo o Brasil.
       </p>
 
       <a href="https://wa.me/5591992593961?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20FEMI%20e%20gostaria%20de%20fazer%20um%20pedido." target="_blank" rel="noopener" class="btn btn-wa">
@@ -949,8 +1671,8 @@
           <div class="foot-logo">FEMI</div>
 
           <p>
-            Moda feminina de Belém do Pará. Seu essencial, de infinitas formas —
-            vestidos, macaquinhos e camisetas com envio para todo o Brasil.
+            Seu essencial, de infinitas formas. Versatilidade, sofisticação e fluidez
+            em uma curadoria pensada para acompanhar diferentes momentos.
           </p>
         </div>
 
@@ -958,7 +1680,7 @@
           <h4>Navegar</h4>
           <a href="#colecao">Coleção</a>
           <a href="#sobre">Sobre a marca</a>
-          <a href="#belem">Belém - PA</a>
+          <a href="#belem">Entregas</a>
           <a href="#pedido">Fazer pedido</a>
         </div>
 
@@ -1332,335 +2054,52 @@
   // =========================================================
 
   window.abrirDetalhes = function(id) {
-
-    const produto =
-      (window.produtosFemi || [])
-      .find(p => p.id === id);
-
+    const produto = (window.produtosFemi || []).find(p => String(p.id) === String(id));
     if (!produto) return;
-
-    const preco =
-      formatarDinheiro(produto.price || 0);
-
-    const modalAntigo =
-      document.getElementById("modalProdutoFemi");
-
-    if (modalAntigo) {
-      modalAntigo.remove();
-    }
-
-    const modal =
-      document.createElement("div");
-
+    const preco = formatarDinheiro(produto.price || 0);
+    const tamanhos = (produto.sizes || "P,M,G,GG").split(",").map(v=>v.trim()).filter(Boolean);
+    const cores = (produto.colors || "Consulte disponibilidade").split(",").map(v=>v.trim()).filter(Boolean);
+    document.getElementById("modalProdutoFemi")?.remove();
+    const modal = document.createElement("div");
     modal.id = "modalProdutoFemi";
-
     modal.innerHTML = `
-
-      <div
-        onclick="event.stopPropagation()"
-        style="
-          background:white;
-          width:min(900px,92vw);
-          max-height:90vh;
-          overflow:auto;
-          border-radius:18px;
-          padding:25px;
-          position:relative;
-          box-shadow:0 20px 60px rgba(0,0,0,.25);
-        "
-      >
-
-        <button
-          onclick="document.getElementById('modalProdutoFemi').remove()"
-          style="
-            position:absolute;
-            right:18px;
-            top:12px;
-            border:none;
-            background:none;
-            font-size:32px;
-            cursor:pointer;
-          "
-        >
-          ×
-        </button>
-
-        <div
-          style="
-            display:flex;
-            flex-wrap:wrap;
-            gap:28px;
-            align-items:flex-start;
-          "
-        >
-
-          <img
-            src="${produto.image_url || ""}"
-            alt="${produto.name || "Produto FEMI"}"
-            style="
-              flex:1 1 300px;
-              width:100%;
-              max-width:430px;
-              border-radius:14px;
-              object-fit:cover;
-            "
-          >
-
-          <div
-            style="
-              flex:1 1 280px;
-              padding:10px;
-            "
-          >
-
-            <h2 style="margin-top:0;">
-              ${produto.name || "Produto FEMI"}
-            </h2>
-
-            <p style="line-height:1.6;">
-              ${produto.description || ""}
-            </p>
-
-            <h3
-              style="
-                font-size:24px;
-                margin:22px 0;
-              "
-            >
-              ${preco}
-            </h3>
-
-            <div style="margin-top:16px;">
-
-              <strong>
-                Escolha o tamanho:
-              </strong>
-
-              <br>
-
-              <select
-                id="tamanhoSelecionado"
-                style="
-                  margin-top:8px;
-                  padding:10px 12px;
-                  border:1px solid #ccc;
-                  border-radius:8px;
-                "
-              >
-
-                ${(produto.sizes || "")
-                  .split(",")
-                  .map(tamanho =>
-                    `
-                      <option value="${tamanho.trim()}">
-                        ${tamanho.trim()}
-                      </option>
-                    `
-                  )
-                  .join("")
-                }
-
-              </select>
-
+      <div class="product-modal-shell" onclick="event.stopPropagation()">
+        <button onclick="document.getElementById('modalProdutoFemi').remove()" aria-label="Fechar" style="position:absolute;right:16px;top:12px;z-index:3;border:0;background:#fff8e6cc;width:40px;height:40px;border-radius:50%;font-size:28px;cursor:pointer">×</button>
+        <div class="product-modal-grid">
+          <div class="product-modal-media"><img src="${produto.image_url || ''}" alt="${produto.name || 'Produto FEMI'}"></div>
+          <div class="product-modal-info">
+            <h2>${produto.name || 'Produto FEMI'}</h2>
+            <div class="product-price">${preco}</div>
+            <span class="option-title">Cor</span>
+            <select id="corSelecionada" class="femi-select">${cores.map(c=>`<option value="${c}">${c}</option>`).join('')}</select>
+            <span class="option-title">Tamanho</span>
+            <select id="tamanhoSelecionado" class="femi-select">${tamanhos.map(t=>`<option value="${t}">${t}</option>`).join('')}</select>
+            <span class="option-title">Quantidade</span>
+            <div class="qty-control"><button type="button" id="qtyMenos">−</button><input id="quantidadeProduto" type="number" value="1" min="1" readonly><button type="button" id="qtyMais">+</button></div>
+            <button id="btnAdicionarCarrinho" class="add-cart-femi"><span aria-hidden="true">🛒</span> Adicionar ao carrinho</button>
+            <div class="product-accordion">
+              <details><summary>Descrição do produto</summary><p>${produto.description || 'Peça selecionada pela curadoria FEMI para acompanhar diferentes momentos.'}</p></details>
+              <details><summary>Informações de entrega</summary><p>Entregamos em Belém e Ananindeua e enviamos pedidos para todo o Brasil. O valor e o prazo são confirmados conforme o endereço informado no pedido.</p></details>
+              <details><summary>Trocas e devoluções</summary><p>Para solicitar troca ou devolução, fale com a FEMI pelo WhatsApp informando o número do pedido e a peça. As condições e o prazo aplicável serão apresentados no atendimento.</p></details>
             </div>
-
-            <div style="margin-top:16px;">
-
-              <strong>
-                Escolha a cor:
-              </strong>
-
-              <br>
-
-              <select
-                id="corSelecionada"
-                style="
-                  margin-top:8px;
-                  padding:10px 12px;
-                  border:1px solid #ccc;
-                  border-radius:8px;
-                "
-              >
-
-                ${(produto.colors || "")
-                  .split(",")
-                  .map(cor =>
-                    `
-                      <option value="${cor.trim()}">
-                        ${cor.trim()}
-                      </option>
-                    `
-                  )
-                  .join("")
-                }
-
-              </select>
-
-            </div>
-
-            <div style="margin-top:16px;">
-
-              <strong>
-                Quantidade:
-              </strong>
-
-              <br>
-
-              <input
-                id="quantidadeProduto"
-                type="number"
-                value="1"
-                min="1"
-                style="
-                  margin-top:8px;
-                  width:70px;
-                  padding:10px;
-                  border:1px solid #ccc;
-                  border-radius:8px;
-                "
-              >
-
-            </div>
-
-            <button
-              id="btnAdicionarCarrinho"
-              style="
-                margin-top:20px;
-                width:100%;
-                padding:14px;
-                border:0;
-                border-radius:8px;
-                background:#b3262e;
-                color:white;
-                font-weight:bold;
-                font-size:16px;
-                cursor:pointer;
-              "
-            >
-              Adicionar ao carrinho
-            </button>
-
           </div>
-
         </div>
-
-      </div>
-    `;
-
-    modal.style.cssText = `
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.65);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:20px;
-      z-index:99999;
-    `;
-
-    modal.onclick = () => {
-      modal.remove();
-    };
-
-    document.body.appendChild(modal);
-
-    const btnCarrinho =
-      document.getElementById("btnAdicionarCarrinho");
-
-    btnCarrinho.onclick = (event) => {
-
+      </div>`;
+    modal.style.cssText='position:fixed;inset:0;background:rgba(35,20,17,.72);display:flex;align-items:center;justify-content:center;padding:16px;z-index:99999;';
+    modal.onclick=()=>modal.remove(); document.body.appendChild(modal);
+    const q=document.getElementById('quantidadeProduto');
+    document.getElementById('qtyMenos').onclick=()=>q.value=Math.max(1,Number(q.value)-1);
+    document.getElementById('qtyMais').onclick=()=>q.value=Number(q.value)+1;
+    document.getElementById('btnAdicionarCarrinho').onclick=(event)=>{
       event.stopPropagation();
-
-      const tamanho =
-        document.getElementById(
-          "tamanhoSelecionado"
-        ).value;
-
-      const cor =
-        document.getElementById(
-          "corSelecionada"
-        ).value;
-
-      const quantidade =
-        Math.max(
-          1,
-          Number(
-            document.getElementById(
-              "quantidadeProduto"
-            ).value
-          ) || 1
-        );
-
-      const item = {
-        id: produto.id,
-        nome: produto.name,
-        preco: Number(produto.price || 0),
-        tamanho: tamanho,
-        cor: cor,
-        quantidade: quantidade
-      };
-
-      const carrinho = obterCarrinho();
-
-      const itemExistente =
-        carrinho.find(produtoCarrinho =>
-
-          String(produtoCarrinho.id) ===
-            String(item.id) &&
-
-          produtoCarrinho.tamanho ===
-            item.tamanho &&
-
-          produtoCarrinho.cor ===
-            item.cor
-
-        );
-
-      if (itemExistente) {
-
-        itemExistente.quantidade =
-          Number(itemExistente.quantidade) +
-          Number(item.quantidade);
-
-      } else {
-
-        carrinho.push(item);
-
-      }
-
-      salvarCarrinho(carrinho);
-
-      atualizarContadorCarrinho();
-
-      const aviso =
-        document.createElement("div");
-
-      aviso.innerHTML =
-        "✓ Produto adicionado ao carrinho";
-
-      aviso.style.cssText = `
-        position:fixed;
-        top:25px;
-        right:25px;
-        background:#b3262e;
-        color:white;
-        padding:14px 20px;
-        border-radius:10px;
-        font-weight:bold;
-        z-index:999999;
-        box-shadow:0 4px 15px rgba(0,0,0,.2);
-      `;
-
-      document.body.appendChild(aviso);
-
-      setTimeout(() => {
-        aviso.remove();
-      }, 2500);
-
+      const item={id:produto.id,nome:produto.name,preco:Number(produto.price||0),imagem:produto.image_url||'',tamanho:document.getElementById('tamanhoSelecionado').value,cor:document.getElementById('corSelecionada').value,quantidade:Math.max(1,Number(q.value)||1)};
+      const carrinho=obterCarrinho();
+      const existente=carrinho.find(x=>String(x.id)===String(item.id)&&x.tamanho===item.tamanho&&x.cor===item.cor);
+      if(existente) existente.quantidade=Number(existente.quantidade)+item.quantidade; else carrinho.push(item);
+      salvarCarrinho(carrinho); atualizarContadorCarrinho();
+      const aviso=document.createElement('div'); aviso.textContent='✓ Produto adicionado ao carrinho'; aviso.style.cssText='position:fixed;top:24px;right:24px;background:#921914;color:#fff8e6;padding:14px 18px;border-radius:12px;font-weight:700;z-index:999999;box-shadow:0 8px 24px #0003'; document.body.appendChild(aviso); setTimeout(()=>aviso.remove(),2200);
     };
-
   };
-
 
   // =========================================================
   // CARRINHO
@@ -1730,6 +2169,7 @@
     painel.innerHTML = `
 
       <div
+        class="femi-cart-panel"
         style="
           position:fixed;
           top:0;
@@ -1905,6 +2345,8 @@
 
       itensCarrinho.innerHTML += `
 
+        <div class="coupon-box femi-cart-card"><div class="coupon-title">Cupom de desconto</div><div class="coupon-row"><input id="cupomFemi" type="text" placeholder="Digite seu cupom" autocomplete="off"><button type="button" id="aplicarCupomFemi">Aplicar</button></div><div id="cupomMsgFemi" class="coupon-msg">Cupons promocionais poderão ser aplicados aqui.</div></div>
+
         <div
           style="
             margin-top:22px;
@@ -1936,6 +2378,7 @@
 
 
         <div
+          class="femi-cart-card femi-shipping-card"
           style="
             margin-top:26px;
             padding:18px;
@@ -2065,6 +2508,7 @@
 
 
         <div
+          class="femi-cart-card femi-payment-card"
           style="
             margin-top:28px;
           "
@@ -2947,4 +3391,55 @@
   </script>
 
 </body>
-</html>
+</html><style>
+/* FEMI V20 — desktop: mostra a arte inteira e preenche 100% do hero */
+@media (min-width: 901px){
+  .hero{
+    background-image:url("images/hero-femi-oficial-final.jpeg")!important;
+    background-size:100% 100%!important;
+    background-position:center center!important;
+    background-repeat:no-repeat!important;
+  }
+}
+</style>
+<style>
+/* FEMI V21 — correção do hero: somente a arte aprovada, sem sobreposição */
+.hero{
+  min-height:0!important;
+  height:auto!important;
+  aspect-ratio:8/3!important;
+  padding:0!important;
+  background-image:url("images/hero-femi-oficial-final.jpeg")!important;
+  background-size:100% 100%!important;
+  background-position:center!important;
+  background-repeat:no-repeat!important;
+}
+.hero .hero-bg,.hero .hero-grid,.hero::before,.hero::after{display:none!important;content:none!important;}
+@media(max-width:900px){
+  .hero{min-height:0!important;height:auto!important;aspect-ratio:8/3!important;background-image:url("images/hero-femi-oficial-final.jpeg")!important;background-size:cover!important;background-position:center!important;}
+}
+@media(max-width:600px){
+  .hero{min-height:0!important;height:auto!important;aspect-ratio:8/3!important;background-image:url("images/hero-femi-oficial-final.jpeg")!important;background-size:cover!important;background-position:center!important;}
+}
+</style>
+
+<style>
+/* FEMI V22 — mantém a arte V21 intacta e torna o botão “Ver coleção” funcional */
+.hero{position:relative!important;}
+.hero-ver-colecao{
+  display:block!important;
+  position:absolute!important;
+  left:3.55%!important;
+  top:81.5%!important;
+  width:17%!important;
+  height:12%!important;
+  z-index:20!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:999px!important;
+  cursor:pointer!important;
+  text-indent:-9999px!important;
+  overflow:hidden!important;
+}
+.hero-ver-colecao:focus-visible{outline:3px solid #fff!important;outline-offset:3px!important;}
+</style>
