@@ -1345,6 +1345,121 @@ img[alt*="Editorial FEMI"]{
   .hero-copy{max-width:92%!important}
 }
 
+
+  /* ===== FEMI V23 · GALERIA DE FOTOS DO PRODUTO ===== */
+  .product-modal-media{
+    position:relative;
+    overflow:hidden;
+  }
+  .femi-product-gallery{
+    position:relative;
+    width:100%;
+    height:100%;
+    min-height:520px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    border-radius:18px;
+    touch-action:pan-y;
+  }
+  .femi-gallery-image{
+    width:100%;
+    height:100%;
+    max-height:700px;
+    object-fit:cover;
+    border-radius:18px;
+    user-select:none;
+    -webkit-user-drag:none;
+  }
+  .femi-gallery-arrow{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    z-index:4;
+    width:44px;
+    height:44px;
+    border:0;
+    border-radius:50%;
+    background:rgba(255,248,230,.90);
+    color:#921914;
+    box-shadow:0 6px 22px rgba(63,18,15,.18);
+    font-size:32px;
+    line-height:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:transform .2s ease,background .2s ease;
+  }
+  .femi-gallery-arrow:hover{
+    background:#fff8e6;
+    transform:translateY(-50%) scale(1.06);
+  }
+  .femi-gallery-prev{left:14px}
+  .femi-gallery-next{right:14px}
+  .femi-gallery-dots{
+    position:absolute;
+    left:50%;
+    bottom:16px;
+    transform:translateX(-50%);
+    z-index:4;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:7px 10px;
+    border-radius:999px;
+    background:rgba(255,248,230,.78);
+    backdrop-filter:blur(8px);
+  }
+  .femi-gallery-dot{
+    width:8px;
+    height:8px;
+    padding:0;
+    border:0;
+    border-radius:50%;
+    background:rgba(146,25,20,.30);
+    cursor:pointer;
+  }
+  .femi-gallery-dot.ativo{
+    width:10px;
+    height:10px;
+    background:#921914;
+  }
+  .femi-gallery-counter{
+    position:absolute;
+    right:14px;
+    bottom:14px;
+    z-index:4;
+    padding:6px 9px;
+    border-radius:999px;
+    background:rgba(63,18,15,.72);
+    color:#fff8e6;
+    font:600 11px/1 'Archivo',sans-serif;
+    letter-spacing:.04em;
+  }
+
+  @media(max-width:760px){
+    .femi-product-gallery{
+      min-height:0;
+      height:48vh;
+      border-radius:0;
+    }
+    .femi-gallery-image{
+      max-height:none;
+      border-radius:0!important;
+    }
+    .femi-gallery-arrow{
+      width:40px;
+      height:40px;
+      font-size:28px;
+    }
+    .femi-gallery-prev{left:10px}
+    .femi-gallery-next{right:10px}
+    .femi-gallery-dots{bottom:12px}
+    .femi-gallery-counter{right:10px;bottom:12px}
+  }
+
 </style>
 </head>
 
@@ -2059,6 +2174,39 @@ img[alt*="Editorial FEMI"]{
     const preco = formatarDinheiro(produto.price || 0);
     const tamanhos = (produto.sizes || "P,M,G,GG").split(",").map(v=>v.trim()).filter(Boolean);
     const cores = (produto.colors || "Consulte disponibilidade").split(",").map(v=>v.trim()).filter(Boolean);
+
+    // Galeria: image_url é a capa; images contém as fotos adicionais.
+    // Aceita texto separado por vírgula, ponto e vírgula, |, quebra de linha,
+    // JSON em formato ["foto1.jpg","foto2.jpg"] ou array vindo do Supabase.
+    const lerImagensExtras = (valor) => {
+      if (!valor) return [];
+      if (Array.isArray(valor)) return valor.map(v => String(v).trim()).filter(Boolean);
+
+      const bruto = String(valor).trim();
+      if (!bruto) return [];
+
+      try {
+        const json = JSON.parse(bruto);
+        if (Array.isArray(json)) {
+          return json.map(v => String(v).trim()).filter(Boolean);
+        }
+      } catch (_) {}
+
+      return bruto
+        .split(/\s*(?:,|;|\||\n)\s*/)
+        .map(v => v.trim().replace(/^["']|["']$/g, ""))
+        .filter(Boolean);
+    };
+
+    const fotosProduto = [produto.image_url, ...lerImagensExtras(produto.images)]
+      .map(v => String(v || "").trim())
+      .filter(Boolean)
+      .filter((foto, indice, lista) => lista.indexOf(foto) === indice);
+
+    if (!fotosProduto.length) fotosProduto.push("");
+
+    const temVariasFotos = fotosProduto.length > 1;
+
     document.getElementById("modalProdutoFemi")?.remove();
     const modal = document.createElement("div");
     modal.id = "modalProdutoFemi";
@@ -2066,7 +2214,25 @@ img[alt*="Editorial FEMI"]{
       <div class="product-modal-shell" onclick="event.stopPropagation()">
         <button onclick="document.getElementById('modalProdutoFemi').remove()" aria-label="Fechar" style="position:absolute;right:16px;top:12px;z-index:3;border:0;background:#fff8e6cc;width:40px;height:40px;border-radius:50%;font-size:28px;cursor:pointer">×</button>
         <div class="product-modal-grid">
-          <div class="product-modal-media"><img src="${produto.image_url || ''}" alt="${produto.name || 'Produto FEMI'}"></div>
+          <div class="product-modal-media">
+            <div class="femi-product-gallery" id="galeriaProdutoFemi">
+              <img
+                id="imagemGaleriaProduto"
+                class="femi-gallery-image"
+                src="${fotosProduto[0]}"
+                alt="${produto.name || 'Produto FEMI'}"
+                draggable="false"
+              >
+              ${temVariasFotos ? `
+                <button type="button" class="femi-gallery-arrow femi-gallery-prev" id="galeriaAnterior" aria-label="Foto anterior">‹</button>
+                <button type="button" class="femi-gallery-arrow femi-gallery-next" id="galeriaProxima" aria-label="Próxima foto">›</button>
+                <div class="femi-gallery-dots" id="galeriaDots">
+                  ${fotosProduto.map((_, i) => `<button type="button" class="femi-gallery-dot ${i === 0 ? 'ativo' : ''}" data-foto="${i}" aria-label="Ver foto ${i + 1}"></button>`).join('')}
+                </div>
+                <div class="femi-gallery-counter" id="galeriaContador">1 / ${fotosProduto.length}</div>
+              ` : ''}
+            </div>
+          </div>
           <div class="product-modal-info">
             <h2>${produto.name || 'Produto FEMI'}</h2>
             <div class="product-price">${preco}</div>
@@ -2087,6 +2253,56 @@ img[alt*="Editorial FEMI"]{
       </div>`;
     modal.style.cssText='position:fixed;inset:0;background:rgba(35,20,17,.72);display:flex;align-items:center;justify-content:center;padding:16px;z-index:99999;';
     modal.onclick=()=>modal.remove(); document.body.appendChild(modal);
+
+    // Controles da galeria
+    if (temVariasFotos) {
+      let fotoAtual = 0;
+      const galeria = document.getElementById('galeriaProdutoFemi');
+      const imagemGaleria = document.getElementById('imagemGaleriaProduto');
+      const contadorGaleria = document.getElementById('galeriaContador');
+      const dotsGaleria = [...document.querySelectorAll('#galeriaDots .femi-gallery-dot')];
+
+      const mostrarFoto = (indice) => {
+        fotoAtual = (indice + fotosProduto.length) % fotosProduto.length;
+        imagemGaleria.src = fotosProduto[fotoAtual];
+        contadorGaleria.textContent = `${fotoAtual + 1} / ${fotosProduto.length}`;
+        dotsGaleria.forEach((dot, i) => dot.classList.toggle('ativo', i === fotoAtual));
+      };
+
+      document.getElementById('galeriaAnterior').onclick = (event) => {
+        event.stopPropagation();
+        mostrarFoto(fotoAtual - 1);
+      };
+
+      document.getElementById('galeriaProxima').onclick = (event) => {
+        event.stopPropagation();
+        mostrarFoto(fotoAtual + 1);
+      };
+
+      dotsGaleria.forEach(dot => {
+        dot.onclick = (event) => {
+          event.stopPropagation();
+          mostrarFoto(Number(dot.dataset.foto));
+        };
+      });
+
+      // Deslizar com o dedo no celular
+      let inicioToqueX = null;
+      galeria.addEventListener('touchstart', (event) => {
+        inicioToqueX = event.changedTouches[0].clientX;
+      }, {passive:true});
+
+      galeria.addEventListener('touchend', (event) => {
+        if (inicioToqueX === null) return;
+        const fimToqueX = event.changedTouches[0].clientX;
+        const deslocamento = fimToqueX - inicioToqueX;
+        inicioToqueX = null;
+
+        if (Math.abs(deslocamento) < 45) return;
+        mostrarFoto(deslocamento < 0 ? fotoAtual + 1 : fotoAtual - 1);
+      }, {passive:true});
+    }
+
     const q=document.getElementById('quantidadeProduto');
     document.getElementById('qtyMenos').onclick=()=>q.value=Math.max(1,Number(q.value)-1);
     document.getElementById('qtyMais').onclick=()=>q.value=Number(q.value)+1;
