@@ -1568,16 +1568,19 @@ img[alt*="Editorial FEMI"]{
 }
 @media(max-width:760px){
   .femi-category-row{
-    grid-template-columns:repeat(2,minmax(0,1fr))!important;
-    gap:20px 26px!important;
-    max-width:330px;
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    gap:8px!important;
+    max-width:100%;
+    width:100%;
   }
-  .femi-category span{width:92px!important;}
-  .femi-category b{font-size:11px!important;}
+  .femi-category{min-width:0!important;}
+  .femi-category span{width:min(100%,76px)!important;}
+  .femi-category b{font-size:10px!important;white-space:nowrap;}
 }
 @media(max-width:390px){
-  .femi-category-row{max-width:290px;gap:18px 22px!important;}
-  .femi-category span{width:84px!important;}
+  .femi-category-row{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:5px!important;max-width:100%;}
+  .femi-category span{width:min(100%,68px)!important;}
+  .femi-category b{font-size:9px!important;}
 }
 </style>
 </head>
