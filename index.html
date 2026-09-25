@@ -1550,6 +1550,36 @@ img[alt*="Editorial FEMI"]{
     #products-grid.grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}.card-body{padding:10px!important}.card-body h3{font-size:13px!important}.card-body .fabric{display:none}.card-body .price{font:600 12px Archivo,sans-serif!important;padding-top:5px!important}.card-body .femi-pix-price{font-size:11px}.card-body .femi-installment{font-size:9.5px}
   }
 </style>
+
+<style>
+/* ===== FEMI V29 · categorias mais leves + remoção do CTA do hero ===== */
+.hero-ver-colecao{display:none!important;pointer-events:none!important;}
+.femi-category-row{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:22px!important;
+  max-width:620px;
+  margin:0 auto;
+}
+.femi-category{display:flex;flex-direction:column;align-items:center;}
+.femi-category span{
+  width:min(100%,112px)!important;
+  aspect-ratio:1!important;
+  margin:0 auto 8px!important;
+}
+@media(max-width:760px){
+  .femi-category-row{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:20px 26px!important;
+    max-width:330px;
+  }
+  .femi-category span{width:92px!important;}
+  .femi-category b{font-size:11px!important;}
+}
+@media(max-width:390px){
+  .femi-category-row{max-width:290px;gap:18px 22px!important;}
+  .femi-category span{width:84px!important;}
+}
+</style>
 </head>
 
 <body>
@@ -1638,8 +1668,6 @@ img[alt*="Editorial FEMI"]{
 
   <section class="hero">
 
-    <a href="#colecao" class="hero-ver-colecao" aria-label="Ver coleção"></a>
-
     <div class="hero-bg"></div>
 
     <div class="wrap hero-grid">
@@ -1673,10 +1701,6 @@ img[alt*="Editorial FEMI"]{
             </svg>
 
             Pedir pelo WhatsApp
-          </a>
-
-          <a href="#colecao" class="btn btn-ghost">
-            Ver coleção
           </a>
 
         </div>
@@ -2270,7 +2294,7 @@ img[alt*="Editorial FEMI"]{
     novidades.innerHTML=produtos.slice(0,6).map(cardComercial).join('');
     // Vitrine editorial inicial. Quando houver um campo de vendas/destaque no Supabase, esta seleção pode ser automatizada por desempenho real.
     mais.innerHTML=produtos.slice(0,6).map(cardComercial).join('');
-    const defs=[['todos','Todos'],['vestidos','Vestidos'],['macaquinhos','Macaquinhos'],['blusas','Blusas'],['regatas','Regatas'],['conjuntos','Conjuntos'],['shorts','Shorts']];
+    const defs=[['todos','Todos'],['macaquinhos','Macaquinhos'],['blusas','Blusas'],['conjuntos','Conjuntos']];
     cats.innerHTML=defs.map(([key,label])=>{
       const p=key==='todos'?produtos[0]:produtos.find(x=>categoriaDoProduto(x)===key);
       const img=p?.image_url||'images/editorial-femi-manual.jpg';
