@@ -1583,6 +1583,163 @@ img[alt*="Editorial FEMI"]{
   .femi-category b{font-size:9px!important;}
 }
 </style>
+<style>
+
+/* FEMI V20 — desktop: mostra a arte inteira e preenche 100% do hero */
+@media (min-width: 901px){
+  .hero{
+    background-image:url("images/hero-femi-oficial-final.jpeg")!important;
+    background-size:100% 100%!important;
+    background-position:center center!important;
+    background-repeat:no-repeat!important;
+  }
+}
+</style>
+<style>
+/* FEMI V21 — correção do hero: somente a arte aprovada, sem sobreposição */
+.hero{
+  min-height:0!important;
+  height:auto!important;
+  aspect-ratio:8/3!important;
+  padding:0!important;
+  background-image:url("images/hero-femi-oficial-final.jpeg")!important;
+  background-size:100% 100%!important;
+  background-position:center!important;
+  background-repeat:no-repeat!important;
+}
+.hero .hero-bg,.hero .hero-grid,.hero::before,.hero::after{display:none!important;content:none!important;}
+@media(max-width:900px){
+  .hero{min-height:0!important;height:auto!important;aspect-ratio:8/3!important;background-image:url("images/hero-femi-oficial-final.jpeg")!important;background-size:cover!important;background-position:center!important;}
+}
+@media(max-width:600px){
+  .hero{min-height:0!important;height:auto!important;aspect-ratio:8/3!important;background-image:url("images/hero-femi-oficial-final.jpeg")!important;background-size:cover!important;background-position:center!important;}
+}
+</style>
+
+<style>
+/* FEMI V22 — mantém a arte V21 intacta e torna o botão “Ver coleção” funcional */
+.hero{position:relative!important;}
+.hero-ver-colecao{
+  display:block!important;
+  position:absolute!important;
+  left:3.55%!important;
+  top:81.5%!important;
+  width:17%!important;
+  height:12%!important;
+  z-index:20!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:999px!important;
+  cursor:pointer!important;
+  text-indent:-9999px!important;
+  overflow:hidden!important;
+}
+.hero-ver-colecao:focus-visible{outline:3px solid #fff!important;outline-offset:3px!important;}
+
+
+  /* ===== FEMI V24 · REFINO VISUAL MOBILE + PIX 5% ===== */
+  /* Mais hierarquia, respiro e acabamento editorial sem alterar a identidade FEMI. */
+  @media(max-width:760px){
+    .topbar{
+      min-height:38px!important;
+      padding:7px 16px!important;
+      font-size:10.5px!important;
+      line-height:1.35!important;
+      letter-spacing:.105em!important;
+    }
+
+    .nav-inner{
+      min-height:62px!important;
+      padding-top:4px!important;
+      padding-bottom:4px!important;
+    }
+    .logo{width:72px!important;height:45px!important}
+    .burger{transform:scale(.92);transform-origin:left center}
+    .cart-top{transform:scale(.92)}
+    .nav-cta{
+      min-height:40px!important;
+      padding:0 14px!important;
+      font-size:11px!important;
+      letter-spacing:.055em!important;
+    }
+
+    /* Banner mobile: proporção mais editorial e leitura mais confortável da arte oficial. */
+    .hero{
+      min-height:0!important;
+      height:auto!important;
+      aspect-ratio:1.58/1!important;
+      padding:0!important;
+      background-size:cover!important;
+      background-position:center center!important;
+    }
+    .hero-grid,.hero-copy,.hero-art,.hero-femi-art{display:none!important}
+    .hero-ver-colecao{position:absolute!important;inset:0!important;z-index:5!important}
+
+    /* Faixa de linguagem da marca: movimento contínuo e sem sensação de corte acidental. */
+    .marquee{padding:13px 0!important;overflow:hidden!important}
+    .marquee-track{gap:54px!important;white-space:nowrap!important}
+    .marquee-track span{gap:30px!important;padding-right:24px!important;font-size:18px!important}
+
+    /* Coleção mais próxima do banner e com hierarquia editorial. */
+    #colecao{padding-top:54px!important}
+    #colecao .sec-head{margin-bottom:28px!important}
+    #colecao .eyebrow{font-size:11px!important;letter-spacing:.30em!important;margin-bottom:14px!important}
+    #colecao .sec-head h2{
+      font-size:clamp(35px,10vw,47px)!important;
+      line-height:1.03!important;
+      max-width:10.5em!important;
+      margin-bottom:16px!important;
+    }
+    #colecao .sec-head p{
+      font-size:16px!important;
+      line-height:1.62!important;
+      max-width:34em!important;
+      opacity:.84!important;
+    }
+
+    /* Produtos/categorias com acabamento de editorial de moda. */
+    #products-grid{gap:22px!important}
+    #products-grid .card,
+    #products-grid article{
+      border-radius:22px!important;
+      overflow:hidden!important;
+    }
+    #products-grid img{border-radius:0!important}
+
+    /* WhatsApp presente, mas sem competir com produto e conteúdo. */
+    .wa-float{
+      width:50px!important;
+      height:50px!important;
+      right:16px!important;
+      bottom:18px!important;
+      animation:none!important;
+      box-shadow:0 8px 22px rgba(0,0,0,.20)!important;
+    }
+    .wa-float svg{width:26px!important;height:26px!important}
+  }
+
+</style>
+
+
+<style>
+/* FEMI V25 — correção final do banner mobile + cabeçalho somente com carrinho */
+@media(max-width:900px){
+  .hero{
+    min-height:0!important;
+    height:auto!important;
+    aspect-ratio:8/3!important;
+    padding:0!important;
+    background-image:url("images/hero-femi-oficial-final.jpeg")!important;
+    background-size:100% 100%!important;
+    background-position:center center!important;
+    background-repeat:no-repeat!important;
+  }
+  .nav-actions .nav-cta{display:none!important;}
+  .nav-actions{gap:0!important;}
+  .cart-top{transform:none!important;}
+}
+
+</style>
 </head>
 
 <body>
@@ -2037,6 +2194,17 @@ img[alt*="Editorial FEMI"]{
   // =========================================================
   // SUPABASE
   // =========================================================
+
+  // FEMI V34: funcoes seguras do Supabase (RPC)
+  const FEMI_API_BASE = 'https://dxpnsxtvmsjyzalauvlf.supabase.co';
+  async function femiRPC(nome, corpo) {
+    const resposta = await fetch(FEMI_API_BASE + '/rest/v1/rpc/' + nome, {
+      method:'POST', headers:{'apikey':SUPABASE_KEY,'Content-Type':'application/json'},
+      body:JSON.stringify(corpo)
+    });
+    if (!resposta.ok) throw new Error('Supabase (' + resposta.status + '): ' + (await resposta.text()).slice(0,300));
+    return resposta.json();
+  }
 
   const SUPABASE_URL =
     "https://dxpnsxtvmsjyzalauvlf.supabase.co/rest/v1/Produtos";
@@ -3558,7 +3726,7 @@ img[alt*="Editorial FEMI"]{
         );
 
 
-      finalizarWhatsApp.onclick = () => {
+      finalizarWhatsApp.onclick = async () => {
 
         if (!enderecoValidado || freteEntrega <= 0) {
           alert(
@@ -3762,33 +3930,43 @@ img[alt*="Editorial FEMI"]{
           encodeURIComponent(mensagem);
 
 
-        // Primeiro registrar o pedido; depois abrir o WhatsApp no mesmo navegador.
-        // Registrar o pedido no navegador antes de limpar o carrinho.
-        const valorFinal = formaPagamento === "Pix"
-          ? (totalCarrinho * 0.95 + freteEntrega)
-          : (totalCarrinho + freteEntrega);
-        const pedidoFemi = {
-          id: "FEMI-" + Date.now(),
-          data: new Date().toISOString(),
-          itens: carrinho.map(item => ({...item})),
-          subtotal: totalCarrinho,
-          frete: freteEntrega,
-          total: valorFinal,
-          pagamento: formaPagamento,
-          status: "Aguardando confirmação"
-        };
+        // V34: salva primeiro no banco; somente depois limpa o carrinho.
+        if (finalizarWhatsApp.disabled) return;
+        finalizarWhatsApp.disabled = true;
+        finalizarWhatsApp.textContent = 'Registrando pedido...';
         try {
-          const historico = JSON.parse(localStorage.getItem("historicoPedidosFemi") || "[]");
-          historico.unshift(pedidoFemi);
-          localStorage.setItem("historicoPedidosFemi", JSON.stringify(historico));
-          salvarCarrinho([]);
-          atualizarContadorCarrinho();
-          painel.remove();
-          sessionStorage.setItem("femiMensagemRetorno", "1");
-          window.location.assign(urlWhatsApp);
+          let tentativa = sessionStorage.getItem('femiCheckoutPendente');
+          if (!tentativa) { tentativa = crypto.randomUUID(); sessionStorage.setItem('femiCheckoutPendente', tentativa); }
+          const entrega = {
+            cep:enderecoValidado.cep, cidade:enderecoValidado.cidade, uf:enderecoValidado.uf,
+            rua, numero, bairro, complemento, referencia
+          };
+          const registrado = await femiRPC('femi_criar_pedido', {
+            p_checkout_id:tentativa,
+            p_itens:carrinho.map(x=>({id:x.id,quantidade:Number(x.quantidade),tamanho:x.tamanho,cor:x.cor})),
+            p_entrega:entrega, p_pagamento:formaPagamento
+          });
+          if (!registrado || !registrado.id || !registrado.token) throw new Error('Resposta incompleta do banco');
+          const pedidoFemi = {
+            id:registrado.id, token:registrado.token, data:new Date().toISOString(),
+            itens:carrinho.map(item=>({...item})),subtotal:registrado.subtotal,
+            frete:registrado.frete, desconto:registrado.desconto,
+            total:registrado.total,pagamento:formaPagamento,status:'Aguardando confirmação'
+          };
+          const historico = JSON.parse(localStorage.getItem('historicoPedidosFemi') || '[]');
+          if (!historico.some(x=>x.id===pedidoFemi.id)) historico.unshift(pedidoFemi);
+          localStorage.setItem('historicoPedidosFemi',JSON.stringify(historico));
+          mensagem += '\nNúmero do pedido: ' + registrado.id + '\n';
+          const urlFinal = 'https://wa.me/' + numeroWhatsApp + '?text=' + encodeURIComponent(mensagem);
+          salvarCarrinho([]); atualizarContadorCarrinho(); painel.remove();
+          sessionStorage.removeItem('femiCheckoutPendente');
+          sessionStorage.setItem('femiMensagemRetorno','1');
+          window.location.assign(urlFinal);
         } catch (erro) {
-          console.error("Não foi possível salvar o histórico do pedido:", erro);
-          alert("Não foi possível salvar o pedido neste navegador. Tente novamente.");
+          console.error('Erro ao registrar pedido FEMI:',erro);
+          alert('Não foi possível registrar o pedido. Seu carrinho foi preservado. Tente novamente.');
+          finalizarWhatsApp.disabled = false;
+          finalizarWhatsApp.textContent = 'Finalizar pedido no WhatsApp';
         }
 
       };
@@ -3826,11 +4004,19 @@ img[alt*="Editorial FEMI"]{
     document.getElementById("fecharAvisoFemi").onclick = () => aviso.remove();
   }
 
-  function abrirHistoricoFemi() {
+  async function abrirHistoricoFemi() {
     document.getElementById("modalHistoricoFemi")?.remove();
     let pedidos = [];
     try { pedidos = JSON.parse(localStorage.getItem("historicoPedidosFemi") || "[]"); }
     catch (_) { pedidos = []; }
+    // Atualiza os status consultando apenas os tokens guardados neste navegador.
+    await Promise.all(pedidos.filter(p=>p.token).map(async p=>{
+      try {
+        const remoto = await femiRPC('femi_consultar_pedido',{p_token:p.token});
+        if (remoto?.id === p.id && remoto.status) p.status = remoto.status;
+      } catch(e) { console.warn('Status indisponível:',e); }
+    }));
+    try { localStorage.setItem('historicoPedidosFemi',JSON.stringify(pedidos)); } catch(e) {}
     const fundo = document.createElement("div");
     fundo.id = "modalHistoricoFemi";
     fundo.style.cssText = "position:fixed;inset:0;background:#0009;z-index:10000002;display:flex;align-items:center;justify-content:center;padding:15px";
@@ -3887,158 +4073,4 @@ img[alt*="Editorial FEMI"]{
 })();
 </script>
 </body>
-</html><style>
-/* FEMI V20 — desktop: mostra a arte inteira e preenche 100% do hero */
-@media (min-width: 901px){
-  .hero{
-    background-image:url("images/hero-femi-oficial-final.jpeg")!important;
-    background-size:100% 100%!important;
-    background-position:center center!important;
-    background-repeat:no-repeat!important;
-  }
-}
-</style>
-<style>
-/* FEMI V21 — correção do hero: somente a arte aprovada, sem sobreposição */
-.hero{
-  min-height:0!important;
-  height:auto!important;
-  aspect-ratio:8/3!important;
-  padding:0!important;
-  background-image:url("images/hero-femi-oficial-final.jpeg")!important;
-  background-size:100% 100%!important;
-  background-position:center!important;
-  background-repeat:no-repeat!important;
-}
-.hero .hero-bg,.hero .hero-grid,.hero::before,.hero::after{display:none!important;content:none!important;}
-@media(max-width:900px){
-  .hero{min-height:0!important;height:auto!important;aspect-ratio:8/3!important;background-image:url("images/hero-femi-oficial-final.jpeg")!important;background-size:cover!important;background-position:center!important;}
-}
-@media(max-width:600px){
-  .hero{min-height:0!important;height:auto!important;aspect-ratio:8/3!important;background-image:url("images/hero-femi-oficial-final.jpeg")!important;background-size:cover!important;background-position:center!important;}
-}
-</style>
-
-<style>
-/* FEMI V22 — mantém a arte V21 intacta e torna o botão “Ver coleção” funcional */
-.hero{position:relative!important;}
-.hero-ver-colecao{
-  display:block!important;
-  position:absolute!important;
-  left:3.55%!important;
-  top:81.5%!important;
-  width:17%!important;
-  height:12%!important;
-  z-index:20!important;
-  background:transparent!important;
-  border:0!important;
-  border-radius:999px!important;
-  cursor:pointer!important;
-  text-indent:-9999px!important;
-  overflow:hidden!important;
-}
-.hero-ver-colecao:focus-visible{outline:3px solid #fff!important;outline-offset:3px!important;}
-
-
-  /* ===== FEMI V24 · REFINO VISUAL MOBILE + PIX 5% ===== */
-  /* Mais hierarquia, respiro e acabamento editorial sem alterar a identidade FEMI. */
-  @media(max-width:760px){
-    .topbar{
-      min-height:38px!important;
-      padding:7px 16px!important;
-      font-size:10.5px!important;
-      line-height:1.35!important;
-      letter-spacing:.105em!important;
-    }
-
-    .nav-inner{
-      min-height:62px!important;
-      padding-top:4px!important;
-      padding-bottom:4px!important;
-    }
-    .logo{width:72px!important;height:45px!important}
-    .burger{transform:scale(.92);transform-origin:left center}
-    .cart-top{transform:scale(.92)}
-    .nav-cta{
-      min-height:40px!important;
-      padding:0 14px!important;
-      font-size:11px!important;
-      letter-spacing:.055em!important;
-    }
-
-    /* Banner mobile: proporção mais editorial e leitura mais confortável da arte oficial. */
-    .hero{
-      min-height:0!important;
-      height:auto!important;
-      aspect-ratio:1.58/1!important;
-      padding:0!important;
-      background-size:cover!important;
-      background-position:center center!important;
-    }
-    .hero-grid,.hero-copy,.hero-art,.hero-femi-art{display:none!important}
-    .hero-ver-colecao{position:absolute!important;inset:0!important;z-index:5!important}
-
-    /* Faixa de linguagem da marca: movimento contínuo e sem sensação de corte acidental. */
-    .marquee{padding:13px 0!important;overflow:hidden!important}
-    .marquee-track{gap:54px!important;white-space:nowrap!important}
-    .marquee-track span{gap:30px!important;padding-right:24px!important;font-size:18px!important}
-
-    /* Coleção mais próxima do banner e com hierarquia editorial. */
-    #colecao{padding-top:54px!important}
-    #colecao .sec-head{margin-bottom:28px!important}
-    #colecao .eyebrow{font-size:11px!important;letter-spacing:.30em!important;margin-bottom:14px!important}
-    #colecao .sec-head h2{
-      font-size:clamp(35px,10vw,47px)!important;
-      line-height:1.03!important;
-      max-width:10.5em!important;
-      margin-bottom:16px!important;
-    }
-    #colecao .sec-head p{
-      font-size:16px!important;
-      line-height:1.62!important;
-      max-width:34em!important;
-      opacity:.84!important;
-    }
-
-    /* Produtos/categorias com acabamento de editorial de moda. */
-    #products-grid{gap:22px!important}
-    #products-grid .card,
-    #products-grid article{
-      border-radius:22px!important;
-      overflow:hidden!important;
-    }
-    #products-grid img{border-radius:0!important}
-
-    /* WhatsApp presente, mas sem competir com produto e conteúdo. */
-    .wa-float{
-      width:50px!important;
-      height:50px!important;
-      right:16px!important;
-      bottom:18px!important;
-      animation:none!important;
-      box-shadow:0 8px 22px rgba(0,0,0,.20)!important;
-    }
-    .wa-float svg{width:26px!important;height:26px!important}
-  }
-
-</style>
-
-
-<style>
-/* FEMI V25 — correção final do banner mobile + cabeçalho somente com carrinho */
-@media(max-width:900px){
-  .hero{
-    min-height:0!important;
-    height:auto!important;
-    aspect-ratio:8/3!important;
-    padding:0!important;
-    background-image:url("images/hero-femi-oficial-final.jpeg")!important;
-    background-size:100% 100%!important;
-    background-position:center center!important;
-    background-repeat:no-repeat!important;
-  }
-  .nav-actions .nav-cta{display:none!important;}
-  .nav-actions{gap:0!important;}
-  .cart-top{transform:none!important;}
-}
-</style>
+</html>
