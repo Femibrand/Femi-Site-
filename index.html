@@ -2202,7 +2202,12 @@ img[alt*="Editorial FEMI"]{
       method:'POST', headers:{'apikey':SUPABASE_KEY,'Content-Type':'application/json'},
       body:JSON.stringify(corpo)
     });
-    if (!resposta.ok) throw new Error('Supabase (' + resposta.status + '): ' + (await resposta.text()).slice(0,300));
+    if (!resposta.ok) {
+      const detalhe = await resposta.text();
+      let mensagem = detalhe;
+      try { const json = JSON.parse(detalhe); mensagem = [json.message, json.details, json.hint].filter(Boolean).join(' — ') || detalhe; } catch (_) {}
+      throw new Error('Supabase HTTP ' + resposta.status + ': ' + mensagem.slice(0,500));
+    }
     return resposta.json();
   }
 
@@ -3964,7 +3969,7 @@ img[alt*="Editorial FEMI"]{
           window.location.assign(urlFinal);
         } catch (erro) {
           console.error('Erro ao registrar pedido FEMI:',erro);
-          alert('Não foi possível registrar o pedido. Seu carrinho foi preservado. Tente novamente.');
+          alert('Não foi possível registrar o pedido. Seu carrinho foi preservado.\n\nDetalhes do erro: ' + (erro?.message || String(erro)) + '\n\nEnvie uma captura desta mensagem para verificarmos a causa.');
           finalizarWhatsApp.disabled = false;
           finalizarWhatsApp.textContent = 'Finalizar pedido no WhatsApp';
         }
