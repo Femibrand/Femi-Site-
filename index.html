@@ -3953,7 +3953,7 @@ img[alt*="Editorial FEMI"]{
           });
           if (!registrado || !registrado.id || !registrado.token) throw new Error('Resposta incompleta do banco');
           const pedidoFemi = {
-            id:registrado.id, token:registrado.token, data:new Date().toISOString(),
+            id:registrado.id, token:registrado.token, numero_pedido:registrado.numero_pedido, data:new Date().toISOString(),
             itens:carrinho.map(item=>({...item})),subtotal:registrado.subtotal,
             frete:registrado.frete, desconto:registrado.desconto,
             total:registrado.total,pagamento:formaPagamento,status:'Aguardando confirmação'
@@ -3961,7 +3961,11 @@ img[alt*="Editorial FEMI"]{
           const historico = JSON.parse(localStorage.getItem('historicoPedidosFemi') || '[]');
           if (!historico.some(x=>x.id===pedidoFemi.id)) historico.unshift(pedidoFemi);
           localStorage.setItem('historicoPedidosFemi',JSON.stringify(historico));
-          mensagem += '\nNúmero do pedido: ' + registrado.id + '\n';
+          if (!Number.isSafeInteger(Number(registrado.numero_pedido)) || Number(registrado.numero_pedido) < 1) {
+            throw new Error('O Supabase não retornou um número de pedido válido.');
+          }
+          const numeroPedidoExibicao = String(registrado.numero_pedido).padStart(4, '0');
+          mensagem += '\nPedido Nº ' + numeroPedidoExibicao + '\n';
           const urlFinal = 'https://wa.me/' + numeroWhatsApp + '?text=' + encodeURIComponent(mensagem);
           salvarCarrinho([]); atualizarContadorCarrinho(); painel.remove();
           sessionStorage.removeItem('femiCheckoutPendente');
