@@ -1534,6 +1534,7 @@ img[alt*="Editorial FEMI"]{
   .femi-section-title h2{font:700 15px Archivo,sans-serif!important;text-transform:uppercase;letter-spacing:.14em;color:#921914;margin:0}
   .femi-section-title button{border:0;background:none;color:#921914;font:500 12px Archivo,sans-serif;cursor:pointer}
   .femi-category-row{display:grid;grid-template-columns:repeat(7,1fr);gap:18px}
+  .femi-category-empty{display:flex!important;align-items:center;justify-content:center;width:100%;height:100%;font:500 11px Archivo,sans-serif;color:#921914;text-align:center;padding:6px}
   .femi-category{border:0;background:none;cursor:pointer;color:#3f120f;font-family:Archivo,sans-serif}.femi-category span{display:block;aspect-ratio:1;border-radius:50%;overflow:hidden;background:#eadfce;margin-bottom:9px}.femi-category img{width:100%;height:100%;object-fit:cover}.femi-category b{font-size:12px;font-weight:500}
   .femi-product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
   .femi-shop-card{cursor:pointer;background:#fffaf0;border:1px solid rgba(146,25,20,.08);border-radius:14px;overflow:hidden;box-shadow:0 8px 24px rgba(63,18,15,.055)}
@@ -2492,9 +2493,14 @@ img[alt*="Editorial FEMI"]{
     mais.innerHTML=produtos.slice(0,6).map(cardComercial).join('');
     const defs=[['todos','Todos'],['macaquinhos','Macaquinhos'],['blusas','Blusas'],['conjuntos','Conjuntos'],['tshirts','T-shirts']];
     cats.innerHTML=defs.map(([key,label])=>{
-      const p=key==='todos'?produtos[0]:produtos.find(x=>categoriaDoProduto(x)===key);
-      const img=p?.image_url||'images/editorial-femi-manual.jpg';
-      return `<button class="femi-category" type="button" data-cat="${key}"><span><img src="${img}" alt="${label}" loading="lazy"></span><b>${label}</b></button>`;
+      // "Todos" usa sempre o editorial ilustrativo oficial da FEMI.
+      // As demais categorias mostram somente fotos de produtos da propria categoria.
+      const p=key==='todos'?null:produtos.find(x=>categoriaDoProduto(x)===key && x.image_url);
+      const img=key==='todos'?'images/editorial-femi-manual.jpg':p?.image_url;
+      const foto=img
+        ? `<img src="${img}" alt="${label}" loading="lazy">`
+        : `<span class="femi-category-empty" aria-label="Imagem de ${label} ainda não cadastrada">Em breve</span>`;
+      return `<button class="femi-category" type="button" data-cat="${key}"><span>${foto}</span><b>${label}</b></button>`;
     }).join('');
     document.querySelectorAll('[data-cat]').forEach(btn=>btn.onclick=()=>filtrarCategoria(btn.dataset.cat));
     const especiais = produtos.filter(p => p.last_chance === true);
