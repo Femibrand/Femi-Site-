@@ -1793,6 +1793,9 @@ img[alt*="Editorial FEMI"]{
                 Shorts
               </button>
 
+              <button type="button" class="filtro-categoria" data-categoria="tshirts">T-shirts</button>
+              <button type="button" class="filtro-categoria" data-categoria="ultima-chance">Última Chance</button>
+
             </div>
 
           </li>
@@ -1927,6 +1930,15 @@ img[alt*="Editorial FEMI"]{
     <div class="wrap">
       <div class="femi-section-title"><h2>Mais vendidos</h2><button type="button" data-cat="todos">Ver todos →</button></div>
       <div class="femi-product-grid" id="femiMaisVendidos"></div>
+    </div>
+  </section>
+
+  <!-- FEMI V37 · Última Chance -->
+  <section class="femi-showcase femi-last-chance" id="ultimaChance" hidden>
+    <div class="wrap">
+      <div class="femi-last-intro"><span class="eyebrow">Curadoria especial FEMI</span><h2>Última Chance</h2><p>Peças de coleções anteriores, em condições especiais. Seus últimos momentos na nossa seleção.</p></div>
+      <div class="femi-product-grid" id="femiUltimaChance"></div>
+      <button type="button" class="femi-last-see-all" id="femiVerUltimaChance">Explorar todas as peças →</button>
     </div>
   </section>
 
@@ -2300,6 +2312,7 @@ img[alt*="Editorial FEMI"]{
       categoria.includes("macacinho")
     ) return "macaquinhos";
 
+    if (categoria.includes("t-shirt") || categoria.includes("tshirt") || categoria.includes("camiseta")) return "tshirts";
     if (categoria.includes("blusa")) return "blusas";
 
     if (categoria.includes("regata")) return "regatas";
@@ -2384,7 +2397,8 @@ img[alt*="Editorial FEMI"]{
               ${produto.description || ""}
             </span>
 
-            <span class="price">${preco}</span>
+            ${produto.last_chance === true ? '<span class="femi-sale-pill">Última Chance</span>' : ''}
+            <span class="price">${produto.last_chance === true && Number(produto.original_price) > Number(produto.price) ? `<span class="femi-old-price">${formatarDinheiro(produto.original_price)}</span>` : ''}${preco}</span>
             <span class="femi-pix-price">${formatarDinheiro(Number(produto.price || 0) * 0.95)} no Pix</span>
             <span class="femi-installment">ou 3x de ${formatarDinheiro(Number(produto.price || 0) / 3)} sem juros</span>
 
@@ -2402,10 +2416,10 @@ img[alt*="Editorial FEMI"]{
 
     let produtosFiltrados = todosProdutos;
 
-    if (categoria !== "todos") {
-      produtosFiltrados = todosProdutos.filter(
-        produto => categoriaDoProduto(produto) === categoria
-      );
+    if (categoria === "ultima-chance") {
+      produtosFiltrados = todosProdutos.filter(produto => produto.last_chance === true);
+    } else if (categoria !== "todos") {
+      produtosFiltrados = todosProdutos.filter(produto => categoriaDoProduto(produto) === categoria);
     }
 
     renderizarProdutos(produtosFiltrados);
@@ -2426,8 +2440,9 @@ img[alt*="Editorial FEMI"]{
         "Novidades que acompanham a rotina, os encontros e as ocasiões especiais. Descubra a sua favorita.";
     } else {
       titulo.textContent = nomeCategoria(categoria);
-      descricao.textContent =
-        `Confira os ${nomeCategoria(categoria).toLowerCase()} disponíveis na FEMI.`;
+      descricao.textContent = categoria === "ultima-chance"
+        ? "Peças de coleções anteriores com preços especiais, enquanto durarem os estoques."
+        : `Confira as peças de ${nomeCategoria(categoria).toLowerCase()} disponíveis na FEMI.`;
     }
 
     menuColecao.classList.remove("aberto");
@@ -2453,11 +2468,14 @@ img[alt*="Editorial FEMI"]{
   // =========================================================
   function cardComercial(produto){
     const valor=Number(produto.price||0);
+    const antigo = produto.last_chance === true && Number(produto.original_price) > valor
+      ? `<span class="femi-old-price">${formatarDinheiro(produto.original_price)}</span>` : '';
+    const etiqueta = produto.last_chance === true ? '<span class="femi-sale-pill">Última Chance</span>' : '';
     return `<article class="femi-shop-card" onclick="abrirDetalhes('${produto.id}')">
       <div class="femi-shop-image"><img src="${produto.image_url||''}" alt="${produto.name||'Produto FEMI'}" loading="lazy"></div>
       <div class="femi-shop-info">
-        <h3>${produto.name||''}</h3>
-        <div class="femi-shop-price">${formatarDinheiro(valor)}</div>
+        ${etiqueta}<h3>${produto.name||''}</h3>
+        <div class="femi-shop-price">${antigo}${formatarDinheiro(valor)}</div>
         <div class="femi-shop-pix">${formatarDinheiro(valor*.95)} no Pix</div>
         <div class="femi-shop-installment">ou 3x de ${formatarDinheiro(valor/3)} sem juros</div>
       </div>
@@ -2472,13 +2490,22 @@ img[alt*="Editorial FEMI"]{
     novidades.innerHTML=produtos.slice(0,6).map(cardComercial).join('');
     // Vitrine editorial inicial. Quando houver um campo de vendas/destaque no Supabase, esta seleção pode ser automatizada por desempenho real.
     mais.innerHTML=produtos.slice(0,6).map(cardComercial).join('');
-    const defs=[['todos','Todos'],['macaquinhos','Macaquinhos'],['blusas','Blusas'],['conjuntos','Conjuntos']];
+    const defs=[['todos','Todos'],['macaquinhos','Macaquinhos'],['blusas','Blusas'],['conjuntos','Conjuntos'],['tshirts','T-shirts']];
     cats.innerHTML=defs.map(([key,label])=>{
       const p=key==='todos'?produtos[0]:produtos.find(x=>categoriaDoProduto(x)===key);
       const img=p?.image_url||'images/editorial-femi-manual.jpg';
       return `<button class="femi-category" type="button" data-cat="${key}"><span><img src="${img}" alt="${label}" loading="lazy"></span><b>${label}</b></button>`;
     }).join('');
     document.querySelectorAll('[data-cat]').forEach(btn=>btn.onclick=()=>filtrarCategoria(btn.dataset.cat));
+    const especiais = produtos.filter(p => p.last_chance === true);
+    const secao = document.getElementById('ultimaChance');
+    const vitrine = document.getElementById('femiUltimaChance');
+    if (secao && vitrine) {
+      secao.hidden = especiais.length === 0;
+      vitrine.innerHTML = especiais.slice(0,6).map(cardComercial).join('');
+      const ver = document.getElementById('femiVerUltimaChance');
+      if(ver) ver.onclick=()=>filtrarCategoria('ultima-chance');
+    }
   }
 
   // =========================================================
