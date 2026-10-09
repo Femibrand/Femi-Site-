@@ -2495,9 +2495,9 @@ img[alt*="Editorial FEMI"]{
     const mais=document.getElementById('femiMaisVendidos');
     const cats=document.getElementById('femiCategoryRow');
     if(!novidades||!mais||!cats) return;
-    novidades.innerHTML=produtos.slice(0,6).map(cardComercial).join('');
+    novidades.innerHTML=produtos.filter(p => p.last_chance !== true).slice(0,6).map(cardComercial).join('');
     // Vitrine editorial inicial. Quando houver um campo de vendas/destaque no Supabase, esta seleção pode ser automatizada por desempenho real.
-    mais.innerHTML=produtos.slice(0,6).map(cardComercial).join('');
+    mais.innerHTML=produtos.filter(p => p.last_chance !== true).slice(0,6).map(cardComercial).join('');
     const defs=[['todos','Todos'],['macaquinhos','Macaquinhos'],['blusas','Blusas'],['conjuntos','Conjuntos'],['tshirts','T-shirts']];
     cats.innerHTML=defs.map(([key,label])=>{
       // "Todos" usa sempre o editorial ilustrativo oficial da FEMI.
@@ -2549,6 +2549,10 @@ img[alt*="Editorial FEMI"]{
       }
 
       const produtos = await resposta.json();
+
+      // Coleção atual primeiro; Última Chance por último.
+      // A ordem original do Supabase (mais recentes primeiro) é preservada em cada grupo.
+      produtos.sort((a, b) => Number(a.last_chance === true) - Number(b.last_chance === true));
 
       window.produtosFemi = produtos;
 
