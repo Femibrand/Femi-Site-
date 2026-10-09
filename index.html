@@ -1460,6 +1460,13 @@ img[alt*="Editorial FEMI"]{
     .femi-gallery-counter{right:10px;bottom:12px}
   }
 
+/* FEMI · selo discreto e sofisticado */
+.femi-shop-image,.card-img{position:relative}
+.femi-soldout-badge{position:absolute;z-index:8;top:12px;left:12px;background:#3f120f;color:#fff8e6;border:1px solid #fff8e680;padding:7px 12px;border-radius:4px;font:700 10px/1.2 Archivo,Arial,sans-serif;letter-spacing:.16em;box-shadow:0 4px 16px #0002}
+.card-img:has(.femi-soldout-badge) img,.femi-shop-image:has(.femi-soldout-badge) img{filter:grayscale(.38);opacity:.77}
+.femi-unavailable{font:600 11px/1.4 Archivo,Arial,sans-serif;color:#921914;margin-top:7px;letter-spacing:.025em}
+.femi-modal-unavailable{color:#921914;background:#f8ece5;padding:12px 14px;border-radius:10px;font-weight:600}
+#btnAdicionarCarrinho:disabled{background:#a49b93;cursor:not-allowed;opacity:1}
 </style>
 
 <style>
@@ -2351,6 +2358,10 @@ img[alt*="Editorial FEMI"]{
   }
 
 
+  /* FEMI · status de disponibilidade */
+  function femiEsgotado(produto) { return produto.esgotado === true; }
+  function femiSeloEsgotado() { return '<span class="femi-soldout-badge">ESGOTADO</span>'; }
+
   function renderizarProdutos(produtos) {
     const grid = document.getElementById("products-grid");
 
@@ -2382,6 +2393,7 @@ img[alt*="Editorial FEMI"]{
         >
 
           <div class="card-img">
+            ${femiEsgotado(produto) ? femiSeloEsgotado() : ""}
 
             <span class="tag">
               ${produto.category || "Novidade"}
@@ -2409,6 +2421,7 @@ img[alt*="Editorial FEMI"]{
             <span class="price">${produto.last_chance === true && Number(produto.original_price) > Number(produto.price) ? `<span class="femi-old-price">${formatarDinheiro(produto.original_price)}</span>` : ''}${preco}</span>
             <span class="femi-pix-price">${formatarDinheiro(Number(produto.price || 0) * 0.95)} no Pix</span>
             <span class="femi-installment">ou 3x de ${formatarDinheiro(Number(produto.price || 0) / 3)} sem juros</span>
+            ${femiEsgotado(produto) ? '<span class="femi-unavailable">Indisponível no momento</span>' : ""}
 
           </div>
 
@@ -2480,12 +2493,13 @@ img[alt*="Editorial FEMI"]{
       ? `<span class="femi-old-price">${formatarDinheiro(produto.original_price)}</span>` : '';
     const etiqueta = produto.last_chance === true ? '<span class="femi-sale-pill">Última Chance</span>' : '';
     return `<article class="femi-shop-card" onclick="abrirDetalhes('${produto.id}')">
-      <div class="femi-shop-image"><img src="${produto.image_url||''}" alt="${produto.name||'Produto FEMI'}" loading="lazy"></div>
+      <div class="femi-shop-image">${femiEsgotado(produto) ? femiSeloEsgotado() : ""}<img src="${produto.image_url||''}" alt="${produto.name||'Produto FEMI'}" loading="lazy"></div>
       <div class="femi-shop-info">
         ${etiqueta}<h3>${produto.name||''}</h3>
         <div class="femi-shop-price">${antigo}${formatarDinheiro(valor)}</div>
         <div class="femi-shop-pix">${formatarDinheiro(valor*.95)} no Pix</div>
         <div class="femi-shop-installment">ou 3x de ${formatarDinheiro(valor/3)} sem juros</div>
+        ${femiEsgotado(produto) ? '<div class="femi-unavailable">Indisponível no momento</div>' : ""}
       </div>
     </article>`;
   }
@@ -2641,13 +2655,14 @@ img[alt*="Editorial FEMI"]{
           <div class="product-modal-info">
             <h2>${produto.name || 'Produto FEMI'}</h2>
             <div class="product-price">${preco}</div>
+            ${femiEsgotado(produto) ? '<p class="femi-modal-unavailable">Esta peça está esgotada no momento.</p>' : ""}
             <span class="option-title">Cor</span>
             <select id="corSelecionada" class="femi-select">${cores.map(c=>`<option value="${c}">${c}</option>`).join('')}</select>
             <span class="option-title">Tamanho</span>
             <select id="tamanhoSelecionado" class="femi-select">${tamanhos.map(t=>`<option value="${t}">${t}</option>`).join('')}</select>
             <span class="option-title">Quantidade</span>
             <div class="qty-control"><button type="button" id="qtyMenos">−</button><input id="quantidadeProduto" type="number" value="1" min="1" readonly><button type="button" id="qtyMais">+</button></div>
-            <button id="btnAdicionarCarrinho" class="add-cart-femi"><span aria-hidden="true">🛒</span> Adicionar ao carrinho</button>
+            <button id="btnAdicionarCarrinho" class="add-cart-femi" ${femiEsgotado(produto) ? "disabled" : ""}>${femiEsgotado(produto) ? "Produto esgotado" : '<span aria-hidden="true">🛒</span> Adicionar ao carrinho'}</button>
             <div class="product-accordion">
               <details><summary>Descrição do produto</summary><p>${produto.description || 'Peça selecionada pela curadoria FEMI para acompanhar diferentes momentos.'}</p></details>
               <details><summary>Informações de entrega</summary><p>Entregamos em Belém e Ananindeua e enviamos pedidos para todo o Brasil. O valor e o prazo são confirmados conforme o endereço informado no pedido.</p></details>
@@ -2713,6 +2728,7 @@ img[alt*="Editorial FEMI"]{
     document.getElementById('qtyMais').onclick=()=>q.value=Number(q.value)+1;
     document.getElementById('btnAdicionarCarrinho').onclick=(event)=>{
       event.stopPropagation();
+      if (femiEsgotado(produto)) return;
       const item={id:produto.id,nome:produto.name,preco:Number(produto.price||0),imagem:produto.image_url||'',tamanho:document.getElementById('tamanhoSelecionado').value,cor:document.getElementById('corSelecionada').value,quantidade:Math.max(1,Number(q.value)||1)};
       const carrinho=obterCarrinho();
       const existente=carrinho.find(x=>String(x.id)===String(item.id)&&x.tamanho===item.tamanho&&x.cor===item.cor);
