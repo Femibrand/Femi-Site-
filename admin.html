@@ -7,6 +7,7 @@
 <style>
 :root{--red:#921914;--red2:#6e100e;--cream:#fff8e6;--ink:#3f120f;--muted:#78665e;--line:#eadbd2;--white:#fff;--green:#176a39}
 *{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font:14px Archivo,Arial,sans-serif}header{background:var(--red);color:var(--cream);padding:17px max(18px,calc((100vw - 1160px)/2));display:flex;align-items:center;justify-content:space-between;gap:12px}h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600}h1{margin:0;font-size:26px}h2{margin:0 0 12px;font-size:23px}h3{margin:0 0 10px;font-size:19px}main{max-width:1160px;margin:24px auto;padding:0 16px}.panel,.order,.metric{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 6px 18px #3f120f08}.panel{padding:21px;margin-bottom:18px}.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.between{justify-content:space-between}.muted{color:var(--muted)}.hidden{display:none!important}label{font-weight:600;font-size:13px;display:block}input,select,button{font:inherit;border:1px solid #d9c7bc;border-radius:9px;padding:11px;min-width:0}input,select{background:white;color:var(--ink)}input{width:100%}button{background:var(--red);border-color:var(--red);color:white;font-weight:600;cursor:pointer}button:hover{background:var(--red2)}button.secondary{background:white;color:var(--red)}button.secondary:hover{background:#fff5f1}button:disabled{opacity:.5;cursor:wait}#logout{background:var(--cream);color:var(--red)}.error{color:#a00000;white-space:pre-wrap}.ok{color:var(--green)}.field{flex:1;min-width:165px}.field.search{flex:2;min-width:230px}.field label{margin-bottom:6px}.field input,.field select{width:100%}.filters{align-items:end;margin-top:16px}.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:14px 0 19px}.metric{padding:17px;min-width:0}.metric .value{font-size:23px;font-weight:700;overflow-wrap:anywhere;margin-top:9px}.metric .caption{color:var(--muted);font-size:12px}.orders{display:grid;grid-template-columns:repeat(auto-fill,minmax(315px,1fr));gap:15px}.order{padding:19px;min-width:0;overflow-wrap:anywhere}.order-head{display:flex;justify-content:space-between;align-items:start;gap:8px}.order p{line-height:1.55;margin:8px 0}.tag{font-size:11px;font-weight:700;border-radius:30px;padding:6px 9px;background:#f8eee7;display:inline-block}.tag.paid{color:var(--green);background:#e9f6ed}.tag.refund{color:#a00000;background:#ffebeb}.details{margin:13px 0}.details summary{cursor:pointer;font-weight:700;color:var(--red);padding:9px 0}.detailbox{background:var(--cream);padding:12px;border-radius:9px;overflow-wrap:anywhere;line-height:1.6}.detailbox p{margin:6px 0}.detailbox ul{margin:6px 0;padding-left:18px}.detailbox li{margin:4px 0}.edit-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:13px}.edit-grid label{margin-bottom:5px}.edit-grid select{width:100%}.actions{display:flex;gap:9px;margin-top:12px}.actions button{flex:1}.help{font-size:12px;line-height:1.5}.section-heading{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.pager{display:flex;align-items:center;justify-content:center;gap:12px;margin:20px 0}.pager button{padding:9px 15px}.summary-finance{margin:5px 0 14px}.warning{background:#fff2d4;border:1px solid #ebd2a0;border-radius:9px;padding:10px;font-size:12px}.empty{padding:25px;text-align:center}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media(max-width:760px){.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.metric .value{font-size:20px}header{padding:14px}h1{font-size:21px}.panel{padding:16px}}@media(max-width:410px){.orders{grid-template-columns:minmax(0,1fr)}.edit-grid{grid-template-columns:1fr}.metrics{gap:8px}.metric{padding:12px}}
+ .stock-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-top:16px}.stock-item{border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;gap:12px;align-items:center}.stock-item img{width:66px;height:82px;object-fit:cover;border-radius:8px;background:#f4ede5}.stock-item-info{min-width:0;flex:1}.stock-item-info strong{display:block;margin-bottom:5px}.stock-item-info small{display:block;color:var(--muted);margin-bottom:9px}.stock-item button{padding:8px 10px;font-size:12px}.stock-item button.soldout{background:#3f120f;border-color:#3f120f}
 </style>
 </head>
 <body>
@@ -21,6 +22,12 @@
 </div>
 <div class="panel"><div class="section-heading"><div><h2>Gerenciar pedidos</h2><p class="muted" id="counter">Carregando...</p></div><button id="clearFilters" class="secondary" type="button">Limpar filtros</button></div>
 <div class="row filters"><div class="field search"><label for="search">Buscar pedido, cliente ou telefone</label><input id="search" type="search" placeholder="Ex.: 10, 0010, Pedido 10, Maria..." autocomplete="off"></div><div class="field"><label for="filter">Status do pedido</label><select id="filter"><option value="">Todos</option></select></div><div class="field"><label for="paymentFilter">Pagamento</label><select id="paymentFilter"><option value="">Todos</option><option value="Pendente">Pendente</option><option value="Pago">Pago</option><option value="Reembolsado">Reembolsado</option></select></div><div class="field"><label for="orderMonth">Mês da compra</label><select id="orderMonth"><option value="">Todos</option></select></div><div class="field"><label for="orderYear">Ano da compra</label><select id="orderYear"><option value="">Todos</option></select></div></div></div>
+<div class="panel" id="stockPanel">
+  <div class="section-heading"><div><h2>Disponibilidade dos produtos</h2><p class="muted">Marque uma peça como esgotada ou disponível. A vitrine será atualizada para as clientes.</p></div><button id="refreshProducts" type="button">Atualizar produtos</button></div>
+  <p id="productMsg" role="status" aria-live="polite"></p>
+  <div class="row filters"><div class="field search"><label for="productSearch">Buscar produto</label><input id="productSearch" type="search" placeholder="Ex.: Macaquinho Luizi"></div><div class="field"><label for="stockFilter">Disponibilidade</label><select id="stockFilter"><option value="">Todos</option><option value="available">Disponíveis</option><option value="soldout">Esgotados</option></select></div></div>
+  <div id="productList" class="stock-grid"></div>
+</div>
 <div id="orders" class="orders" aria-live="polite"></div><div class="pager"><button id="prevPage" class="secondary" type="button">Anterior</button><span id="pageInfo"></span><button id="nextPage" class="secondary" type="button">Próxima</button></div>
 </section>
 </main>
@@ -32,12 +39,12 @@ const STATUSES=['Aguardando confirmação','Confirmado','Em preparação','Envia
 const PAYMENTS=['Pendente','Pago','Reembolsado'];
 const MONTHS=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
 const PAGE_SIZE=24;
-let session=null,orders=[],page=1,loading=false,hasFinanceColumns=true;
+let session=null,orders=[],products=[],page=1,loading=false,hasFinanceColumns=true;
 const $=id=>document.getElementById(id);
 function msg(id,message,error=false){$(id).textContent=message;$(id).className=error?'error':'ok'}
 async function request(path,options={}){const headers={'apikey':KEY,'Content-Type':'application/json',...(session?{'Authorization':'Bearer '+session.access_token}:{}),...(options.headers||{})};const response=await fetch(BASE+path,{...options,headers});const raw=await response.text();let data;try{data=raw?JSON.parse(raw):null}catch{data=raw}if(!response.ok)throw new Error((data&&(data.message||data.msg||data.error_description||data.error))||('HTTP '+response.status));return data}
 function showDashboard(){$('login').classList.add('hidden');$('dashboard').classList.remove('hidden');$('logout').classList.remove('hidden')}
-function showLogin(){session=null;orders=[];sessionStorage.removeItem('femi_admin_session');$('login').classList.remove('hidden');$('dashboard').classList.add('hidden');$('logout').classList.add('hidden')}
+function showLogin(){session=null;orders=[];products=[];sessionStorage.removeItem('femi_admin_session');$('login').classList.remove('hidden');$('dashboard').classList.add('hidden');$('logout').classList.add('hidden')}
 async function checkAdmin(){const user=await request('/auth/v1/user');if(!user||!user.id)throw new Error('Sessão inválida');const records=await request('/rest/v1/femi_admins?select=user_id&user_id=eq.'+encodeURIComponent(user.id)+'&limit=1');if(!Array.isArray(records)||records.length===0)throw new Error('Esta conta não tem permissão de administrador.');return true}
 const money=n=>Number(n||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
 function date(s){if(!s)return 'Não informado';const d=new Date(s);return Number.isNaN(d.getTime())?String(s):d.toLocaleString('pt-BR')}
@@ -46,6 +53,44 @@ function txt(parent,tag,value,className){const el=document.createElement(tag);if
 function monthOptions(id,includeAll=true){const s=$(id);if(!s)return;const current=s.value;s.replaceChildren();if(includeAll)s.add(new Option('Todos os meses',''));MONTHS.forEach((m,i)=>s.add(new Option(m,String(i+1))));s.value=current}
 function yearOptions(id,includeAll=true){const s=$(id),old=s.value,years=new Set([new Date().getFullYear()]);orders.forEach(o=>{for(const v of [o.criado_em,o.pago_em]){if(v){const y=new Date(v).getFullYear();if(Number.isFinite(y))years.add(y)}}});s.replaceChildren();if(includeAll)s.add(new Option('Todos os anos',''));[...years].sort((a,b)=>b-a).forEach(y=>s.add(new Option(String(y),String(y))));if([...s.options].some(o=>o.value===old))s.value=old;else if(!includeAll)s.value=String(new Date().getFullYear())}
 async function loadOrders(){if(loading)return;loading=true;$('refresh').disabled=true;msg('statusMsg','Consultando pedidos...');try{const all=[];const batch=500;for(let start=0;;start+=batch){const result=await request('/rest/v1/femi_pedidos?select=*&order=criado_em.desc&limit='+batch+'&offset='+start);if(!Array.isArray(result))throw new Error('Resposta inesperada do banco');all.push(...result);if(result.length<batch)break;if(start>100000)throw new Error('Volume de dados acima do limite previsto.')}orders=all;hasFinanceColumns=orders.length===0||orders.some(o=>Object.prototype.hasOwnProperty.call(o,'situacao_pagamento')&&Object.prototype.hasOwnProperty.call(o,'pago_em'));yearOptions('financeYear',false);yearOptions('orderYear');render();msg('statusMsg','Pedidos atualizados: '+orders.length+'.');if(!hasFinanceColumns)msg('statusMsg','Atenção: execute primeiro o SQL de atualização financeira no Supabase. Os controles de pagamento ficam desativados até lá.',true)}catch(e){msg('statusMsg','Não foi possível consultar os pedidos: '+e.message,true)}finally{loading=false;$('refresh').disabled=false}}
+async function loadProducts(){
+  msg('productMsg','Carregando produtos...');
+  try{
+    const all=[];const batch=500;
+    for(let offset=0;;offset+=batch){
+      const result=await request('/rest/v1/Produtos?select=id,name,image_url,price,active,esgotado&order=name.asc&limit='+batch+'&offset='+offset);
+      if(!Array.isArray(result))throw new Error('Resposta inesperada do banco');
+      all.push(...result);if(result.length<batch)break;
+    }
+    products=all;renderProducts();msg('productMsg',products.length+' produto(s) carregado(s).');
+  }catch(e){msg('productMsg','Erro ao carregar produtos: '+e.message,true)}
+}
+function renderProducts(){
+  const q=$('productSearch').value.toLocaleLowerCase('pt-BR').trim(),filter=$('stockFilter').value,box=$('productList');
+  box.replaceChildren();
+  const visible=products.filter(p=>(p.name||'').toLocaleLowerCase('pt-BR').includes(q)&&(!filter||(filter==='soldout'?p.esgotado===true:p.esgotado!==true)));
+  if(!visible.length)txt(box,'p','Nenhum produto encontrado.','muted');
+  for(const p of visible){
+    const card=document.createElement('article');card.className='stock-item';
+    const img=document.createElement('img');img.src=p.image_url||'';img.alt=p.name||'Produto';img.loading='lazy';card.append(img);
+    const info=document.createElement('div');info.className='stock-item-info';
+    txt(info,'strong',p.name||'Produto sem nome');txt(info,'small',p.esgotado===true?'● Esgotado':'● Disponível');
+    const button=document.createElement('button');button.type='button';button.className=p.esgotado===true?'secondary':'soldout';
+    button.textContent=p.esgotado===true?'Marcar disponível':'Marcar esgotado';
+    button.onclick=async()=>{
+      const novo=p.esgotado!==true;button.disabled=true;
+      try{
+        const result=await request('/rest/v1/Produtos?id=eq.'+encodeURIComponent(p.id),{method:'PATCH',headers:{Prefer:'return=representation'},body:JSON.stringify({esgotado:novo})});
+        if(!Array.isArray(result)||result.length!==1)throw new Error('Atualização não confirmada. Confira a permissão de UPDATE da tabela Produtos.');
+        Object.assign(p,result[0]);renderProducts();msg('productMsg',(p.name||'Produto')+(novo?' marcado como esgotado.':' marcado como disponível.'));
+      }catch(e){button.disabled=false;msg('productMsg','Não foi possível salvar: '+e.message,true)}
+    };
+    info.append(button);card.append(info);box.append(card);
+  }
+}
+$('refreshProducts').onclick=loadProducts;
+$('productSearch').addEventListener('input',renderProducts);
+$('stockFilter').addEventListener('change',renderProducts);
 function paid(o){return o.situacao_pagamento==='Pago'}
 function financial(){const month=$('financeMonth').value,year=$('financeYear').value;const selected=orders.filter(o=>paid(o)&&o.pago_em&&(!month||new Date(o.pago_em).getMonth()+1===Number(month))&&(!year||new Date(o.pago_em).getFullYear()===Number(year)));const sum=selected.reduce((v,o)=>v+Number(o.total||0),0);const pending=orders.filter(o=>(o.situacao_pagamento||'Pendente')==='Pendente'&&o.status!=='Cancelado').reduce((v,o)=>v+Number(o.total||0),0);$('metricRevenue').textContent=money(sum);$('metricPaid').textContent=String(selected.length);$('metricPending').textContent=money(pending);$('metricAverage').textContent=money(selected.length?sum/selected.length:0);$('financeNote').textContent='Faturamento bruto por data de confirmação do pagamento. Pedidos pagos em preparação, enviados, entregues ou finalizados entram no cálculo. Pagamentos reembolsados ficam de fora. A receber considera todos os períodos. Não representa lucro líquido.'}
 function matchesSearch(o,raw){if(!raw)return true;const term=raw.toLocaleLowerCase('pt-BR').trim();const digits=term.replace(/\D/g,'');const code=String(o.numero_pedido??'');if(digits&&/^(?:pedido\s*(?:n[º°.]?\s*)?|n[º°.]?\s*)?\d+$/i.test(term)&&code&&Number(digits)===Number(code))return true;const text=[o.numero_pedido==null?'':String(o.numero_pedido).padStart(4,'0'),o.id,o.nome,o.nome_cliente,o.cliente_nome,o.telefone,o.telefone_cliente,o.whatsapp,o.email,o.email_cliente,JSON.stringify(o.cliente||{}),JSON.stringify(o.dados_cliente||{}),JSON.stringify(o.endereco||{})].filter(Boolean).join(' ').toLocaleLowerCase('pt-BR');return text.includes(term)}
@@ -63,7 +108,7 @@ $('clearFilters').onclick=()=>{$('search').value='';$('filter').value='';$('paym
 $('prevPage').onclick=()=>{page--;render();window.scrollTo({top:$('orders').getBoundingClientRect().top+window.scrollY-20,behavior:'smooth'})};
 $('nextPage').onclick=()=>{page++;render();window.scrollTo({top:$('orders').getBoundingClientRect().top+window.scrollY-20,behavior:'smooth'})};
 $('refresh').onclick=loadOrders;$('logout').onclick=showLogin;
-$('loginForm').onsubmit=async e=>{e.preventDefault();$('loginButton').disabled=true;msg('loginMsg','Autenticando...');try{const auth=await request('/auth/v1/token?grant_type=password',{method:'POST',body:JSON.stringify({email:$('email').value.trim(),password:$('password').value})});session=auth;await checkAdmin();sessionStorage.setItem('femi_admin_session',JSON.stringify(session));$('password').value='';showDashboard();await loadOrders()}catch(err){showLogin();msg('loginMsg',err.message,true)}finally{$('loginButton').disabled=false}};
-(async()=>{try{const saved=sessionStorage.getItem('femi_admin_session');if(!saved)return;session=JSON.parse(saved);await checkAdmin();showDashboard();await loadOrders()}catch{showLogin()}})();
+$('loginForm').onsubmit=async e=>{e.preventDefault();$('loginButton').disabled=true;msg('loginMsg','Autenticando...');try{const auth=await request('/auth/v1/token?grant_type=password',{method:'POST',body:JSON.stringify({email:$('email').value.trim(),password:$('password').value})});session=auth;await checkAdmin();sessionStorage.setItem('femi_admin_session',JSON.stringify(session));$('password').value='';showDashboard();await Promise.all([loadOrders(),loadProducts()])}catch(err){showLogin();msg('loginMsg',err.message,true)}finally{$('loginButton').disabled=false}};
+(async()=>{try{const saved=sessionStorage.getItem('femi_admin_session');if(!saved)return;session=JSON.parse(saved);await checkAdmin();showDashboard();await Promise.all([loadOrders(),loadProducts()])}catch{showLogin()}})();
 </script>
 </body></html>
