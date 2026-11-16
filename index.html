@@ -1832,7 +1832,7 @@ img[alt*="Editorial FEMI"]{
               </button>
 
               <button type="button" class="filtro-categoria" data-categoria="tshirts">T-shirts</button>
-              <button type="button" class="filtro-categoria" data-categoria="ultima-chance">Última Chance</button>
+              <button type="button" class="filtro-categoria" data-categoria="ultima-chance">Black Friday</button>
 
             </div>
 
@@ -1951,6 +1951,15 @@ img[alt*="Editorial FEMI"]{
     </div>
   </section>
 
+  <!-- FEMI V43 · Black Friday -->
+  <section class="femi-showcase femi-last-chance" id="ultimaChance" hidden>
+    <div class="wrap">
+      <div class="femi-last-intro"><span class="eyebrow">Ofertas especiais FEMI</span><h2>Black Friday</h2><p>Seus looks favoritos com preços especiais nesta Black Friday. Aproveite as ofertas FEMI enquanto durarem os estoques!</p></div>
+      <div class="femi-product-grid" id="femiUltimaChance"></div>
+      <button type="button" class="femi-last-see-all" id="femiVerUltimaChance">Explorar todas as peças →</button>
+    </div>
+  </section>
+
   <section class="femi-showcase" id="novidades">
     <div class="wrap">
       <div class="femi-section-title"><h2>Novidades</h2><button type="button" data-cat="todos">Ver todas →</button></div>
@@ -1968,15 +1977,6 @@ img[alt*="Editorial FEMI"]{
     <div class="wrap">
       <div class="femi-section-title"><h2>Mais vendidos</h2><button type="button" data-cat="todos">Ver todos →</button></div>
       <div class="femi-product-grid" id="femiMaisVendidos"></div>
-    </div>
-  </section>
-
-  <!-- FEMI V37 · Última Chance -->
-  <section class="femi-showcase femi-last-chance" id="ultimaChance" hidden>
-    <div class="wrap">
-      <div class="femi-last-intro"><span class="eyebrow">Curadoria especial FEMI</span><h2>Última Chance</h2><p>Peças de coleções anteriores, em condições especiais. Seus últimos momentos na nossa seleção.</p></div>
-      <div class="femi-product-grid" id="femiUltimaChance"></div>
-      <button type="button" class="femi-last-see-all" id="femiVerUltimaChance">Explorar todas as peças →</button>
     </div>
   </section>
 
@@ -2374,6 +2374,7 @@ img[alt*="Editorial FEMI"]{
       blusas: "Blusas",
       regatas: "Regatas",
       conjuntos: "Conjuntos",
+      "ultima-chance": "Black Friday",
       shorts: "Shorts"
     };
 
@@ -2440,7 +2441,7 @@ img[alt*="Editorial FEMI"]{
               ${produto.description || ""}
             </span>
 
-            ${produto.last_chance === true ? '<span class="femi-sale-pill">Última Chance</span>' : ''}
+            ${produto.last_chance === true ? '<span class="femi-sale-pill">Black Friday</span>' : ''}
             <span class="price">${produto.last_chance === true && Number(produto.original_price) > Number(produto.price) ? `<span class="femi-old-price">${formatarDinheiro(produto.original_price)}</span>` : ''}${preco}</span>
             <span class="femi-pix-price">${formatarDinheiro(Number(produto.price || 0) * 0.95)} no Pix</span>
             <span class="femi-installment">ou 3x de ${formatarDinheiro(Number(produto.price || 0) / 3)} sem juros</span>
@@ -2485,7 +2486,7 @@ img[alt*="Editorial FEMI"]{
     } else {
       titulo.textContent = nomeCategoria(categoria);
       descricao.textContent = categoria === "ultima-chance"
-        ? "Peças de coleções anteriores com preços especiais, enquanto durarem os estoques."
+        ? "A Black Friday FEMI chegou! Escolha suas peças favoritas com preços especiais enquanto durarem os estoques."
         : `Confira as peças de ${nomeCategoria(categoria).toLowerCase()} disponíveis na FEMI.`;
     }
 
@@ -2514,7 +2515,7 @@ img[alt*="Editorial FEMI"]{
     const valor=Number(produto.price||0);
     const antigo = produto.last_chance === true && Number(produto.original_price) > valor
       ? `<span class="femi-old-price">${formatarDinheiro(produto.original_price)}</span>` : '';
-    const etiqueta = produto.last_chance === true ? '<span class="femi-sale-pill">Última Chance</span>' : '';
+    const etiqueta = produto.last_chance === true ? '<span class="femi-sale-pill">Black Friday</span>' : '';
     return `<article class="femi-shop-card" onclick="abrirDetalhes('${produto.id}')">
       <div class="femi-shop-image">${femiEsgotado(produto) ? femiSeloEsgotado() : ""}<img src="${produto.image_url||''}" alt="${produto.name||'Produto FEMI'}" loading="lazy"></div>
       <div class="femi-shop-info">
@@ -2532,9 +2533,9 @@ img[alt*="Editorial FEMI"]{
     const mais=document.getElementById('femiMaisVendidos');
     const cats=document.getElementById('femiCategoryRow');
     if(!novidades||!mais||!cats) return;
-    novidades.innerHTML=produtos.filter(p => p.last_chance !== true).slice(0,6).map(cardComercial).join('');
+    novidades.innerHTML=produtos.slice(0,6).map(cardComercial).join('');
     // Vitrine editorial inicial. Quando houver um campo de vendas/destaque no Supabase, esta seleção pode ser automatizada por desempenho real.
-    mais.innerHTML=produtos.filter(p => p.last_chance !== true).slice(0,6).map(cardComercial).join('');
+    mais.innerHTML=produtos.slice(0,6).map(cardComercial).join('');
     const defs=[['todos','Todos'],['macaquinhos','Macaquinhos'],['blusas','Blusas'],['conjuntos','Conjuntos'],['tshirts','T-shirts']];
     cats.innerHTML=defs.map(([key,label])=>{
       // "Todos" usa sempre o editorial ilustrativo oficial da FEMI.
